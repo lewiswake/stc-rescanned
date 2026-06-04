@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sonic the Comic Re-Scanned</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <div class="container hero-container">
+        <div class="hero-content">
+          <h1>Sonic the Comic<br />Re-Scanned</h1>
+          <p>
+            We are carefully preserving the entire history of Sonic the Comic by
+            rescanning every issue at a crisp 600 DPI. Our goal is to bring
+            these classic stories to modern screens in the highest quality
+            possible, creating an archive that fans can enjoy for years to come!
+          </p>
+          <a href="#" class="btn btn-primary btn-inline">Support the Project</a>
+        </div>
+        <div class="hero-visual">
+          <img
+            src="images/stc-example.png"
+            alt="Sonic the Comic viewed across multiple devices"
+            class="hero-mockup"
+          />
+        </div>
+      </div>
+    </header>
+
+    <section class="resolution-info">
+      <div class="container res-grid">
+        <div class="res-card standard">
+          <h3>Standard Resolution</h3>
+          <p>
+            Perfect for reading on the go. Provides a crisp 1:1 pixel match for
+            mobile devices without wasting bandwidth or storage space.
+          </p>
+          <ul class="res-specs">
+            <li><strong>Image Height:</strong> 2200px</li>
+            <li><strong>Average Size:</strong> ~40MB per issue</li>
+            <li>
+              <strong>Best For:</strong> Smartphones, standard iPads, Amazon
+              Fire HD
+            </li>
+          </ul>
+        </div>
+        <div class="res-card high">
+          <h3>High Resolution</h3>
+          <p>
+            Maximum detail for premium displays. Uncompressed clarity intended
+            for screens that exceed 2500 pixels on their longest edge.
+          </p>
+          <ul class="res-specs">
+            <li><strong>Image Height:</strong> 3500px</li>
+            <li><strong>Average Size:</strong> ~115MB per issue</li>
+            <li>
+              <strong>Best For:</strong> 4K Monitors, iPad Pro 12.9", Galaxy Tab
+              Ultra
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <main class="container">
+      <div class="section-header">
+        <div class="section-title">
+          <h2>Available Issues</h2>
+          <p id="issue-count-display">Loading issues...</p>
+        </div>
+        <div class="search-container">
+          <input
+            type="text"
+            id="search-input"
+            class="search-input"
+            placeholder="Search by issue number..."
+            aria-label="Search issues"
+          />
+        </div>
+      </div>
+
+      <section
+        class="grid"
+        id="issue-grid"
+        aria-label="Comic Issues Grid"
+      ></section>
+      <div class="empty-state" id="empty-state">
+        Looks like we haven't scanned this one yet!
+      </div>
+    </main>
+
+    <footer>
+      <div class="container footer-container">
+        <div class="contact-box">
+          <h3>Want to help?</h3>
+          <p>
+            The archive is a massive undertaking. If you have any missing
+            original issues and an A3 flatbed scanner, we would love to
+            collaborate with you to preserve the run.
+          </p>
+          <a
+            href="mailto:your-email@example.com"
+            class="btn btn-secondary btn-inline"
+            style="margin: 0 auto"
+            >Contact Us</a
+          >
+        </div>
+
+        <div class="footer-bottom">
+          <p>&copy; 2026 STC Archival Project. All rights reserved.</p>
+          <a
+            href="https://archive.org/details/@shoopkid/lists/1/sonic-the-comic---600-dpi?sort=date"
+            target="_blank"
+            rel="noopener noreferrer"
+            >View 600 DPI Raw Master Scans</a
+          >
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
