@@ -76,6 +76,11 @@ document.addEventListener("DOMContentLoaded", async () => {
       const highUrl = `${highBase}/Sonic%20The%20Comic%20-%20High%20Resolution%20Scans%20-%20${encodedRange}.zip/Sonic%20The%20Comic%20-%20High%20Resolution%20Scans%2F${encodeURIComponent(issue.high)}`;
       const stdUrl = `${stdBase}/Sonic%20The%20Comic%20-%20Standard%20Resolution%20Scans%20-%20${encodedRange}.zip/Sonic%20The%20Comic%20-%20Standard%20Resolution%20Scans%2F${encodeURIComponent(issue.standard)}`;
 
+      // Construct Master Button if the link exists in the JSON
+      const masterHtml = issue.master
+        ? `<a href="${issue.master}" aria-label="Download Issue ${issueDisplayNum} Raw 600 DPI Master" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="border-style: dashed; opacity: 0.85;">600 DPI Master</a>`
+        : "";
+
       const article = document.createElement("article");
       article.className = "card issue-card";
       article.dataset.issueNumber = issueDisplayNum;
@@ -87,7 +92,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                 <div class="card-right">
                     <div class="card-header">
                         <h3>Issue ${issueDisplayNum}</h3>
-                        <p>Optimised .cbz</p>
                     </div>
                     <div class="button-group">
                         <a href="${stdUrl}" aria-label="Download Issue ${issueDisplayNum} Standard Resolution" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
@@ -96,6 +100,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                         <a href="${highUrl}" aria-label="Download Issue ${issueDisplayNum} High Resolution" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
                             Download High
                         </a>
+                        ${masterHtml}
                     </div>
                 </div>
             `;
