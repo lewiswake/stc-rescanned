@@ -4,6 +4,25 @@ document.addEventListener("DOMContentLoaded", async () => {
   const emptyState = document.getElementById("empty-state");
   const countDisplay = document.getElementById("issue-count-display");
 
+  // Progress Bar Elements & Variables
+  const optimisedFill = document.getElementById("optimised-progress-fill");
+  const optimisedText = document.getElementById("optimised-progress-text");
+
+  const scannedFill = document.getElementById("scanned-progress-fill");
+  const scannedText = document.getElementById("scanned-progress-text");
+
+  const totalIssuesInRun = 223;
+
+  // MANUALLY UPDATE THESE VALUES WHEN NEW RAW 600 DPI SCANS ARE COMPLETED
+  const manualScannedIssues = 51;
+  const lastUpdatedDate = "June 7, 2026";
+
+  // Push the date to the HTML
+  const lastUpdatedEl = document.getElementById("last-updated-text");
+  if (lastUpdatedEl) {
+    lastUpdatedEl.textContent = `Last updated: ${lastUpdatedDate}`;
+  }
+
   const highBase =
     "https://archive.org/download/sonic-the-comic-high-resolution-scans";
   const stdBase =
@@ -21,7 +40,33 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (!response.ok) throw new Error("Failed to load issues data.");
     const issues = await response.json();
 
-    countDisplay.textContent = `Currently hosting ${issues.length} optimised issues.`;
+    countDisplay.textContent = `There are currently ${issues.length} optimised issues available for download from the Internet Archive.`;
+
+    // 1. Calculate and update 600 DPI Scanned Progress (Manual)
+    if (scannedFill && scannedText) {
+      const scannedPercentage = (
+        (manualScannedIssues / totalIssuesInRun) *
+        100
+      ).toFixed(1);
+      scannedText.textContent = `${manualScannedIssues} out of ${totalIssuesInRun} issues (${scannedPercentage}%)`;
+
+      setTimeout(() => {
+        scannedFill.style.width = `${scannedPercentage}%`;
+      }, 150);
+    }
+
+    // 2. Calculate and update Optimised Progress (Dynamic)
+    if (optimisedFill && optimisedText) {
+      const optPercentage = ((issues.length / totalIssuesInRun) * 100).toFixed(
+        1,
+      );
+      optimisedText.textContent = `${issues.length} out of ${totalIssuesInRun} issues (${optPercentage}%)`;
+
+      // A slightly longer delay so the bars animate one after the other visually
+      setTimeout(() => {
+        optimisedFill.style.width = `${optPercentage}%`;
+      }, 350);
+    }
 
     issues.forEach((issue) => {
       const issueDisplayNum = String(issue.id).padStart(3, "0");
@@ -86,6 +131,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   } catch (error) {
     console.error(error);
     countDisplay.textContent = "Error loading issue data.";
+    if (scannedText) scannedText.textContent = "Error loading progress.";
+    if (optimisedText) optimisedText.textContent = "Error loading progress.";
     grid.innerHTML = `<p style="color: var(--text-muted); grid-column: 1 / -1; text-align: center;">Error loading archive files. Please ensure you are running a local server.</p>`;
   }
 });
