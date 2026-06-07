@@ -22,7 +22,7 @@
   { "id": 21, "high": "STC_021_HighRes.cbz", "standard": "STC_021_StandardRes.cbz", "image": "images/021.jpg" },
   { "id": 22, "high": "STC_022_HighRes.cbz", "standard": "STC_022_StandardRes.cbz", "image": "images/022.jpg" },
   { "id": 23, "high": "STC_023_HighRes.cbz", "standard": "STC_023_StandardRes.cbz", "image": "images/023.jpg" },
-  { "id": 24, "high": "STC_024_HighRes.cbz", "standard": "STC_024_HighRes.cbz", "image": "images/024.jpg" },
+  { "id": 24, "high": "STC_024_HighRes.cbz", "standard": "STC_024_StandardRes.cbz", "image": "images/024.jpg" },
   { "id": 25, "high": "STC_025_HighRes.cbz", "standard": "STC_025_StandardRes.cbz", "image": "images/025.jpg" },
   { "id": 26, "high": "STC_026_HighRes.cbz", "standard": "STC_026_StandardRes.cbz", "image": "images/026.jpg" },
   { "id": 27, "high": "STC_027_HighRes.cbz", "standard": "STC_027_StandardRes.cbz", "image": "images/027.jpg" },
