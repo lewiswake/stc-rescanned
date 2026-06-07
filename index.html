@@ -11,11 +11,10 @@
       <div class="container hero-container">
         <div class="hero-content">
           <img
-            src="images/sonic-the-comic-logo.svg"
-            alt="Sonic the Comic"
+            src="images/sonic-the-comic-rescan-project.png"
+            alt="Sonic the Comic Rescan Project Logo"
             class="hero-logo"
           />
-          <h1 class="hero-subtitle">Rescan project</h1>
 
           <p class="lead">
             We are carefully preserving the entire history of
@@ -28,9 +27,15 @@
             specials (including every advertisement) that fans can enjoy for
             years to come!
           </p>
-          <a href="#contribute" class="btn btn-primary btn-inline btn-large"
-            >Help contribute</a
-          >
+
+          <div class="hero-buttons">
+            <a href="#downloads" class="btn btn-primary btn-inline btn-large"
+              >Download scans</a
+            >
+            <a href="#contribute" class="btn btn-secondary btn-inline btn-large"
+              >Help contribute</a
+            >
+          </div>
         </div>
         <div class="hero-visual">
           <img
@@ -64,7 +69,7 @@
 
       <div class="progress-item">
         <div class="progress-labels">
-          <span>Optimised and available</span>
+          <span>Optimised and available in high and standard resolution</span>
           <span id="optimised-progress-text">Calculating...</span>
         </div>
         <div class="progress-track" aria-hidden="true">
@@ -78,41 +83,71 @@
     </section>
 
     <section class="resolution-info">
-      <div class="container res-grid">
-        <div class="res-card standard">
-          <h3>Standard resolution</h3>
-          <p>
-            Perfect for reading on the go. Provides a crisp 1:1 pixel match for
-            mobile devices without wasting bandwidth or storage space.
-          </p>
-          <ul class="res-specs">
-            <li><strong>Image height:</strong> 2200px</li>
-            <li><strong>Average size:</strong> ~40MB per issue</li>
-            <li>
-              <strong>Best for:</strong> Smartphones, standard iPads, Amazon
-              Fire HD
-            </li>
-          </ul>
+      <div class="container">
+        <div class="progress-header" style="margin-bottom: 24px">
+          <h2>File formats and resolutions</h2>
         </div>
-        <div class="res-card high">
-          <h3>High resolution</h3>
+
+        <div class="res-grid">
+          <div class="res-card standard">
+            <h3>Standard resolution</h3>
+            <p>
+              Perfect for reading on the go. Provides a crisp 1:1 pixel match
+              for mobile devices without wasting bandwidth or storage space.
+            </p>
+            <ul class="res-specs">
+              <li><strong>Image height:</strong> 2200px</li>
+              <li><strong>Average size:</strong> ~40MB per issue</li>
+              <li>
+                <strong>Best for:</strong> Smartphones, standard iPads, Amazon
+                Fire HD
+              </li>
+            </ul>
+          </div>
+
+          <div class="res-card high">
+            <h3>High resolution</h3>
+            <p>
+              Maximum detail for premium displays. Uncompressed clarity intended
+              for screens that exceed 2500 pixels on their longest edge.
+            </p>
+            <ul class="res-specs">
+              <li><strong>Image height:</strong> 3500px</li>
+              <li><strong>Average size:</strong> ~115MB per issue</li>
+              <li>
+                <strong>Best for:</strong> 4K Monitors, iPad Pro 12.9", Galaxy
+                Tab Ultra
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="res-card master" style="margin-top: 24px">
+          <h3>Raw 600 DPI masters</h3>
           <p>
-            Maximum detail for premium displays. Uncompressed clarity intended
-            for screens that exceed 2500 pixels on their longest edge.
+            Massive master files hosted on the Internet Archive. These act as
+            the foundation for any other projects you may want to do with them.
+            We do not require credit for use of these scans.
+            <strong
+              >They are not intended for reading in comic reader apps.</strong
+            >
           </p>
           <ul class="res-specs">
-            <li><strong>Image height:</strong> 3500px</li>
-            <li><strong>Average size:</strong> ~115MB per issue</li>
+            <li><strong>Image height:</strong> ~6880px</li>
             <li>
-              <strong>Best for:</strong> 4K Monitors, iPad Pro 12.9", Galaxy Tab
-              Ultra
+              <strong>Average size:</strong> 300MB to 600MB per issue (dependent
+              on initial JPEG compression)
+            </li>
+            <li>
+              <strong>Best for:</strong> Archival preservation, image editing,
+              and derivative projects
             </li>
           </ul>
         </div>
       </div>
     </section>
 
-    <main class="container">
+    <main class="container" id="downloads">
       <div class="section-header">
         <div class="section-title">
           <h2>Download cbz files</h2>
