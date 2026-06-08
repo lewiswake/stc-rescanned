@@ -4,106 +4,108 @@
 
 /* Default: Dark Mode */
 :root {
-  /* Core Mega Drive Palette */
-  --bg-color: #0a0410;
-  --gradient-top: #240b3b;
-  --gradient-bottom: #0a0410;
-  --grid-line: rgba(255, 255, 255, 0.04);
+  /* Modern Slate/Navy Backgrounds */
+  --bg-color: #060b14;
+  --gradient-top: #101c38;
+  --gradient-bottom: #060b14;
+  --grid-line: rgba(255, 255, 255, 0.03);
 
-  --panel-bg: rgba(22, 10, 36, 0.65);
-  --panel-border: rgba(90, 45, 145, 0.4);
-  --card-bg: rgba(10, 4, 16, 0.7);
-  --border-color: #3d1e6d;
-  --border-light: rgba(255, 255, 255, 0.1);
+  /* Clean UI Panels */
+  --panel-bg: rgba(15, 23, 42, 0.75);
+  --panel-border: rgba(13, 133, 175, 0.2);
+  --card-bg: rgba(30, 41, 59, 0.6);
+  --border-color: rgba(255, 255, 255, 0.1);
+  --border-light: rgba(255, 255, 255, 0.05);
 
-  --footer-bg: rgba(10, 4, 16, 0.95);
-  --contact-bg: rgba(0, 0, 0, 0.4);
-  --track-bg: rgba(0, 0, 0, 0.5);
-  --input-bg: rgba(0, 0, 0, 0.6);
+  --footer-bg: rgba(6, 11, 20, 0.95);
+  --contact-bg: rgba(15, 23, 42, 0.5);
+  --track-bg: rgba(0, 0, 0, 0.6);
+  --input-bg: rgba(15, 23, 42, 0.8);
 
-  --shadow-color: rgba(0, 0, 0, 0.4);
-  --shadow-heavy: rgba(0, 0, 0, 0.6);
+  --shadow-color: rgba(0, 0, 0, 0.5);
+  --shadow-heavy: rgba(0, 0, 0, 0.7);
 
-  --text-main: #ffffff;
-  --text-muted: rgba(255, 255, 255, 0.85);
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
 
-  /* STC Brand Palette & Gold Variations */
-  --stc-navy: #12215d;
-  --stc-gold-light: #f4d05c;
-  --stc-gold-mid: #dbb536; /* STC Brand Gold */
-  --stc-gold-dark: #b89525;
-  --stc-gold-darkest: #8c7014;
+  /* Global Interactive Colors */
+  --color-primary: #0d85af;
+  --color-hover: #212968;
+  --color-active: #debe3e;
 
-  /* Button Accents */
-  --accent-primary: var(--stc-gold-mid);
-  --accent-primary-hover: var(--stc-gold-light);
-  --btn-text-primary: var(--stc-navy);
-
-  --accent-secondary: var(--stc-gold-dark);
-  --accent-secondary-hover: var(--stc-gold-mid);
-  --btn-text-secondary: var(--stc-navy);
+  /* Button Specific Variables */
+  --btn-bg: var(--color-primary);
+  --btn-hover: var(--color-hover);
+  --btn-active: var(--color-active);
+  --btn-text: #ffffff;
+  --btn-text-active: #000000;
 
   /* Text Accents & Outlines */
-  --text-accent-1: var(--stc-gold-mid);
-  --text-accent-2: var(--stc-gold-light);
-  --input-focus-border: var(--stc-gold-mid);
+  --text-accent-1: #4fc3f7; /* Lighter blue for dark mode readability */
+  --text-accent-2: var(--color-active);
+  --input-focus-border: var(--color-primary);
 
   /* Glows */
-  --focus-ring: rgba(219, 181, 54, 0.6);
-  --glow-primary: rgba(219, 181, 54, 0.4);
-  --glow-secondary: rgba(184, 149, 37, 0.4);
-  --glow-text: rgba(219, 181, 54, 0.4);
+  --focus-ring: rgba(13, 133, 175, 0.5);
+  --glow-primary: rgba(13, 133, 175, 0.4);
+  --glow-hover: rgba(33, 41, 104, 0.6);
+  --glow-active: rgba(222, 190, 62, 0.4);
 }
 
 /* Automatic Light Mode Alternative */
 @media (prefers-color-scheme: light) {
   :root {
-    --bg-color: #f8fafc;
+    /* Bright, Crisp Slate Backgrounds */
+    --bg-color: #f1f5f9;
     --gradient-top: #e2e8f0;
-    --gradient-bottom: #f8fafc;
-    --grid-line: rgba(0, 0, 0, 0.05);
+    --gradient-bottom: #f1f5f9;
+    --grid-line: rgba(0, 0, 0, 0.04);
 
+    /* Light UI Panels */
     --panel-bg: rgba(255, 255, 255, 0.85);
-    --panel-border: rgba(0, 0, 0, 0.1);
-    --card-bg: rgba(255, 255, 255, 0.95);
-    --border-color: rgba(0, 0, 0, 0.15);
-    --border-light: rgba(0, 0, 0, 0.1);
+    --panel-border: rgba(15, 23, 42, 0.1);
+    --card-bg: rgba(248, 250, 252, 0.9);
+    --border-color: rgba(15, 23, 42, 0.1);
+    --border-light: rgba(15, 23, 42, 0.05);
 
-    --footer-bg: rgba(248, 250, 252, 0.95);
-    --contact-bg: rgba(255, 255, 255, 0.8);
-    --track-bg: rgba(0, 0, 0, 0.1);
-    --input-bg: rgba(255, 255, 255, 0.8);
+    --footer-bg: rgba(241, 245, 249, 0.95);
+    --contact-bg: rgba(255, 255, 255, 0.7);
+    --track-bg: rgba(15, 23, 42, 0.1);
+    --input-bg: rgba(255, 255, 255, 0.9);
 
-    --shadow-color: rgba(0, 0, 0, 0.1);
-    --shadow-heavy: rgba(0, 0, 0, 0.15);
+    --shadow-color: rgba(15, 23, 42, 0.08);
+    --shadow-heavy: rgba(15, 23, 42, 0.15);
 
     --text-main: #0f172a;
     --text-muted: #475569;
 
-    /* Button Accents */
-    --accent-primary: var(--stc-gold-mid);
-    --accent-primary-hover: var(--stc-gold-dark);
-    --btn-text-primary: var(--stc-navy);
+    /* Global Interactive Colors */
+    --color-primary: #0d85af;
+    --color-hover: #1e255e; /* Slightly darker for light mode contrast */
+    --color-active: #b89c2e; /* Darker gold for text readability */
 
-    --accent-secondary: var(--stc-gold-darkest);
-    --accent-secondary-hover: #614c0a;
-    --btn-text-secondary: #ffffff; /* White text passes WCAG on the darkest gold */
+    /* Button Specific Variables */
+    --btn-bg: var(--color-primary);
+    --btn-hover: var(--color-hover);
+    --btn-active: #debe3e; /* Keep button gold bright */
+    --btn-text: #ffffff;
+    --btn-text-active: #000000;
 
     /* Text Accents & Outlines */
-    --text-accent-1: var(--stc-gold-darkest);
-    --text-accent-2: var(--stc-gold-dark);
-    --input-focus-border: var(--stc-gold-dark);
+    --text-accent-1: #0a698a;
+    --text-accent-2: var(--color-active);
+    --input-focus-border: var(--color-primary);
 
     /* Glows */
-    --focus-ring: rgba(140, 112, 20, 0.6);
-    --glow-primary: rgba(219, 181, 54, 0.3);
-    --glow-secondary: rgba(140, 112, 20, 0.3);
-    --glow-text: rgba(140, 112, 20, 0.3);
+    --focus-ring: rgba(13, 133, 175, 0.4);
+    --glow-primary: rgba(13, 133, 175, 0.3);
+    --glow-hover: rgba(30, 37, 94, 0.3);
+    --glow-active: rgba(184, 156, 46, 0.3);
   }
 }
 
 /* ==========================================
-   GLOBAL STYLES
+   GLOBAL STYLES & TYPOGRAPHY
    ========================================== */
 
 * {
@@ -140,6 +142,21 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+}
+
+/* Global Hyperlinks */
+a {
+  color: var(--text-accent-1);
+  text-decoration: underline;
+  text-decoration-color: var(--text-accent-1);
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  transition: all 0.2s ease;
+}
+
+a:hover {
+  color: var(--color-hover);
+  text-decoration-color: var(--color-hover);
 }
 
 /* Reusable Containers */
@@ -205,7 +222,7 @@ body {
   letter-spacing: 0.05em;
   color: var(--text-accent-1);
   margin-bottom: 24px;
-  text-shadow: 0 0 12px var(--glow-text);
+  text-shadow: 0 0 12px var(--glow-primary);
   text-transform: uppercase;
 }
 
@@ -234,9 +251,6 @@ body {
   .hero-buttons {
     justify-content: flex-start;
   }
-}
-
-@media (min-width: 768px) {
   .hero-content p {
     margin: 0 0 32px 0;
   }
@@ -415,21 +429,14 @@ body {
   transition: width 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
+/* Unified Theme Gradients for Bars */
 .scanned-fill {
-  background: linear-gradient(
-    90deg,
-    var(--accent-secondary),
-    var(--accent-secondary-hover)
-  );
-  box-shadow: 0 0 15px var(--glow-secondary);
+  background: linear-gradient(90deg, #99801f, var(--color-active));
+  box-shadow: 0 0 15px var(--glow-active);
 }
 
 .optimised-fill {
-  background: linear-gradient(
-    90deg,
-    var(--accent-primary),
-    var(--accent-primary-hover)
-  );
+  background: linear-gradient(90deg, #095975, var(--color-primary));
   box-shadow: 0 0 15px var(--glow-primary);
 }
 
@@ -557,10 +564,10 @@ main.container {
 
 .card:hover {
   transform: translateY(-4px);
-  border-color: var(--accent-secondary);
+  border-color: var(--color-primary);
   box-shadow:
     0 10px 20px var(--shadow-color),
-    0 0 15px var(--glow-secondary);
+    0 0 15px var(--glow-primary);
 }
 
 .card-left {
@@ -611,6 +618,7 @@ main.container {
   margin-top: auto;
 }
 
+/* Ensures all buttons ignore global link styles */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -620,7 +628,7 @@ main.container {
   border-radius: 6px;
   font-size: 0.9rem;
   font-weight: 600;
-  text-decoration: none;
+  text-decoration: none !important;
   transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
   outline: none;
   cursor: pointer;
@@ -645,36 +653,24 @@ main.container {
   transform: scale(0.95);
 }
 
-.btn-primary {
-  background-color: var(--accent-primary);
-  color: var(--btn-text-primary);
-}
-
-.btn-primary:hover {
-  background-color: var(--accent-primary-hover);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 15px var(--glow-primary);
-}
-
-.btn-primary:active {
-  background-color: var(--accent-primary-hover);
-  box-shadow: 0 0 5px var(--glow-primary);
-}
-
+.btn-primary,
 .btn-secondary {
-  background-color: var(--accent-secondary);
-  color: var(--btn-text-secondary);
+  background-color: var(--btn-bg);
+  color: var(--btn-text) !important;
 }
 
+.btn-primary:hover,
 .btn-secondary:hover {
-  background-color: var(--accent-secondary-hover);
+  background-color: var(--btn-hover);
   transform: translateY(-2px);
-  box-shadow: 0 4px 15px var(--glow-secondary);
+  box-shadow: 0 4px 15px var(--glow-hover);
 }
 
+.btn-primary:active,
 .btn-secondary:active {
-  background-color: var(--accent-secondary-hover);
-  box-shadow: 0 0 5px var(--glow-secondary);
+  background-color: var(--btn-active);
+  color: var(--btn-text-active) !important;
+  box-shadow: 0 0 5px var(--glow-active);
 }
 
 /* ==========================================
@@ -786,17 +782,8 @@ footer {
 }
 
 .footer-bottom a {
-  color: var(--text-accent-1);
-  text-decoration: none;
   font-size: 0.9rem;
   font-weight: 500;
-  transition: all 0.2s ease;
-}
-
-.footer-bottom a:hover {
-  text-decoration: underline;
-  text-shadow: 0 0 8px var(--glow-text);
-  color: var(--text-main);
 }
 
 @media (max-width: 400px) {
