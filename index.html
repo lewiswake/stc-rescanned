@@ -1,294 +1,353 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sonic the Comic Rescan Project</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <header class="hero">
-      <div class="container hero-container">
-        <div class="hero-content">
-          <img
-            src="images/sonic-the-comic-rescan-project.png"
-            alt="Sonic the Comic Rescan Project Logo"
-            class="hero-logo"
-          />
+  <!doctype html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-          <p class="lead">
-            We are carefully preserving the entire history of
-            <strong>Sonic&nbsp;the&nbsp;Comic</strong> by rescanning every issue
-            at a crisp 600&nbsp;DPI.
-          </p>
-          <p>
-            Our goal is to bring these classic stories to modern screens in the
-            highest quality possible, creating an archive of all issues and
-            specials (including every advertisement) that fans can enjoy for
-            years to come!
-          </p>
+      <title>
+        Sonic the Comic Rescan Project | High-Quality Fleetway STC Scans
+      </title>
+      <meta
+        name="title"
+        content="Sonic consequence the Comic Rescan Project | High-Quality Fleetway STC Scans"
+      />
+      <meta
+        name="description"
+        content="Download high-resolution, complete 600 DPI scans of Fleetway's Sonic the Comic. The ultimate STC archive for fans, preserving every issue and special."
+      />
+      <meta
+        name="keywords"
+        content="sonic the comic, sonic the comic scans, stc scans, stc, fleetway sonic scans, fleetway editions, cbz downloads, retro gaming comics"
+      />
+      <meta name="author" content="Sonic the Comic Rescan Project" />
 
-          <div class="hero-buttons">
-            <a href="#downloads" class="btn btn-primary btn-inline btn-large"
-              >Download scans</a
-            >
-            <a href="#contribute" class="btn btn-secondary btn-inline btn-large"
-              >Help contribute</a
-            >
+      <meta name="robots" content="index, follow" />
+      <link rel="canonical" href="https://stcscans.zone/" />
+
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content="https://stcscans.zone/" />
+      <meta
+        property="og:title"
+        content="Sonic the Comic Rescan Project | High-Quality Fleetway STC Scans"
+      />
+      <meta
+        property="og:description"
+        content="Download high-resolution, complete 600 DPI scans of Fleetway's Sonic the Comic. The ultimate STC archive for fans, preserving every issue and special."
+      />
+      <meta
+        property="og:image"
+        content="https://stcscans.zone/images/stc-example.png"
+      />
+
+      <meta property="twitter:card" content="summary_large_image" />
+      <meta property="twitter:url" content="https://stcscans.zone/" />
+      <meta
+        property="twitter:title"
+        content="Sonic the Comic Rescan Project | High-Quality Fleetway STC Scans"
+      />
+      <meta
+        property="twitter:description"
+        content="Download high-resolution, complete 600 DPI scans of Fleetway's Sonic the Comic. The ultimate STC archive for fans, preserving every issue and special."
+      />
+      <meta
+        property="twitter:image"
+        content="https://stcscans.zone/images/stc-example.png"
+      />
+
+      <meta name="theme-color" content="#060b14" />
+
+      <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+      <header class="hero">
+        <div class="container hero-container">
+          <div class="hero-content">
+            <img
+              src="images/sonic-the-comic-rescan-project.png"
+              alt="Sonic the Comic Rescan Project Logo"
+              class="hero-logo"
+            />
+
+            <p class="lead">
+              We are carefully preserving the entire history of
+              <strong>Sonic&nbsp;the&nbsp;Comic</strong> by rescanning every
+              issue at a crisp 600&nbsp;DPI.
+            </p>
+            <p>
+              Our goal is to bring these classic stories to modern screens in
+              the highest quality possible, creating an archive of all issues
+              and specials (including every advertisement) that fans can enjoy
+              for years to come!
+            </p>
+
+            <div class="hero-buttons">
+              <a href="#downloads" class="btn btn-primary btn-inline btn-large"
+                >Download scans</a
+              >
+              <a
+                href="#contribute"
+                class="btn btn-secondary btn-inline btn-large"
+                >Help contribute</a
+              >
+            </div>
+          </div>
+          <div class="hero-visual">
+            <img
+              src="images/stc-example.png"
+              alt="Sonic the Comic viewed across multiple devices"
+              class="hero-mockup"
+            />
           </div>
         </div>
-        <div class="hero-visual">
-          <img
-            src="images/stc-example.png"
-            alt="Sonic the Comic viewed across multiple devices"
-            class="hero-mockup"
-          />
-        </div>
-      </div>
-    </header>
+      </header>
 
-    <section class="progress-section container">
-      <div class="progress-header">
-        <h2>Project progress</h2>
-        <p id="last-updated-text" class="last-updated">Last updated: ...</p>
-      </div>
-
-      <div class="progress-item">
-        <div class="progress-labels">
-          <span>Scanned at 600 DPI</span>
-          <span id="scanned-progress-text">Calculating...</span>
-        </div>
-        <div class="progress-track" aria-hidden="true">
-          <div
-            class="progress-fill scanned-fill"
-            id="scanned-progress-fill"
-            style="width: 0%"
-          ></div>
-        </div>
-      </div>
-
-      <div class="progress-item">
-        <div class="progress-labels">
-          <span>Optimised and available in high and standard resolution</span>
-          <span id="optimised-progress-text">Calculating...</span>
-        </div>
-        <div class="progress-track" aria-hidden="true">
-          <div
-            class="progress-fill optimised-fill"
-            id="optimised-progress-fill"
-            style="width: 0%"
-          ></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="resolution-info">
-      <div class="container">
-        <div class="progress-header" style="margin-bottom: 24px">
-          <h2>File formats and resolutions</h2>
+      <section class="progress-section container">
+        <div class="progress-header">
+          <h2>Project progress</h2>
+          <p id="last-updated-text" class="last-updated">Last updated: ...</p>
         </div>
 
-        <div class="res-grid">
-          <div class="res-card standard">
-            <h3>Standard resolution</h3>
+        <div class="progress-item">
+          <div class="progress-labels">
+            <span>Scanned at 600 DPI</span>
+            <span id="scanned-progress-text">Calculating...</span>
+          </div>
+          <div class="progress-track" aria-hidden="true">
+            <div
+              class="progress-fill scanned-fill"
+              id="scanned-progress-fill"
+              style="width: 0%"
+            ></div>
+          </div>
+        </div>
+
+        <div class="progress-item">
+          <div class="progress-labels">
+            <span>Optimised and available in high and standard resolution</span>
+            <span id="optimised-progress-text">Calculating...</span>
+          </div>
+          <div class="progress-track" aria-hidden="true">
+            <div
+              class="progress-fill optimised-fill"
+              id="optimised-progress-fill"
+              style="width: 0%"
+            ></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="resolution-info">
+        <div class="container">
+          <div class="progress-header" style="margin-bottom: 24px">
+            <h2>File formats and resolutions</h2>
+          </div>
+
+          <div class="res-grid">
+            <div class="res-card standard">
+              <h3>Standard resolution</h3>
+              <p>
+                Perfect for reading on the go. Provides a crisp 1:1 pixel match
+                for mobile devices without wasting bandwidth or storage space.
+              </p>
+              <ul class="res-specs">
+                <li><strong>Image height:</strong> 2200px</li>
+                <li><strong>Average size:</strong> ~40MB per issue</li>
+                <li>
+                  <strong>Best for:</strong> Smartphones, standard iPads, Amazon
+                  Fire HD
+                </li>
+              </ul>
+            </div>
+
+            <div class="res-card high">
+              <h3>High resolution</h3>
+              <p>
+                Maximum detail for premium displays. Uncompressed clarity
+                intended for screens that exceed 2500 pixels on their longest
+                edge.
+              </p>
+              <ul class="res-specs">
+                <li><strong>Image height:</strong> 3500px</li>
+                <li><strong>Average size:</strong> ~115MB per issue</li>
+                <li>
+                  <strong>Best for:</strong> 4K Monitors, iPad Pro 12.9", Galaxy
+                  Tab Ultra
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="res-card master" style="margin-top: 24px">
+            <h3>Raw 600 DPI masters</h3>
             <p>
-              Perfect for reading on the go. Provides a crisp 1:1 pixel match
-              for mobile devices without wasting bandwidth or storage space.
+              Massive master files hosted on the Internet Archive. These act as
+              the foundation for any other projects you may want to do with
+              them. We do not require credit for use of these scans.
+              <strong
+                >They are not intended for reading in comic reader apps.</strong
+              >
             </p>
             <ul class="res-specs">
-              <li><strong>Image height:</strong> 2200px</li>
-              <li><strong>Average size:</strong> ~40MB per issue</li>
+              <li><strong>Image height:</strong> ~6880px</li>
               <li>
-                <strong>Best for:</strong> Smartphones, standard iPads, Amazon
-                Fire HD
+                <strong>Average size:</strong> 300MB to 600MB per issue
+                (dependent on initial JPEG compression)
+              </li>
+              <li>
+                <strong>Best for:</strong> Archival preservation, image editing,
+                and derivative projects
               </li>
             </ul>
           </div>
+        </div>
+      </section>
 
-          <div class="res-card high">
-            <h3>High resolution</h3>
-            <p>
-              Maximum detail for premium displays. Uncompressed clarity intended
-              for screens that exceed 2500 pixels on their longest edge.
-            </p>
-            <ul class="res-specs">
-              <li><strong>Image height:</strong> 3500px</li>
-              <li><strong>Average size:</strong> ~115MB per issue</li>
-              <li>
-                <strong>Best for:</strong> 4K Monitors, iPad Pro 12.9", Galaxy
-                Tab Ultra
-              </li>
-            </ul>
+      <main class="container" id="downloads">
+        <div class="section-header">
+          <div class="section-title">
+            <h2>Download cbz files</h2>
+            <p id="issue-count-display">Loading issues...</p>
+          </div>
+          <div class="search-container">
+            <input
+              type="text"
+              id="search-input"
+              class="search-input"
+              placeholder="Search by issue number..."
+              aria-label="Search issues"
+            />
           </div>
         </div>
 
-        <div class="res-card master" style="margin-top: 24px">
-          <h3>Raw 600 DPI masters</h3>
-          <p>
-            Massive master files hosted on the Internet Archive. These act as
-            the foundation for any other projects you may want to do with them.
-            We do not require credit for use of these scans.
-            <strong
-              >They are not intended for reading in comic reader apps.</strong
-            >
-          </p>
-          <ul class="res-specs">
-            <li><strong>Image height:</strong> ~6880px</li>
-            <li>
-              <strong>Average size:</strong> 300MB to 600MB per issue (dependent
-              on initial JPEG compression)
-            </li>
-            <li>
-              <strong>Best for:</strong> Archival preservation, image editing,
-              and derivative projects
-            </li>
-          </ul>
-        </div>
-      </div>
-    </section>
+        <section
+          class="grid"
+          id="issue-grid"
+          aria-label="Comic Issues Grid"
+        ></section>
 
-    <main class="container" id="downloads">
-      <div class="section-header">
-        <div class="section-title">
-          <h2>Download cbz files</h2>
-          <p id="issue-count-display">Loading issues...</p>
-        </div>
-        <div class="search-container">
-          <input
-            type="text"
-            id="search-input"
-            class="search-input"
-            placeholder="Search by issue number..."
-            aria-label="Search issues"
-          />
-        </div>
-      </div>
-
-      <section
-        class="grid"
-        id="issue-grid"
-        aria-label="Comic Issues Grid"
-      ></section>
-
-      <div class="empty-state" id="empty-state">
-        Looks like we haven't scanned this one yet!
-      </div>
-
-      <article class="project-info">
-        <div class="info-block">
-          <h3>A project for the fans, from the fans</h3>
-          <p>
-            Published by Fleetway Editions from 1993 to 2001,
-            <em>Sonic the Comic</em> was a British games magazine and comic book
-            featuring Sega news, video game reviews, and original comic strips.
-          </p>
-          <p>
-            This archive is a fan-driven initiative dedicated to preserving that
-            history. These high-quality scans are created strictly for
-            educational and archival purposes, acting as a companion resource to
-            the transformative commentary of
-            <em>Sonic the Comic the Podcast</em>. They are intended solely for
-            personal reference and historical preservation, and are not for
-            distribution outside of this context.
-          </p>
-          <p class="warning">
-            Under no circumstances are any files in this archive to be used for
-            commercial purposes.
-          </p>
-          <p>
-            To ensure long-term availability, all <code>.cbz</code> files are
-            hosted securely on the Internet Archive. This website functions as a
-            streamlined directory to help you easily navigate and link directly
-            to those files. Please note that download speeds depend entirely on
-            the Internet Archive's current server load.
-          </p>
+        <div class="empty-state" id="empty-state">
+          Looks like we haven't scanned this one yet!
         </div>
 
-        <div class="info-block">
-          <h3>Why we are rescanning</h3>
-          <p>
-            Currently, the rights holders have no plans for an official
-            re-release. With used copies of the physical comics becoming
-            exceedingly rare and expensive, the series is effectively
-            geo-blocked, making it incredibly difficult to find for fans outside
-            of the UK.
-          </p>
-          <p>
-            <em>Sonic the Comic</em> established an amazing, unique continuity
-            and universe, and we believe that more Sonic fans worldwide should
-            have the opportunity to experience and enjoy it today.
-          </p>
-        </div>
+        <article class="project-info">
+          <div class="info-block">
+            <h3>A project for the fans, from the fans</h3>
+            <p>
+              Published by Fleetway Editions from 1993 to 2001,
+              <em>Sonic the Comic</em> was a British games magazine and comic
+              book featuring Sega news, video game reviews, and original comic
+              strips.
+            </p>
+            <p>
+              This archive is a fan-driven initiative dedicated to preserving
+              that history. These high-quality scans are created strictly for
+              educational and archival purposes, acting as a companion resource
+              to the transformative commentary of
+              <em>Sonic the Comic the Podcast</em>. They are intended solely for
+              personal reference and historical preservation, and are not for
+              distribution outside of this context.
+            </p>
+            <p class="warning">
+              Under no circumstances are any files in this archive to be used
+              for commercial purposes.
+            </p>
+            <p>
+              To ensure long-term availability, all <code>.cbz</code> files are
+              hosted securely on the Internet Archive. This website functions as
+              a streamlined directory to help you easily navigate and link
+              directly to those files. Please note that download speeds depend
+              entirely on the Internet Archive's current server load.
+            </p>
+          </div>
 
-        <div class="info-block">
-          <h3>Honouring the original StC Archive</h3>
-          <p>
-            The fanbase owes a massive debt of gratitude to the original
+          <div class="info-block">
+            <h3>Why we are rescanning</h3>
+            <p>
+              Currently, the rights holders have no plans for an official
+              re-release. With used copies of the physical comics becoming
+              exceedingly rare and expensive, the series is effectively
+              geo-blocked, making it incredibly difficult to find for fans
+              outside of the UK.
+            </p>
+            <p>
+              <em>Sonic the Comic</em> established an amazing, unique continuity
+              and universe, and we believe that more Sonic fans worldwide should
+              have the opportunity to experience and enjoy it today.
+            </p>
+          </div>
+
+          <div class="info-block">
+            <h3>Honouring the original StC Archive</h3>
+            <p>
+              The fanbase owes a massive debt of gratitude to the original
+              <a
+                href="https://www.gue-network.com/stc/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >StC Archive</a
+              >, which kept the series alive and made the comic freely available
+              to everyone worldwide. They did the absolute best that
+              consumer-grade technology could accomplish at the time.
+            </p>
+            <p>
+              However, those scans were completed approximately 20 years ago.
+              Because they were scanned at 96 DPI on standard A4 scanners, the
+              edges of the pages were often clipped. Additionally, they are
+              missing historical context like internal advertisements and
+              reprinted stories. This project aims to build upon their
+              incredible foundational legacy by preserving every single page in
+              full, uncropped, high-resolution detail.
+            </p>
+          </div>
+
+          <div class="info-block privacy-block">
+            <h3>Privacy and zero cookies</h3>
+            <p>
+              We do not track your usage, collect personal data, or run
+              analytics. This website is completely cookie-free, allowing you to
+              browse and download with full privacy.
+            </p>
+          </div>
+        </article>
+      </main>
+
+      <footer>
+        <div class="container footer-container">
+          <div class="contact-box" id="contribute">
+            <h3>Want to help?</h3>
+            <p>
+              Have the original issues, access to an A3 scanner, and want to
+              help? Find us on the Sonic the Comic the Podcast Discord. All
+              contributions are welcome!
+            </p>
             <a
-              href="https://www.gue-network.com/stc/"
+              href="https://discord.gg/Kw7cerWusg"
               target="_blank"
               rel="noopener noreferrer"
-              >StC Archive</a
-            >, which kept the series alive and made the comic freely available
-            to everyone worldwide. They did the absolute best that
-            consumer-grade technology could accomplish at the time.
-          </p>
-          <p>
-            However, those scans were completed approximately 20 years ago.
-            Because they were scanned at 96 DPI on standard A4 scanners, the
-            edges of the pages were often clipped. Additionally, they are
-            missing historical context like internal advertisements and
-            reprinted stories. This project aims to build upon their incredible
-            foundational legacy by preserving every single page in full,
-            uncropped, high-resolution detail.
-          </p>
-        </div>
+              class="btn btn-secondary btn-inline btn-large"
+              >Join the Discord</a
+            >
+          </div>
 
-        <div class="info-block privacy-block">
-          <h3>Privacy and zero cookies</h3>
-          <p>
-            We do not track your usage, collect personal data, or run analytics.
-            This website is completely cookie-free, allowing you to browse and
-            download with full privacy.
-          </p>
+          <div class="footer-bottom">
+            <p>
+              Sonic the Comic and all associated characters are &copy; Sega and
+              Fleetway Editions. This is a non-profit fan archival project. We
+              do not own the rights to this material.
+            </p>
+            <a
+              href="https://archive.org/details/@shoopkid/lists/1/sonic-the-comic---600-dpi?sort=date"
+              target="_blank"
+              rel="noopener noreferrer"
+              >View 600 DPI raw master scans</a
+            >
+          </div>
         </div>
-      </article>
-    </main>
+      </footer>
 
-    <footer>
-      <div class="container footer-container">
-        <div class="contact-box" id="contribute">
-          <h3>Want to help?</h3>
-          <p>
-            Have the original issues, access to an A3 scanner, and want to help?
-            Find us on the Sonic the Comic the Podcast Discord. All
-            contributions are welcome!
-          </p>
-          <a
-            href="https://discord.gg/Kw7cerWusg"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="btn btn-secondary btn-inline btn-large"
-            >Join the Discord</a
-          >
-        </div>
-
-        <div class="footer-bottom">
-          <p>
-            Sonic the Comic and all associated characters are &copy; Sega and
-            Fleetway Editions. This is a non-profit fan archival project. We do
-            not own the rights to this material.
-          </p>
-          <a
-            href="https://archive.org/details/@shoopkid/lists/1/sonic-the-comic---600-dpi?sort=date"
-            target="_blank"
-            rel="noopener noreferrer"
-            >View 600 DPI raw master scans</a
-          >
-        </div>
-      </div>
-    </footer>
-
-    <script src="script.js"></script>
-  </body>
+      <script src="script.js"></script>
+    </body>
+  </html>
 </html>
