@@ -28,5 +28,13 @@
   { "id": 27, "high": "STC_027_HighRes.cbz", "standard": "STC_027_StandardRes.cbz", "image": "images/027.jpg", "master": "https://archive.org/details/sonic-the-comic-issue-027" },
   { "id": 28, "high": "STC_028_HighRes.cbz", "standard": "STC_028_StandardRes.cbz", "image": "images/028.jpg", "master": "https://archive.org/details/sonic-the-comic-issue-028" },
   { "id": 29, "high": "STC_029_HighRes.cbz", "standard": "STC_029_StandardRes.cbz", "image": "images/029.jpg", "master": "https://archive.org/details/sonic-the-comic-issue-029" },
-  { "id": 30, "high": "STC_030_HighRes.cbz", "standard": "STC_030_StandardRes.cbz", "image": "images/030.jpg", "master": "https://archive.org/details/sonic-the-comic-issue-030" }
+  { "id": 30, "high": "STC_030_HighRes.cbz", "standard": "STC_030_StandardRes.cbz", "image": "images/030.jpg", "master": "https://archive.org/details/sonic-the-comic-issue-030" },
+  { "id": 31, "high": "STC_031_HighRes.cbz", "standard": "STC_031_StandardRes.cbz", "image": "images/031.jpg", "master": "https://archive.org/details/sonic-the-comic-issue-031" },
+  { "id": 32, "high": "STC_032_HighRes.cbz", "standard": "STC_032_StandardRes.cbz", "image": "images/032.jpg", "master": "https://archive.org/details/sonic-the-comic-issue-032" },
+  { "id": 33, "high": "STC_033_HighRes.cbz", "standard": "STC_033_StandardRes.cbz", "image": "images/033.jpg", "master": "https://archive.org/details/sonic-the-comic-issue-033" },
+  { "id": 34, "high": "STC_034_HighRes.cbz", "standard": "STC_034_StandardRes.cbz", "image": "images/034.jpg", "master": "https://archive.org/details/sonic-the-comic-issue-034" },
+  { "id": 35, "high": "STC_035_HighRes.cbz", "standard": "STC_035_StandardRes.cbz", "image": "images/035.jpg", "master": "https://archive.org/details/sonic-the-comic-issue-035" },
+  { "id": 36, "high": "STC_036_HighRes.cbz", "standard": "STC_036_StandardRes.cbz", "image": "images/036.jpg", "master": "https://archive.org/details/sonic-the-comic-issue-036" },
+  { "id": 37, "high": "STC_037_HighRes.cbz", "standard": "STC_037_StandardRes.cbz", "image": "images/037.jpg", "master": "https://archive.org/details/sonic-the-comic-issue-037" },
+  { "id": 38, "high": "STC_038_HighRes.cbz", "standard": "STC_038_StandardRes.cbz", "image": "images/038.jpg", "master": "https://archive.org/details/sonic-the-comic-issue-038" }
 ]
