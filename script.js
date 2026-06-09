@@ -14,8 +14,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   const totalIssuesInRun = 223;
 
   // MANUALLY UPDATE THESE VALUES WHEN NEW RAW 600 DPI SCANS ARE COMPLETED
-  const manualScannedIssues = 53;
-  const lastUpdatedDate = "June 8, 2026";
+  const manualScannedIssues = 51;
+  const lastUpdatedDate = "June 7, 2026";
 
   // Push the date to the HTML
   const lastUpdatedEl = document.getElementById("last-updated-text");
@@ -28,6 +28,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const stdBase =
     "https://archive.org/download/sonic-the-comic-standard-resolution-scans";
 
+  // Retained for High Resolution batch files
   function getBatchRangeString(id) {
     const size = 30;
     const start = Math.floor((id - 1) / size) * size + 1;
@@ -73,8 +74,11 @@ document.addEventListener("DOMContentLoaded", async () => {
       const rangeStr = getBatchRangeString(issue.id);
       const encodedRange = encodeURIComponent(rangeStr);
 
+      // High Resolution remains batched inside zip files
       const highUrl = `${highBase}/Sonic%20The%20Comic%20-%20High%20Resolution%20Scans%20-%20${encodedRange}.zip/Sonic%20The%20Comic%20-%20High%20Resolution%20Scans%2F${encodeURIComponent(issue.high)}`;
-      const stdUrl = `${stdBase}/Sonic%20The%20Comic%20-%20Standard%20Resolution%20Scans%20-%20${encodedRange}.zip/Sonic%20The%20Comic%20-%20Standard%20Resolution%20Scans%2F${encodeURIComponent(issue.standard)}`;
+      
+      // NEW ENGINE LOGIC: Standard Resolution points directly to the unzipped file path
+      const stdUrl = `${stdBase}/${encodeURIComponent(issue.standard)}`;
 
       // Construct Master Button if the link exists in the JSON
       const masterHtml = issue.master
