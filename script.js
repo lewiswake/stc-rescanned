@@ -14,8 +14,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   const totalIssuesInRun = 223;
 
   // MANUALLY UPDATE THESE VALUES WHEN NEW RAW 600 DPI SCANS ARE COMPLETED
-  const manualScannedIssues = 51;
-  const lastUpdatedDate = "June 7, 2026";
+  const manualScannedIssues = 55;
+  const lastUpdatedDate = "June 9, 2026";
 
   // Push the date to the HTML
   const lastUpdatedEl = document.getElementById("last-updated-text");
@@ -27,14 +27,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     "https://archive.org/download/sonic-the-comic-high-resolution-scans";
   const stdBase =
     "https://archive.org/download/sonic-the-comic-standard-resolution-scans";
-
-  // Retained for High Resolution batch files
-  function getBatchRangeString(id) {
-    const size = 30;
-    const start = Math.floor((id - 1) / size) * size + 1;
-    const end = start + size - 1;
-    return `${String(start).padStart(3, "0")} to ${String(end).padStart(3, "0")}`;
-  }
 
   try {
     const response = await fetch("issues.json");
@@ -63,7 +55,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       );
       optimisedText.textContent = `${issues.length} out of ${totalIssuesInRun} issues (${optPercentage}%)`;
 
-      // A slightly longer delay so the bars animate one after the other visually
       setTimeout(() => {
         optimisedFill.style.width = `${optPercentage}%`;
       }, 350);
@@ -71,13 +62,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     issues.forEach((issue) => {
       const issueDisplayNum = String(issue.id).padStart(3, "0");
-      const rangeStr = getBatchRangeString(issue.id);
-      const encodedRange = encodeURIComponent(rangeStr);
 
-      // High Resolution remains batched inside zip files
-      const highUrl = `${highBase}/Sonic%20The%20Comic%20-%20High%20Resolution%20Scans%20-%20${encodedRange}.zip/Sonic%20The%20Comic%20-%20High%20Resolution%20Scans%2F${encodeURIComponent(issue.high)}`;
-      
-      // NEW ENGINE LOGIC: Standard Resolution points directly to the unzipped file path
+      // NEW ENGINE LOGIC: Both resolutions point directly to the unzipped file paths
+      const highUrl = `${highBase}/${encodeURIComponent(issue.high)}`;
       const stdUrl = `${stdBase}/${encodeURIComponent(issue.standard)}`;
 
       // Construct Master Button if the link exists in the JSON
