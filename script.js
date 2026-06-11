@@ -14,8 +14,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   const totalIssuesInRun = 223;
 
   // MANUALLY UPDATE THESE VALUES WHEN NEW RAW 600 DPI SCANS ARE COMPLETED
-  const manualScannedIssues = 58;
-  const lastUpdatedDate = "June 10, 2026";
+  const manualScannedIssues = 59;
+  const lastUpdatedDate = "June 11, 2026";
 
   // Push the date to the HTML
   const lastUpdatedEl = document.getElementById("last-updated-text");
