@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const totalIssuesInRun = 223;
 
   // MANUALLY UPDATE THESE VALUES WHEN NEW RAW 600 DPI SCANS ARE COMPLETED
-  const manualScannedIssues = 62;
+  const manualScannedIssues = 63;
   const lastUpdatedDate = "June 12, 2026";
 
   // Push the date to the HTML
@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       // Construct Master Button if the link exists in the JSON
       const masterHtml = issue.master
-        ? `<a href="${issue.master}" aria-label="Download Issue ${issueDisplayNum} Raw 600 DPI Master" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="border-style: dashed; opacity: 0.85;">600 DPI Master</a>`
+        ? `<a href="${issue.master}" aria-label="Download Issue ${issueDisplayNum} Raw 600 DPI Master" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="border-style: dashed;">600 DPI Master</a>`
         : "";
 
       const article = document.createElement("article");
