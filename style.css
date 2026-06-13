@@ -1,5 +1,5 @@
 /* ==========================================
-   THEME VARIABLES
+   1. THEME VARIABLES
    ========================================== */
 
 /* Default: Dark Mode */
@@ -105,7 +105,7 @@
 }
 
 /* ==========================================
-   GLOBAL STYLES & TYPOGRAPHY
+   2. GLOBAL STYLES & TYPOGRAPHY
    ========================================== */
 
 * {
@@ -168,7 +168,7 @@ a:hover {
 }
 
 /* ==========================================
-   HERO SECTION
+   3. HERO SECTION
    ========================================== */
 
 .hero {
@@ -278,84 +278,7 @@ a:hover {
 }
 
 /* ==========================================
-   RESOLUTION INFO SECTION
-   ========================================== */
-
-.resolution-info {
-  margin: 40px 0 60px 0;
-}
-
-.resolution-info .container {
-  background: var(--panel-bg);
-  border: 1px solid var(--panel-border);
-  border-radius: 20px;
-  padding: 40px;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  box-shadow: 0 10px 40px var(--shadow-color);
-}
-
-.res-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 24px;
-}
-
-@media (min-width: 768px) {
-  .res-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-.res-card {
-  background: var(--card-bg);
-  border: 1px solid var(--border-color);
-  border-radius: 12px;
-  padding: 24px;
-}
-
-.res-card h3 {
-  font-size: 1.35rem;
-  font-weight: 700;
-  margin-bottom: 12px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.res-card.standard h3 {
-  color: var(--text-accent-1);
-}
-.res-card.high h3 {
-  color: var(--text-accent-2);
-}
-
-.res-card p {
-  color: var(--text-muted);
-  font-size: 1rem;
-  margin-bottom: 16px;
-}
-
-.res-specs {
-  list-style: none;
-  font-size: 0.95rem;
-  color: var(--text-main);
-}
-
-.res-specs li {
-  margin-bottom: 8px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid var(--border-light);
-}
-
-.res-specs li:last-child {
-  border-bottom: none;
-  margin-bottom: 0;
-  padding-bottom: 0;
-}
-
-/* ==========================================
-   PROGRESS BAR SECTION
+   4. PROGRESS BAR SECTION
    ========================================== */
 
 .progress-section.container {
@@ -429,7 +352,6 @@ a:hover {
   transition: width 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-/* Unified Theme Gradients for Bars */
 .scanned-fill {
   background: linear-gradient(90deg, #99801f, var(--color-active));
   box-shadow: 0 0 15px var(--glow-active);
@@ -452,11 +374,14 @@ a:hover {
 }
 
 /* ==========================================
-   MAIN CONTENT & ISSUES GRID
+   5. RESOLUTION INFO SECTION
    ========================================== */
 
-main.container {
-  flex: 1;
+.resolution-info {
+  margin: 40px 0 60px 0;
+}
+
+.resolution-info .container {
   background: var(--panel-bg);
   border: 1px solid var(--panel-border);
   border-radius: 20px;
@@ -464,11 +389,98 @@ main.container {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   box-shadow: 0 10px 40px var(--shadow-color);
-  margin-bottom: 80px;
+}
+
+.res-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media (min-width: 768px) {
+  .res-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 1024px) {
+  .res-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.res-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.res-card h3 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.res-card.standard h3 {
+  color: var(--text-accent-1);
+}
+
+.res-card.high h3 {
+  color: var(--text-accent-2);
+}
+
+.res-card p {
+  color: var(--text-muted);
+  font-size: 1rem;
+  margin-bottom: 16px;
+}
+
+.res-specs {
+  list-style: none;
+  font-size: 0.95rem;
+  color: var(--text-main);
+}
+
+.res-specs li {
+  margin-bottom: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.res-specs li:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+/* ==========================================
+   6. MAIN CONTENT PANELS & HEADER
+   ========================================== */
+
+main.main-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 40px;
+}
+
+.content-panel {
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  border-radius: 20px;
+  padding: 40px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 10px 40px var(--shadow-color);
+  margin-bottom: 40px;
 }
 
 @media (max-width: 600px) {
-  main.container {
+  .content-panel {
     padding: 24px 16px;
   }
 }
@@ -483,7 +495,11 @@ main.container {
 }
 
 @media (min-width: 600px) {
-  .section-header {
+  .section-header.filter-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .section-header:not(.filter-header) {
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-end;
@@ -503,9 +519,13 @@ main.container {
   font-weight: 500;
 }
 
+.controls-container {
+  width: 100%;
+}
+
 .search-container {
   width: 100%;
-  max-width: 320px;
+  max-width: 380px;
 }
 
 .search-input {
@@ -528,6 +548,55 @@ main.container {
   border-color: var(--input-focus-border);
   box-shadow: 0 0 0 3px var(--focus-ring);
 }
+
+/* ==========================================
+   7. YEAR FILTERS
+   ========================================== */
+
+.year-filters {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  gap: 8px;
+  margin-top: 12px;
+  padding-bottom: 6px;
+  scrollbar-width: none; /* Firefox */
+  -webkit-overflow-scrolling: touch;
+}
+
+.year-filters::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
+.btn-filter {
+  flex: 0 0 auto;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.btn-filter:hover {
+  border-color: var(--color-primary);
+  color: var(--text-main);
+}
+
+.btn-filter.active {
+  background: var(--color-primary);
+  color: var(--btn-text);
+  border-color: var(--color-primary);
+  box-shadow: 0 0 10px var(--glow-primary);
+}
+
+/* ==========================================
+   8. ISSUE CARDS & GRID
+   ========================================== */
 
 .grid {
   display: grid;
@@ -607,8 +676,27 @@ main.container {
   font-size: 0.9rem;
 }
 
+.card-header .issue-date {
+  font-size: 0.85rem;
+  color: var(--text-accent-1);
+  margin-top: 2px;
+  font-weight: 500;
+}
+
+@media (max-width: 400px) {
+  .card {
+    flex-direction: column;
+  }
+  .card-left {
+    flex: none;
+    width: 100%;
+    max-width: 200px;
+    margin: 0 auto;
+  }
+}
+
 /* ==========================================
-   BUTTONS
+   9. BUTTONS
    ========================================== */
 
 .button-group {
@@ -673,14 +761,44 @@ main.container {
   box-shadow: 0 0 5px var(--glow-active);
 }
 
+/* Floating Back to Top Button */
+.back-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: var(--color-primary);
+  color: #fff;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 15px var(--shadow-heavy);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.back-to-top:hover {
+  background-color: var(--color-hover);
+  transform: translateY(-4px);
+}
+
 /* ==========================================
-   INFO & PRIVACY STATEMENTS
+   10. INFO & PRIVACY STATEMENTS
    ========================================== */
 
 .project-info {
-  margin-top: 60px;
-  padding-top: 40px;
-  border-top: 2px solid var(--border-color);
+  width: 100%;
 }
 
 .info-block {
@@ -712,7 +830,7 @@ main.container {
 }
 
 /* ==========================================
-   FOOTER
+   11. FOOTER
    ========================================== */
 
 footer {
@@ -784,16 +902,4 @@ footer {
 .footer-bottom a {
   font-size: 0.9rem;
   font-weight: 500;
-}
-
-@media (max-width: 400px) {
-  .card {
-    flex-direction: column;
-  }
-  .card-left {
-    flex: none;
-    width: 100%;
-    max-width: 200px;
-    margin: 0 auto;
-  }
 }
