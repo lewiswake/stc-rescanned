@@ -172,7 +172,7 @@
                 rel="noopener noreferrer"
                 style="width: 100%"
               >
-                Download all 63 issues (2.3GB)
+                Download all issues so far (~2GB)
               </a>
             </div>
           </div>
@@ -208,189 +208,240 @@
                 rel="noopener noreferrer"
                 style="width: 100%"
               >
-                Download all 63 issues (6.4GB)
+                Download all issues so far (~6GB)
               </a>
             </div>
           </div>
-        </div>
 
-        <div class="res-card master" style="margin-top: 24px">
-          <h3>Raw 600 DPI masters</h3>
-          <p>
-            Massive master files hosted on the Internet Archive. These unedited
-            raw scans are the foundation of the archive, and we encourage the
-            community to use them to build their own transformative fan works.
-            <strong
-              >They are not intended for reading in comic reader apps.</strong
-            >
-          </p>
-          <ul class="res-specs">
-            <li><strong>Image height:</strong> ~6880px</li>
-            <li>
-              <strong>Average size:</strong> 300MB to 600MB per issue (dependent
-              on initial JPEG compression)
-            </li>
-            <li>
-              <strong>Best for:</strong> Archival preservation, image editing,
-              and derivative fan projects
-            </li>
-          </ul>
-          <div style="margin-top: 24px">
-            <a
-              href="https://archive.org/details/@shoopkid/lists/1/sonic-the-comic---600-dpi?sort=date"
-              class="btn btn-primary"
-              target="_blank"
-              rel="noopener noreferrer"
-              style="width: 100%"
-            >
-              View all scans at 600 DPI
-            </a>
+          <div class="res-card master">
+            <h3>Raw 600 DPI masters</h3>
+            <p>
+              Master files hosted on the Internet Archive. These unedited raw
+              scans are the foundation of the archive and are not intended for
+              reading in comic readers.
+            </p>
+            <ul class="res-specs">
+              <li><strong>Image height:</strong> ~6880px</li>
+              <li>
+                <strong>Average size:</strong> 300MB to 600MB per issue
+                (dependent on initial JPEG compression)
+              </li>
+              <li>
+                <strong>Best for:</strong> Archival preservation, image editing,
+                and derivative fan projects
+              </li>
+            </ul>
+            <div style="margin-top: 24px">
+              <a
+                href="https://archive.org/details/@shoopkid/lists/1/sonic-the-comic---600-dpi?sort=date"
+                class="btn btn-primary"
+                target="_blank"
+                rel="noopener noreferrer"
+                style="width: 100%"
+              >
+                View all scans at 600 DPI
+              </a>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <main class="container" id="downloads">
-      <div class="section-header">
-        <div class="section-title">
-          <h2>Download cbz files</h2>
-          <p id="issue-count-display">Loading issues...</p>
-        </div>
-        <div class="search-container">
-          <input
-            type="text"
-            id="search-input"
-            class="search-input"
-            placeholder="Search by issue number..."
-            aria-label="Search issues"
-          />
-        </div>
-      </div>
-
-      <section
-        class="grid"
-        id="issue-grid"
-        aria-label="Comic Issues Grid"
-      ></section>
-
-      <div class="empty-state" id="empty-state">
-        Looks like we haven't scanned this one yet!
-      </div>
-
-      <article class="project-info">
-        <div class="info-block">
-          <h3>A project for the fans, from the fans</h3>
-          <p>
-            Published by Fleetway Editions from 1993 to 2001,
-            <em>Sonic the Comic</em> was a British games magazine and comic book
-            featuring Sega news, video game reviews, and original comic strips.
-          </p>
-          <p>
-            This archive is a community-driven initiative built to ensure that
-            history is not lost. By cataloging and providing high-quality
-            digital preservation files, we hope to keep the legacy of the comic
-            accessible to readers and creators worldwide.
-          </p>
-          <p class="warning">
-            All copyrights, trademarks, and intellectual properties remain the
-            exclusive property of Sega and Fleetway Editions (Egmont). We claim
-            no ownership over any of this material. This is an unofficial
-            preservation project; the rights holders have absolute authority
-            over these works and possess every right to order the removal of
-            this archive at any time.
-          </p>
-          <p>
-            To ensure long-term availability, all <code>.cbz</code> files are
-            hosted securely on the Internet Archive. This website functions as a
-            streamlined directory to help you easily navigate and link directly
-            to those files. Please note that download speeds depend entirely on
-            the Internet Archive's current server load.
-          </p>
+    <main class="main-wrapper">
+      <section class="content-panel container" id="downloads">
+        <div class="section-header filter-header">
+          <div class="section-title">
+            <h2>Download cbz files</h2>
+            <p id="issue-count-display">Loading issues...</p>
+          </div>
+          <div class="controls-container">
+            <div class="search-container">
+              <input
+                type="text"
+                id="search-input"
+                class="search-input"
+                placeholder="Search by issue number or title..."
+                aria-label="Search issues"
+              />
+            </div>
+            <div class="year-filters" id="year-filters"></div>
+          </div>
         </div>
 
-        <div class="info-block">
-          <h3>Why we are rescanning</h3>
-          <p>
-            Currently, the rights holders have no plans for an official
-            re-release. With used copies of the physical comics becoming
-            exceedingly rare and expensive, the series is effectively
-            geo-blocked, making it incredibly difficult to find for fans outside
-            of the UK.
-          </p>
-          <p>
-            <em>Sonic the Comic</em> established an amazing, unique continuity
-            and universe, and we believe that more Sonic fans worldwide should
-            have the opportunity to experience and enjoy it today.
-          </p>
+        <div class="grid" id="issue-grid" aria-label="Comic Issues Grid"></div>
+
+        <div class="empty-state" id="empty-state">
+          <p>No issues found for your search criteria.</p>
+          <button
+            class="btn btn-secondary clear-filters-btn"
+            style="margin-top: 16px"
+          >
+            Clear Search & Filters
+          </button>
+        </div>
+      </section>
+
+      <section class="content-panel container" id="specials">
+        <div class="section-header">
+          <div class="section-title">
+            <h2>Special editions & spin-offs</h2>
+            <p>Holiday specials, poster magazines, and extra publications.</p>
+          </div>
         </div>
 
-        <div class="info-block">
-          <h3>Honouring the original StC Archive</h3>
-          <p>
-            The fanbase owes a massive debt of gratitude to the original
-            <a
-              href="https://www.gue-network.com/stc/"
-              target="_blank"
-              rel="noopener noreferrer"
-              >StC Archive</a
-            >, which kept the series alive and made the comic freely available
-            to everyone worldwide. They did the absolute best that
-            consumer-grade technology could accomplish at the time.
-          </p>
-          <p>
-            However, those scans were completed approximately 20 years ago.
-            Because they were scanned at 96 DPI on standard A4 scanners, the
-            edges of the pages were often clipped. Additionally, they are
-            missing historical context like internal advertisements and
-            reprinted stories. This project aims to build upon their incredible
-            foundational legacy by preserving every single page in full,
-            uncropped, high-resolution detail.
-          </p>
-        </div>
+        <div
+          class="grid"
+          id="specials-grid"
+          aria-label="Special Issues Grid"
+        ></div>
 
-        <div class="info-block">
-          <h3>Project roadmap</h3>
-          <p>
-            <strong>Current Pace & Issue 100:</strong> Momentum is incredibly
-            high right now. As of June 2026, we are scanning, optimising, and
-            uploading two complete issues per day. If we maintain this pace, we
-            anticipate reaching our first major milestone—Issue 100—by
-            <strong>mid-July 2026</strong>.
-          </p>
-          <p>
-            <strong>The Collection Gap:</strong> Around Issue 100, our upload
-            pace will inevitably slow down. One of our primary contributors has
-            significant gaps in their physical collection from this point
-            onward. This is exactly where community contributions will become
-            vital to keeping the project moving.
-          </p>
-          <p>
-            <strong>The Finish Line (Issue 223):</strong> While original comic
-            strips famously ceased after Issue 184, our commitment to
-            preservation does not. We consider it absolutely essential to scan
-            every single published issue in full to complete the collection.
-            Factoring in the anticipated slowdown to source missing physical
-            copies, we estimate having all 223 mainline issues archived by
-            <strong>early to mid-2027</strong>.
-          </p>
-          <p>
-            <strong>Beyond the Main Run:</strong> Our absolute primary focus is
-            the core 223 issues. Once those are safely archived, the roadmap
-            will expand to track down and preserve all of the special spin-off
-            magazines, holiday specials, and poster magazines.
-          </p>
+        <div class="empty-state" id="specials-empty-state">
+          <p>No special issues matching your search criteria.</p>
+          <button
+            class="btn btn-secondary clear-filters-btn"
+            style="margin-top: 16px"
+          >
+            Clear Search & Filters
+          </button>
         </div>
+      </section>
 
-        <div class="info-block privacy-block">
-          <h3>Privacy and zero cookies</h3>
-          <p>
-            We do not track your usage, collect personal data, or run analytics.
-            This website is completely cookie-free, allowing you to browse and
-            download with full privacy.
-          </p>
-        </div>
-      </article>
+      <section class="content-panel container" id="about">
+        <article class="project-info">
+          <div class="info-block">
+            <h3>A project for the fans, from the fans</h3>
+            <p>
+              Published by Fleetway Editions from 1993 to 2001,
+              <em>Sonic the Comic</em> was a British games magazine and comic
+              book featuring Sega news, video game reviews, and original comic
+              strips.
+            </p>
+            <p>
+              This archive is a community-driven initiative built to ensure that
+              history is not lost. By cataloging and providing high-quality
+              digital preservation files, we hope to keep the legacy of the
+              comic accessible to readers and creators worldwide.
+            </p>
+            <p class="warning">
+              All copyrights, trademarks, and intellectual properties remain the
+              exclusive property of Sega and Fleetway Editions (Egmont). We
+              claim no ownership over any of this material. This is an
+              unofficial preservation project; the rights holders have absolute
+              authority over these works and possess every right to order the
+              removal of this archive at any time.
+            </p>
+            <p>
+              To ensure long-term availability, all <code>.cbz</code> files are
+              hosted securely on the Internet Archive. This website functions as
+              a streamlined directory to help you easily navigate and link
+              directly to those files. Please note that download speeds depend
+              entirely on the Internet Archive's current server load.
+            </p>
+          </div>
+
+          <div class="info-block">
+            <h3>Why we are rescanning</h3>
+            <p>
+              Currently, the rights holders have no plans for an official
+              re-release. With used copies of the physical comics becoming
+              exceedingly rare and expensive, the series is effectively
+              geo-blocked, making it incredibly difficult to find for fans
+              outside of the UK.
+            </p>
+            <p>
+              <em>Sonic the Comic</em> established an amazing, unique continuity
+              and universe, and we believe that more Sonic fans worldwide should
+              have the opportunity to experience and enjoy it today.
+            </p>
+          </div>
+
+          <div class="info-block">
+            <h3>Honouring the original StC Archive</h3>
+            <p>
+              The fanbase owes a massive debt of gratitude to the original
+              <a
+                href="https://www.gue-network.com/stc/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >StC Archive</a
+              >, which kept the series alive and made the comic freely available
+              to everyone worldwide. They did the absolute best that
+              consumer-grade technology could accomplish at the time.
+            </p>
+            <p>
+              However, those scans were completed approximately 20 years ago.
+              Because they were scanned at 96 DPI on standard A4 scanners, the
+              edges of the pages were often clipped. Additionally, they are
+              missing historical context like internal advertisements and
+              reprinted stories. This project aims to build upon their
+              incredible foundational legacy by preserving every single page in
+              full, uncropped, high-resolution detail.
+            </p>
+          </div>
+
+          <div class="info-block">
+            <h3>Project roadmap</h3>
+            <p>
+              <strong>Current Pace & Issue 100:</strong> Momentum is incredibly
+              high right now. As of June 2026, we are scanning, optimising, and
+              uploading two complete issues per day. If we maintain this pace,
+              we anticipate reaching our first major milestone—Issue 100—by
+              <strong>mid-July 2026</strong>.
+            </p>
+            <p>
+              <strong>The Collection Gap:</strong> Around Issue 100, our upload
+              pace will inevitably slow down. One of our primary contributors
+              has significant gaps in their physical collection from this point
+              onward. This is exactly where community contributions will become
+              vital to keeping the project moving.
+            </p>
+            <p>
+              <strong>The Finish Line (Issue 223):</strong> While original comic
+              strips famously ceased after Issue 184, our commitment to
+              preservation does not. We consider it absolutely essential to scan
+              every single published issue in full to complete the collection.
+              Factoring in the anticipated slowdown to source missing physical
+              copies, we estimate having all 223 mainline issues archived by
+              <strong>early to mid-2027</strong>.
+            </p>
+            <p>
+              <strong>Beyond the Main Run:</strong> Our absolute primary focus
+              is the core 223 issues. Once those are safely archived, the
+              roadmap will expand to track down and preserve all of the special
+              spin-off magazines, holiday specials, and poster magazines.
+            </p>
+          </div>
+
+          <div class="info-block privacy-block">
+            <h3>Privacy and zero cookies</h3>
+            <p>
+              We do not track your usage, collect personal data, or run
+              analytics. This website is completely cookie-free, allowing you to
+              browse and download with full privacy.
+            </p>
+          </div>
+        </article>
+      </section>
     </main>
+
+    <button
+      id="back-to-top"
+      class="back-to-top"
+      aria-label="Scroll back to top"
+    >
+      <svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M18 15l-6-6-6 6" />
+      </svg>
+    </button>
 
     <footer>
       <div class="container footer-container">
