@@ -19,8 +19,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   const totalIssuesInRun = 223;
 
   // MANUALLY UPDATE THESE VALUES WHEN NEW RAW 600 DPI SCANS ARE COMPLETED
-  const manualScannedIssues = 75;
-  const lastUpdatedDate = "June 24, 2026";
+  const manualScannedIssues = 76;
+  const lastUpdatedDate = "June 25, 2026";
 
   // State for filtering
   let currentSearch = "";
