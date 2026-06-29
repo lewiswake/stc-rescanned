@@ -80,6 +80,7 @@
   { "id": 145, "high": "STC_145_HighRes.cbz", "standard": "STC_145_StandardRes.cbz", "image": "images/145.jpg", "master": "https://archive.org/details/145_20250103", "date": "1998-12-16" },
   { "id": 146, "high": "STC_146_HighRes.cbz", "standard": "STC_146_StandardRes.cbz", "image": "images/146.jpg", "master": "https://archive.org/details/146_20250126", "date": "1998-12-30" },
   { "id": 147, "high": "STC_147_HighRes.cbz", "standard": "STC_147_StandardRes.cbz", "image": "images/147.jpg", "master": "https://archive.org/details/147_20250128", "date": "1999-01-13" },
+  { "id": 180, "high": "STC_180_HighRes.cbz", "standard": "STC_180_StandardRes.cbz", "image": "images/180.jpg", "master": "https://archive.org/details/sonic-the-comic-issue-180", "date": "2000-05-03" },
   { 
     "id": "summer-1994", 
     "type": "special",
