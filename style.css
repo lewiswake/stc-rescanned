@@ -357,6 +357,11 @@ a:hover {
   box-shadow: 0 0 15px var(--glow-active);
 }
 
+.pages-fill {
+  background: linear-gradient(90deg, #7a0e0e, #d32f2f);
+  box-shadow: 0 0 15px rgba(211, 47, 47, 0.4);
+}
+
 .optimised-fill {
   background: linear-gradient(90deg, #095975, var(--color-primary));
   box-shadow: 0 0 15px var(--glow-primary);
