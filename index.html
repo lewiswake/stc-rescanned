@@ -56,10 +56,24 @@
 
     <meta name="theme-color" content="#060b14" />
 
-    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
-    <link rel="manifest" href="images/site.webmanifest">
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="images/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="images/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="images/favicon-16x16.png"
+    />
+    <link rel="manifest" href="images/site.webmanifest" />
 
     <link rel="stylesheet" href="style.css" />
   </head>
@@ -119,6 +133,20 @@
           <div
             class="progress-fill scanned-fill"
             id="scanned-progress-fill"
+            style="width: 0%"
+          ></div>
+        </div>
+      </div>
+
+      <div class="progress-item">
+        <div class="progress-labels">
+          <span>Pages scanned (mainline issues)</span>
+          <span id="pages-progress-text">Calculating...</span>
+        </div>
+        <div class="progress-track" aria-hidden="true">
+          <div
+            class="progress-fill pages-fill"
+            id="pages-progress-fill"
             style="width: 0%"
           ></div>
         </div>
@@ -420,16 +448,22 @@
           <div class="info-block" id="report-error">
             <h3>Report a scan error</h3>
             <p>
-              Found a glitch in the Matrix? Let us know! We are scanning and archiving hundreds of issues at a massive 600 DPI, and sometimes a page gets clipped, uploaded out of order, or corrupted.
+              Found a glitch in the Matrix? Let us know! We are scanning and
+              archiving hundreds of issues at a massive 600 DPI, and sometimes a
+              page gets clipped, uploaded out of order, or corrupted.
             </p>
             <p>
-              If you spot an error in any of our CBZ files or the Internet Archive masters, please drop the details in our error report form so we can track it down and apply a patch. Your QA help ensures these 90s time capsules are perfectly preserved for the whole community!
+              If you spot an error in any of our CBZ files or the Internet
+              Archive masters, please drop the details in our error report form
+              so we can track it down and apply a patch. Your QA help ensures
+              these 90s time capsules are perfectly preserved for the whole
+              community!
             </p>
-            <div style="margin-top: 24px;">
-              <a 
-                href="https://forms.gle/SP5Fpo76kxp8Tmtn7" 
-                target="_blank" 
-                rel="noopener noreferrer" 
+            <div style="margin-top: 24px">
+              <a
+                href="https://forms.gle/SP5Fpo76kxp8Tmtn7"
+                target="_blank"
+                rel="noopener noreferrer"
                 class="btn btn-primary btn-inline"
               >
                 Submit an Error Report
