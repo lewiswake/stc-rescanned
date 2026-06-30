@@ -18,6 +18,13 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const totalIssuesInRun = 223;
 
+  const totalPagesInRun = 7512;
+  // MANUALLY UPDATE THIS VALUE AS PAGES ARE SCANNED
+  const manualScannedPages = 3012;
+
+  const pagesFill = document.getElementById("pages-progress-fill");
+  const pagesText = document.getElementById("pages-progress-text");
+
   // MANUALLY UPDATE THESE VALUES WHEN NEW RAW 600 DPI SCANS ARE COMPLETED
   const manualScannedIssues = 85;
   const lastUpdatedDate = "June 30, 2026";
@@ -154,6 +161,18 @@ document.addEventListener("DOMContentLoaded", async () => {
       setTimeout(() => {
         scannedFill.style.width = `${scannedPercentage}%`;
       }, 150);
+    }
+
+    if (pagesFill && pagesText) {
+      const pagesPercentage = (
+        (manualScannedPages / totalPagesInRun) *
+        100
+      ).toFixed(1);
+      pagesText.textContent = `${manualScannedPages} out of ${totalPagesInRun} pages (${pagesPercentage}%)`;
+      // Delay set to 250ms so it cascades smoothly after the first bar (150ms) and before the third (350ms)
+      setTimeout(() => {
+        pagesFill.style.width = `${pagesPercentage}%`;
+      }, 250);
     }
 
     if (optimisedFill && optimisedText) {
