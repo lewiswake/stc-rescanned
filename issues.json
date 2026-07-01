@@ -71,6 +71,7 @@
   { "id": 70, "high": "STC_070_HighRes.cbz", "standard": "STC_070_StandardRes.cbz", "image": "images/070.jpg", "master": "https://archive.org/details/sonicTheComic070", "date": "1996-01-20" },
   { "id": 71, "high": "STC_071_HighRes.cbz", "standard": "STC_071_StandardRes.cbz", "image": "images/071.jpg", "master": "https://archive.org/details/sonicTheComic071", "date": "1996-02-03" },
   { "id": 72, "high": "STC_072_HighRes.cbz", "standard": "STC_072_StandardRes.cbz", "image": "images/072.jpg", "master": "https://archive.org/details/sonicTheComic072", "date": "1996-02-17" },
+  { "id": 73, "high": "STC_073_HighRes.cbz", "standard": "STC_073_StandardRes.cbz", "image": "images/073.jpg", "master": "https://archive.org/details/sonic-the-comic-issue-073", "date": "1996-03-02" },
   { "id": 76, "high": "STC_076_HighRes.cbz", "standard": "STC_076_StandardRes.cbz", "image": "images/076.jpg", "master": "https://archive.org/details/sonicTheComic076", "date": "1996-04-13" },
   { "id": 137, "high": "STC_137_HighRes.cbz", "standard": "STC_137_StandardRes.cbz", "image": "images/137.jpg", "master": "https://archive.org/details/137_20240919", "date": "1998-08-26" },
   { "id": 138, "high": "STC_138_HighRes.cbz", "standard": "STC_138_StandardRes.cbz", "image": "images/138.jpg", "master": "https://archive.org/details/138_20240919_202409", "date": "1998-09-09" },
