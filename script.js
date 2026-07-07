@@ -26,8 +26,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   const pagesText = document.getElementById("pages-progress-text");
 
   // MANUALLY UPDATE THESE VALUES WHEN NEW RAW 600 DPI SCANS ARE COMPLETED
-  const manualScannedIssues = 93;
-  const lastUpdatedDate = "July 3, 2026";
+  const manualScannedIssues = 97;
+  const lastUpdatedDate = "July 7, 2026";
 
   // State for filtering
   let currentSearch = "";
