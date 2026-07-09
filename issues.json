@@ -87,6 +87,7 @@
   { "id": 89, "high": "STC_089_HighRes.cbz", "standard": "STC_089_StandardRes.cbz", "image": "images/089.jpg", "master": "https://archive.org/details/sonic-the-comic-issue-89", "date": "1996-10-16" },
   { "id": 92, "high": "STC_092_HighRes.cbz", "standard": "STC_092_StandardRes.cbz", "image": "images/092.jpg", "master": "https://archive.org/details/sonic-the-comic-issue-092", "date": "1996-11-27" },
   { "id": 93, "high": "STC_093_HighRes.cbz", "standard": "STC_093_StandardRes.cbz", "image": "images/093.jpg", "master": "https://archive.org/details/sonicTheComic093", "date": "1996-12-11" },
+  { "id": 95, "high": "STC_095_HighRes.cbz", "standard": "STC_095_StandardRes.cbz", "image": "images/095.jpg", "master": "https://archive.org/details/sonic-the-comic-issue-095", "date": "1996-01-08" },
   { "id": 137, "high": "STC_137_HighRes.cbz", "standard": "STC_137_StandardRes.cbz", "image": "images/137.jpg", "master": "https://archive.org/details/137_20240919", "date": "1998-08-26" },
   { "id": 138, "high": "STC_138_HighRes.cbz", "standard": "STC_138_StandardRes.cbz", "image": "images/138.jpg", "master": "https://archive.org/details/138_20240919_202409", "date": "1998-09-09" },
   { "id": 139, "high": "STC_139_HighRes.cbz", "standard": "STC_139_StandardRes.cbz", "image": "images/139.jpg", "master": "https://archive.org/details/139_20240926", "date": "1998-09-23" },
