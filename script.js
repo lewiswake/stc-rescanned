@@ -20,13 +20,13 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const totalPagesInRun = 7512;
   // MANUALLY UPDATE THIS VALUE AS PAGES ARE SCANNED
-  const manualScannedPages = 4920;
+  const manualScannedPages = 5016;
 
   const pagesFill = document.getElementById("pages-progress-fill");
   const pagesText = document.getElementById("pages-progress-text");
 
   // MANUALLY UPDATE THESE VALUES WHEN NEW RAW 600 DPI SCANS ARE COMPLETED
-  const manualScannedIssues = 142;
+  const manualScannedIssues = 145;
   const lastUpdatedDate = "August 7, 2026";
 
   // State for filtering
