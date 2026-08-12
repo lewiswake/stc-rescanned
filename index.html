@@ -297,11 +297,22 @@
                 aria-label="Search issues"
               />
             </div>
-            <div class="year-filters" id="year-filters"></div>
+            <div class="filters-container">
+              <select id="year-filter" class="filter-select" aria-label="Filter by year">
+                <option value="all">All Years</option>
+              </select>
+              <select id="sort-filter" class="filter-select" aria-label="Sort issues">
+                <option value="asc">Oldest First</option>
+                <option value="desc">Newest First</option>
+              </select>
+            </div>
           </div>
         </div>
 
         <div class="grid" id="issue-grid" aria-label="Comic Issues Grid"></div>
+        <div class="load-more-container" id="load-more-container" style="display: none; text-align: center; margin-top: 32px;">
+          <button id="load-more-btn" class="btn btn-secondary btn-inline">Load More</button>
+        </div>
 
         <div class="empty-state" id="empty-state">
           <p>No issues found for your search criteria.</p>
@@ -327,6 +338,9 @@
           id="specials-grid"
           aria-label="Special Issues Grid"
         ></div>
+        <div class="load-more-container" id="specials-load-more-container" style="display: none; text-align: center; margin-top: 32px;">
+          <button id="specials-load-more-btn" class="btn btn-secondary btn-inline">Load More</button>
+        </div>
 
         <div class="empty-state" id="specials-empty-state">
           <p>No special issues matching your search criteria.</p>
