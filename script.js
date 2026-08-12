@@ -5,35 +5,43 @@ document.addEventListener("DOMContentLoaded", async () => {
   const emptyState = document.getElementById("empty-state");
   const specialsEmptyState = document.getElementById("specials-empty-state");
   const countDisplay = document.getElementById("issue-count-display");
-  const yearFiltersContainer = document.getElementById("year-filters");
+  const yearFilterSelect = document.getElementById("year-filter");
+  const sortFilterSelect = document.getElementById("sort-filter");
   const backToTopBtn = document.getElementById("back-to-top");
   const clearFiltersBtns = document.querySelectorAll(".clear-filters-btn");
+
+  const loadMoreBtn = document.getElementById("load-more-btn");
+  const loadMoreContainer = document.getElementById("load-more-container");
+  const specialsLoadMoreBtn = document.getElementById("specials-load-more-btn");
+  const specialsLoadMoreContainer = document.getElementById("specials-load-more-container");
 
   // Progress Bar Elements & Variables
   const optimisedFill = document.getElementById("optimised-progress-fill");
   const optimisedText = document.getElementById("optimised-progress-text");
-
   const scannedFill = document.getElementById("scanned-progress-fill");
   const scannedText = document.getElementById("scanned-progress-text");
-
-  const totalIssuesInRun = 223;
-
-  const totalPagesInRun = 7512;
-  // MANUALLY UPDATE THIS VALUE AS PAGES ARE SCANNED
-  const manualScannedPages = 5280;
-
   const pagesFill = document.getElementById("pages-progress-fill");
   const pagesText = document.getElementById("pages-progress-text");
 
-  // MANUALLY UPDATE THESE VALUES WHEN NEW RAW 600 DPI SCANS ARE COMPLETED
+  const totalIssuesInRun = 223;
+  const totalPagesInRun = 7512;
+  const manualScannedPages = 5280;
   const manualScannedIssues = 153;
   const lastUpdatedDate = "August 12, 2026";
 
-  // State for filtering
+  const highBase = "https://archive.org/download/sonic-the-comic-high-resolution-scans";
+  const stdBase = "https://archive.org/download/sonic-the-comic-standard-resolution-scans";
+
+  let allIssues = [];
+  
+  // State for filtering and pagination
   let currentSearch = "";
   let currentYearFilter = "all";
+  let currentSort = "asc";
+  let currentPageMain = 1;
+  let currentPageSpecials = 1;
+  const itemsPerPage = 24;
 
-  // Debounce utility to prevent UI stutter on fast typing
   const debounce = (func, delay) => {
     let timeoutId;
     return (...args) => {
@@ -42,95 +50,185 @@ document.addEventListener("DOMContentLoaded", async () => {
     };
   };
 
-  // Push the date to the HTML
   const lastUpdatedEl = document.getElementById("last-updated-text");
   if (lastUpdatedEl) {
     lastUpdatedEl.textContent = `Last updated: ${lastUpdatedDate}`;
   }
 
-  const highBase =
-    "https://archive.org/download/sonic-the-comic-high-resolution-scans";
-  const stdBase =
-    "https://archive.org/download/sonic-the-comic-standard-resolution-scans";
+  const generateCardHTML = (issue) => {
+    const isSpecial = issue.type === "special";
+    const displayTitle = isSpecial ? issue.title : `Issue ${String(issue.id).padStart(3, "0")}`;
+    const highUrl = `${highBase}/${encodeURIComponent(issue.high)}`;
+    const stdUrl = `${stdBase}/${encodeURIComponent(issue.standard)}`;
+    let formattedDate = "";
+    
+    if (issue.date) {
+      const dateObj = new Date(issue.date);
+      formattedDate = dateObj.toLocaleDateString("en-GB", {
+        day: "numeric", month: "long", year: "numeric",
+      });
+    }
 
-  // Helper function to apply both search and year filters
-  const applyFilters = () => {
-    const allCards = document.querySelectorAll(".issue-card");
-    let mainVisibleCount = 0;
-    let specialsVisibleCount = 0;
+    const masterHtml = issue.master
+      ? `<a href="${issue.master}" aria-label="Download ${displayTitle} Raw 600 DPI Master" target="_blank" rel="noopener noreferrer" class="btn-icon raw"><span class="icon-link"></span> RAW</a>`
+      : "";
 
-    allCards.forEach((card) => {
-      const searchKey = card.dataset.searchKey;
-      const cardYear = card.dataset.year;
+    return `
+      <article class="card issue-card">
+        <div class="card-left">
+          <img src="${issue.image}" alt="Cover of ${displayTitle}" class="card-thumbnail" width="240" height="310" loading="lazy">
+        </div>
+        <div class="card-right">
+          <div class="card-header">
+            <h3>${displayTitle}</h3>
+            ${formattedDate ? `<p class="issue-date">${formattedDate}</p>` : ""}
+          </div>
+          <div class="btn-icon-group">
+            <a href="${stdUrl}" aria-label="Download ${displayTitle} Standard Resolution" target="_blank" rel="noopener noreferrer" class="btn-icon sd"><span class="icon-download"></span> SD</a>
+            <a href="${highUrl}" aria-label="Download ${displayTitle} High Resolution" target="_blank" rel="noopener noreferrer" class="btn-icon hd"><span class="icon-download"></span> HD</a>
+            ${masterHtml}
+          </div>
+        </div>
+      </article>
+    `;
+  };
 
-      const searchStripped = currentSearch.replace(/^0+/, "");
+  const applyFiltersAndRender = () => {
+    // 1. Filter
+    const searchStripped = currentSearch.replace(/^0+/, "");
+    
+    let filteredMain = allIssues.filter(issue => {
+      if (issue.type === "special") return false;
+      const issueYear = issue.date ? issue.date.substring(0, 4) : "Unknown";
+      const matchesYear = currentYearFilter === "all" || issueYear === currentYearFilter;
+      const searchKey = String(issue.id).padStart(3, "0");
       const keyStripped = searchKey.replace(/^0+/, "");
-
-      const matchesSearch =
-        searchKey.includes(currentSearch) || keyStripped === searchStripped;
-      const matchesYear =
-        currentYearFilter === "all" || cardYear === currentYearFilter;
-
-      if (matchesSearch && matchesYear) {
-        card.style.display = "flex";
-        if (card.parentElement.id === "specials-grid") {
-          specialsVisibleCount++;
-        } else {
-          mainVisibleCount++;
-        }
-      } else {
-        card.style.display = "none";
-      }
+      const matchesSearch = searchKey.includes(currentSearch) || keyStripped === searchStripped;
+      return matchesYear && matchesSearch;
     });
 
-    // Handle main grid empty state
-    if (mainVisibleCount === 0) {
+    let filteredSpecials = allIssues.filter(issue => {
+      if (issue.type !== "special") return false;
+      const issueYear = issue.date ? issue.date.substring(0, 4) : "Unknown";
+      const matchesYear = currentYearFilter === "all" || issueYear === currentYearFilter;
+      const searchKey = issue.title.toLowerCase();
+      const matchesSearch = searchKey.includes(currentSearch);
+      return matchesYear && matchesSearch;
+    });
+
+    // 2. Sort
+    const sortMultiplier = currentSort === "asc" ? 1 : -1;
+    
+    filteredMain.sort((a, b) => {
+      return (a.id - b.id) * sortMultiplier;
+    });
+
+    // For specials, we sort by date or title
+    filteredSpecials.sort((a, b) => {
+      const dateA = a.date ? new Date(a.date).getTime() : 0;
+      const dateB = b.date ? new Date(b.date).getTime() : 0;
+      if (dateA !== dateB) {
+        return (dateA - dateB) * sortMultiplier;
+      }
+      return a.title.localeCompare(b.title) * sortMultiplier;
+    });
+
+    // 3. Render Main Grid
+    const mainToShow = filteredMain.slice(0, currentPageMain * itemsPerPage);
+    grid.innerHTML = mainToShow.map(generateCardHTML).join("");
+    
+    if (filteredMain.length === 0) {
       emptyState.style.display = "block";
       grid.style.display = "none";
+      loadMoreContainer.style.display = "none";
     } else {
       emptyState.style.display = "none";
       grid.style.display = "grid";
+      if (mainToShow.length < filteredMain.length) {
+        loadMoreContainer.style.display = "block";
+      } else {
+        loadMoreContainer.style.display = "none";
+      }
     }
 
-    // Handle specials grid empty state
+    // 4. Render Specials Grid
     if (specialsGrid) {
-      if (specialsVisibleCount === 0) {
+      const specialsToShow = filteredSpecials.slice(0, currentPageSpecials * itemsPerPage);
+      specialsGrid.innerHTML = specialsToShow.map(generateCardHTML).join("");
+      
+      if (filteredSpecials.length === 0) {
         specialsEmptyState.style.display = "block";
         specialsGrid.style.display = "none";
+        specialsLoadMoreContainer.style.display = "none";
       } else {
         specialsEmptyState.style.display = "none";
         specialsGrid.style.display = "grid";
+        if (specialsToShow.length < filteredSpecials.length) {
+          specialsLoadMoreContainer.style.display = "block";
+        } else {
+          specialsLoadMoreContainer.style.display = "none";
+        }
       }
     }
   };
 
-  // Handle completely clearing filters and search
   const clearAllFilters = () => {
-    searchInput.value = "";
+    if (searchInput) searchInput.value = "";
     currentSearch = "";
     currentYearFilter = "all";
-
-    // Reset filter buttons UI
-    const filterButtons = document.querySelectorAll(".btn-filter");
-    filterButtons.forEach((b) => {
-      if (b.dataset.year === "all") {
-        b.classList.add("active");
-        b.setAttribute("aria-pressed", "true");
-      } else {
-        b.classList.remove("active");
-        b.setAttribute("aria-pressed", "false");
-      }
-    });
-
-    applyFilters();
+    currentSort = "asc";
+    if (yearFilterSelect) yearFilterSelect.value = "all";
+    if (sortFilterSelect) sortFilterSelect.value = "asc";
+    currentPageMain = 1;
+    currentPageSpecials = 1;
+    applyFiltersAndRender();
   };
 
-  // Attach listeners to clear buttons
-  clearFiltersBtns.forEach((btn) =>
-    btn.addEventListener("click", clearAllFilters),
-  );
+  clearFiltersBtns.forEach((btn) => btn.addEventListener("click", clearAllFilters));
 
-  // Back to Top functionality
+  if (loadMoreBtn) {
+    loadMoreBtn.addEventListener("click", () => {
+      currentPageMain++;
+      applyFiltersAndRender();
+    });
+  }
+
+  if (specialsLoadMoreBtn) {
+    specialsLoadMoreBtn.addEventListener("click", () => {
+      currentPageSpecials++;
+      applyFiltersAndRender();
+    });
+  }
+
+  if (yearFilterSelect) {
+    yearFilterSelect.addEventListener("change", (e) => {
+      currentYearFilter = e.target.value;
+      currentPageMain = 1;
+      currentPageSpecials = 1;
+      applyFiltersAndRender();
+    });
+  }
+
+  if (sortFilterSelect) {
+    sortFilterSelect.addEventListener("change", (e) => {
+      currentSort = e.target.value;
+      currentPageMain = 1;
+      currentPageSpecials = 1;
+      applyFiltersAndRender();
+    });
+  }
+
+  const handleSearch = debounce((e) => {
+    currentSearch = e.target.value.trim().toLowerCase();
+    currentPageMain = 1;
+    currentPageSpecials = 1;
+    applyFiltersAndRender();
+  }, 250);
+
+  if (searchInput) {
+    searchInput.addEventListener("input", handleSearch);
+  }
+
   window.addEventListener("scroll", () => {
     if (window.scrollY > 600) {
       backToTopBtn.classList.add("visible");
@@ -139,165 +237,63 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   });
 
-  backToTopBtn.addEventListener("click", () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  });
+  if (backToTopBtn) {
+    backToTopBtn.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  }
 
   try {
     const response = await fetch("issues.json");
     if (!response.ok) throw new Error("Failed to load issues data.");
-    const issues = await response.json();
+    allIssues = await response.json();
 
-    // Setup Progress Bars
-    const mainIssues = issues.filter((issue) => issue.type !== "special");
-    countDisplay.textContent = `There are currently ${mainIssues.length} optimised mainline issues available for download from the Internet Archive.`;
+    const mainIssues = allIssues.filter((issue) => issue.type !== "special");
+    if (countDisplay) {
+      countDisplay.textContent = `There are currently ${mainIssues.length} optimised mainline issues available for download from the Internet Archive.`;
+    }
 
     if (scannedFill && scannedText) {
-      const scannedPercentage = (
-        (manualScannedIssues / totalIssuesInRun) *
-        100
-      ).toFixed(1);
+      const scannedPercentage = ((manualScannedIssues / totalIssuesInRun) * 100).toFixed(1);
       scannedText.textContent = `${manualScannedIssues} out of ${totalIssuesInRun} issues (${scannedPercentage}%)`;
-      setTimeout(() => {
-        scannedFill.style.width = `${scannedPercentage}%`;
-      }, 150);
+      setTimeout(() => scannedFill.style.width = `${scannedPercentage}%`, 150);
     }
 
     if (pagesFill && pagesText) {
-      const pagesPercentage = (
-        (manualScannedPages / totalPagesInRun) *
-        100
-      ).toFixed(1);
+      const pagesPercentage = ((manualScannedPages / totalPagesInRun) * 100).toFixed(1);
       pagesText.textContent = `${manualScannedPages} out of ${totalPagesInRun} pages (${pagesPercentage}%)`;
-      // Delay set to 250ms so it cascades smoothly after the first bar (150ms) and before the third (350ms)
-      setTimeout(() => {
-        pagesFill.style.width = `${pagesPercentage}%`;
-      }, 250);
+      setTimeout(() => pagesFill.style.width = `${pagesPercentage}%`, 250);
     }
 
     if (optimisedFill && optimisedText) {
-      const optPercentage = (
-        (mainIssues.length / totalIssuesInRun) *
-        100
-      ).toFixed(1);
+      const optPercentage = ((mainIssues.length / totalIssuesInRun) * 100).toFixed(1);
       optimisedText.textContent = `${mainIssues.length} out of ${totalIssuesInRun} issues (${optPercentage}%)`;
-      setTimeout(() => {
-        optimisedFill.style.width = `${optPercentage}%`;
-      }, 350);
+      setTimeout(() => optimisedFill.style.width = `${optPercentage}%`, 350);
     }
 
-    // Extract unique years for the filter UI
+    // Populate Year Filter Select
     const availableYears = [
       ...new Set(
-        issues
-          .map((issue) => {
-            return issue.date ? issue.date.substring(0, 4) : null;
-          })
-          .filter(Boolean),
+        allIssues.map((issue) => issue.date ? issue.date.substring(0, 4) : null).filter(Boolean)
       ),
     ].sort();
 
-    // Generate Year Filter Buttons with ARIA states
-    let filtersHtml = `<button class="btn-filter active" data-year="all" aria-pressed="true">All Years</button>`;
-    availableYears.forEach((year) => {
-      filtersHtml += `<button class="btn-filter" data-year="${year}" aria-pressed="false">${year}</button>`;
-    });
-    yearFiltersContainer.innerHTML = filtersHtml;
-
-    // Attach listener to Year Filter Buttons
-    const filterButtons = document.querySelectorAll(".btn-filter");
-    filterButtons.forEach((btn) => {
-      btn.addEventListener("click", (e) => {
-        // Update active class and ARIA state for accessibility
-        filterButtons.forEach((b) => {
-          b.classList.remove("active");
-          b.setAttribute("aria-pressed", "false");
-        });
-        e.target.classList.add("active");
-        e.target.setAttribute("aria-pressed", "true");
-
-        // Update state and filter
-        currentYearFilter = e.target.dataset.year;
-        applyFilters();
+    if (yearFilterSelect) {
+      let optionsHtml = `<option value="all">All Years</option>`;
+      availableYears.forEach((year) => {
+        optionsHtml += `<option value="${year}">${year}</option>`;
       });
-    });
+      yearFilterSelect.innerHTML = optionsHtml;
+    }
 
-    // Populate Grids
-    issues.forEach((issue) => {
-      const isSpecial = issue.type === "special";
-      const displayTitle = isSpecial
-        ? issue.title
-        : `Issue ${String(issue.id).padStart(3, "0")}`;
-      const searchKey = isSpecial
-        ? issue.title.toLowerCase()
-        : String(issue.id).padStart(3, "0");
+    // Initial render
+    applyFiltersAndRender();
 
-      const highUrl = `${highBase}/${encodeURIComponent(issue.high)}`;
-      const stdUrl = `${stdBase}/${encodeURIComponent(issue.standard)}`;
-
-      const issueYear = issue.date ? issue.date.substring(0, 4) : "Unknown";
-
-      // Format Date string (UK format: e.g. 29 May 1993)
-      let formattedDate = "";
-      if (issue.date) {
-        const dateObj = new Date(issue.date);
-        formattedDate = dateObj.toLocaleDateString("en-GB", {
-          day: "numeric",
-          month: "long",
-          year: "numeric",
-        });
-      }
-
-      const masterHtml = issue.master
-        ? `<a href="${issue.master}" aria-label="Download ${displayTitle} Raw 600 DPI Master" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="border-style: dashed;">600 DPI Master</a>`
-        : "";
-
-      const article = document.createElement("article");
-      article.className = "card issue-card";
-      article.dataset.searchKey = searchKey;
-      article.dataset.year = issueYear;
-
-      // Notice explicit width and height dimensions added directly to the image tag to prevent CLS
-      article.innerHTML = `
-                <div class="card-left">
-                    <img src="${issue.image}" alt="Cover of ${displayTitle}" class="card-thumbnail" width="240" height="310" loading="lazy">
-                </div>
-                <div class="card-right">
-                    <div class="card-header">
-                        <h3>${displayTitle}</h3>
-                        ${formattedDate ? `<p class="issue-date">${formattedDate}</p>` : ""}
-                    </div>
-                    <div class="button-group">
-                        <a href="${stdUrl}" aria-label="Download ${displayTitle} Standard Resolution" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
-                            Download Standard
-                        </a>
-                        <a href="${highUrl}" aria-label="Download ${displayTitle} High Resolution" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
-                            Download High
-                        </a>
-                        ${masterHtml}
-                    </div>
-                </div>
-            `;
-
-      if (isSpecial) {
-        if (specialsGrid) specialsGrid.appendChild(article);
-      } else {
-        grid.appendChild(article);
-      }
-    });
-
-    // Attach debounced listener to Search Input
-    const handleSearch = debounce((e) => {
-      currentSearch = e.target.value.trim().toLowerCase();
-      applyFilters();
-    }, 250);
-
-    searchInput.addEventListener("input", handleSearch);
   } catch (error) {
     console.error(error);
-    countDisplay.textContent = "Error loading issue data.";
+    if (countDisplay) countDisplay.textContent = "Error loading issue data.";
     if (scannedText) scannedText.textContent = "Error loading progress.";
     if (optimisedText) optimisedText.textContent = "Error loading progress.";
-    grid.innerHTML = `<p style="color: var(--text-muted); grid-column: 1 / -1; text-align: center;">Error loading archive files. Please ensure you are running a local server.</p>`;
+    if (grid) grid.innerHTML = `<p style="color: var(--text-muted); grid-column: 1 / -1; text-align: center;">Error loading archive files. Please ensure you are running a local server.</p>`;
   }
 });
