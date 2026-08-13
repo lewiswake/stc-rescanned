@@ -13,7 +13,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   const loadMoreBtn = document.getElementById("load-more-btn");
   const loadMoreContainer = document.getElementById("load-more-container");
   const specialsLoadMoreBtn = document.getElementById("specials-load-more-btn");
-  const specialsLoadMoreContainer = document.getElementById("specials-load-more-container");
+  const specialsLoadMoreContainer = document.getElementById(
+    "specials-load-more-container",
+  );
 
   // Progress Bar Elements & Variables
   const optimisedFill = document.getElementById("optimised-progress-fill");
@@ -25,15 +27,17 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const totalIssuesInRun = 223;
   const totalPagesInRun = 7512;
-  const manualScannedPages = 5280;
-  const manualScannedIssues = 153;
-  const lastUpdatedDate = "August 12, 2026";
+  const manualScannedPages = 5312;
+  const manualScannedIssues = 154;
+  const lastUpdatedDate = "August 13, 2026";
 
-  const highBase = "https://archive.org/download/sonic-the-comic-high-resolution-scans";
-  const stdBase = "https://archive.org/download/sonic-the-comic-standard-resolution-scans";
+  const highBase =
+    "https://archive.org/download/sonic-the-comic-high-resolution-scans";
+  const stdBase =
+    "https://archive.org/download/sonic-the-comic-standard-resolution-scans";
 
   let allIssues = [];
-  
+
   // State for filtering and pagination
   let currentSearch = "";
   let currentYearFilter = "all";
@@ -57,15 +61,19 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const generateCardHTML = (issue) => {
     const isSpecial = issue.type === "special";
-    const displayTitle = isSpecial ? issue.title : `Issue ${String(issue.id).padStart(3, "0")}`;
+    const displayTitle = isSpecial
+      ? issue.title
+      : `Issue ${String(issue.id).padStart(3, "0")}`;
     const highUrl = `${highBase}/${encodeURIComponent(issue.high)}`;
     const stdUrl = `${stdBase}/${encodeURIComponent(issue.standard)}`;
     let formattedDate = "";
-    
+
     if (issue.date) {
       const dateObj = new Date(issue.date);
       formattedDate = dateObj.toLocaleDateString("en-GB", {
-        day: "numeric", month: "long", year: "numeric",
+        day: "numeric",
+        month: "long",
+        year: "numeric",
       });
     }
 
@@ -96,21 +104,24 @@ document.addEventListener("DOMContentLoaded", async () => {
   const applyFiltersAndRender = () => {
     // 1. Filter
     const searchStripped = currentSearch.replace(/^0+/, "");
-    
-    let filteredMain = allIssues.filter(issue => {
+
+    let filteredMain = allIssues.filter((issue) => {
       if (issue.type === "special") return false;
       const issueYear = issue.date ? issue.date.substring(0, 4) : "Unknown";
-      const matchesYear = currentYearFilter === "all" || issueYear === currentYearFilter;
+      const matchesYear =
+        currentYearFilter === "all" || issueYear === currentYearFilter;
       const searchKey = String(issue.id).padStart(3, "0");
       const keyStripped = searchKey.replace(/^0+/, "");
-      const matchesSearch = searchKey.includes(currentSearch) || keyStripped === searchStripped;
+      const matchesSearch =
+        searchKey.includes(currentSearch) || keyStripped === searchStripped;
       return matchesYear && matchesSearch;
     });
 
-    let filteredSpecials = allIssues.filter(issue => {
+    let filteredSpecials = allIssues.filter((issue) => {
       if (issue.type !== "special") return false;
       const issueYear = issue.date ? issue.date.substring(0, 4) : "Unknown";
-      const matchesYear = currentYearFilter === "all" || issueYear === currentYearFilter;
+      const matchesYear =
+        currentYearFilter === "all" || issueYear === currentYearFilter;
       const searchKey = issue.title.toLowerCase();
       const matchesSearch = searchKey.includes(currentSearch);
       return matchesYear && matchesSearch;
@@ -118,7 +129,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // 2. Sort
     const sortMultiplier = currentSort === "asc" ? 1 : -1;
-    
+
     filteredMain.sort((a, b) => {
       return (a.id - b.id) * sortMultiplier;
     });
@@ -136,7 +147,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     // 3. Render Main Grid
     const mainToShow = filteredMain.slice(0, currentPageMain * itemsPerPage);
     grid.innerHTML = mainToShow.map(generateCardHTML).join("");
-    
+
     if (filteredMain.length === 0) {
       emptyState.style.display = "block";
       grid.style.display = "none";
@@ -153,9 +164,12 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // 4. Render Specials Grid
     if (specialsGrid) {
-      const specialsToShow = filteredSpecials.slice(0, currentPageSpecials * itemsPerPage);
+      const specialsToShow = filteredSpecials.slice(
+        0,
+        currentPageSpecials * itemsPerPage,
+      );
       specialsGrid.innerHTML = specialsToShow.map(generateCardHTML).join("");
-      
+
       if (filteredSpecials.length === 0) {
         specialsEmptyState.style.display = "block";
         specialsGrid.style.display = "none";
@@ -184,7 +198,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     applyFiltersAndRender();
   };
 
-  clearFiltersBtns.forEach((btn) => btn.addEventListener("click", clearAllFilters));
+  clearFiltersBtns.forEach((btn) =>
+    btn.addEventListener("click", clearAllFilters),
+  );
 
   if (loadMoreBtn) {
     loadMoreBtn.addEventListener("click", () => {
@@ -254,27 +270,41 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     if (scannedFill && scannedText) {
-      const scannedPercentage = ((manualScannedIssues / totalIssuesInRun) * 100).toFixed(1);
+      const scannedPercentage = (
+        (manualScannedIssues / totalIssuesInRun) *
+        100
+      ).toFixed(1);
       scannedText.textContent = `${manualScannedIssues} out of ${totalIssuesInRun} issues (${scannedPercentage}%)`;
-      setTimeout(() => scannedFill.style.width = `${scannedPercentage}%`, 150);
+      setTimeout(
+        () => (scannedFill.style.width = `${scannedPercentage}%`),
+        150,
+      );
     }
 
     if (pagesFill && pagesText) {
-      const pagesPercentage = ((manualScannedPages / totalPagesInRun) * 100).toFixed(1);
+      const pagesPercentage = (
+        (manualScannedPages / totalPagesInRun) *
+        100
+      ).toFixed(1);
       pagesText.textContent = `${manualScannedPages} out of ${totalPagesInRun} pages (${pagesPercentage}%)`;
-      setTimeout(() => pagesFill.style.width = `${pagesPercentage}%`, 250);
+      setTimeout(() => (pagesFill.style.width = `${pagesPercentage}%`), 250);
     }
 
     if (optimisedFill && optimisedText) {
-      const optPercentage = ((mainIssues.length / totalIssuesInRun) * 100).toFixed(1);
+      const optPercentage = (
+        (mainIssues.length / totalIssuesInRun) *
+        100
+      ).toFixed(1);
       optimisedText.textContent = `${mainIssues.length} out of ${totalIssuesInRun} issues (${optPercentage}%)`;
-      setTimeout(() => optimisedFill.style.width = `${optPercentage}%`, 350);
+      setTimeout(() => (optimisedFill.style.width = `${optPercentage}%`), 350);
     }
 
     // Populate Year Filter Select
     const availableYears = [
       ...new Set(
-        allIssues.map((issue) => issue.date ? issue.date.substring(0, 4) : null).filter(Boolean)
+        allIssues
+          .map((issue) => (issue.date ? issue.date.substring(0, 4) : null))
+          .filter(Boolean),
       ),
     ].sort();
 
@@ -288,12 +318,12 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // Initial render
     applyFiltersAndRender();
-
   } catch (error) {
     console.error(error);
     if (countDisplay) countDisplay.textContent = "Error loading issue data.";
     if (scannedText) scannedText.textContent = "Error loading progress.";
     if (optimisedText) optimisedText.textContent = "Error loading progress.";
-    if (grid) grid.innerHTML = `<p style="color: var(--text-muted); grid-column: 1 / -1; text-align: center;">Error loading archive files. Please ensure you are running a local server.</p>`;
+    if (grid)
+      grid.innerHTML = `<p style="color: var(--text-muted); grid-column: 1 / -1; text-align: center;">Error loading archive files. Please ensure you are running a local server.</p>`;
   }
 });
