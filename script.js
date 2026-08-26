@@ -27,8 +27,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const totalIssuesInRun = 223;
   const totalPagesInRun = 7512;
-  const manualScannedPages = 5824;
-  const manualScannedIssues = 170;
+  const manualScannedPages = 5888;
+  const manualScannedIssues = 172;
   const lastUpdatedDate = "August 26, 2026";
 
   const highBase =
