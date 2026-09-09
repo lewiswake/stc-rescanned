@@ -27,9 +27,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const totalIssuesInRun = 223;
   const totalPagesInRun = 7512;
-  const manualScannedPages = 6336;
-  const manualScannedIssues = 186;
-  const lastUpdatedDate = "September 7, 2026";
+  const manualScannedPages = 6432;
+  const manualScannedIssues = 189;
+  const lastUpdatedDate = "September 9, 2026";
 
   const highBase =
     "https://archive.org/download/sonic-the-comic-high-resolution-scans";
