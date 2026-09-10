@@ -46,6 +46,27 @@ document.addEventListener("DOMContentLoaded", async () => {
   let currentPageSpecials = 1;
   const itemsPerPage = 48;
 
+
+  // Update URL params
+  const updateURLParams = () => {
+    const params = new URLSearchParams();
+    if (currentSearch) params.set('search', currentSearch);
+    if (currentYearFilter !== 'all') params.set('year', currentYearFilter);
+    if (currentSort !== 'asc') params.set('sort', currentSort);
+    
+    const newUrl = `${window.location.pathname}${params.toString() ? '?' + params.toString() : ''}${window.location.hash}`;
+    window.history.replaceState({}, '', newUrl);
+  };
+
+
+  const updateClearFiltersVisibility = () => {
+    const isActive = currentSearch !== "" || currentYearFilter !== "all" || currentSort !== "asc";
+    clearFiltersBtns.forEach(btn => {
+      btn.style.display = isActive ? "inline-block" : "none";
+    });
+  };
+
+
   const debounce = (func, delay) => {
     let timeoutId;
     return (...args) => {
@@ -66,6 +87,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       : `Issue ${String(issue.id).padStart(3, "0")}`;
     const highUrl = `${highBase}/${encodeURIComponent(issue.high)}`;
     const stdUrl = `${stdBase}/${encodeURIComponent(issue.standard)}`;
+    const issueId = `issue-${issue.id}`;
     let formattedDate = "";
 
     if (issue.date) {
@@ -82,13 +104,18 @@ document.addEventListener("DOMContentLoaded", async () => {
       : "";
 
     return `
-      <article class="card issue-card">
+      <article class="card issue-card" id="${issueId}">
         <div class="card-left">
-          <img src="${issue.image}" alt="Cover of ${displayTitle}" class="card-thumbnail" width="240" height="310" loading="lazy">
+          <img src="${issue.image}" alt="Cover of ${displayTitle}" class="card-thumbnail skeleton" width="240" height="310" loading="lazy" onload="this.classList.remove('skeleton')">
         </div>
         <div class="card-right">
           <div class="card-header">
-            <h3>${displayTitle}</h3>
+            <h3 style="display: flex; align-items: center; justify-content: space-between;">
+              ${displayTitle}
+              <button class="copy-link-btn" data-link="${issueId}" aria-label="Copy link to ${displayTitle}" title="Copy Link" style="background: none; border: none; cursor: pointer; color: var(--text-muted);">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+              </button>
+            </h3>
             ${formattedDate ? `<p class="issue-date">${formattedDate}</p>` : ""}
           </div>
           <div class="btn-icon-group">
@@ -102,6 +129,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   };
 
   const applyFiltersAndRender = () => {
+    updateURLParams();
+    updateClearFiltersVisibility();
     // 1. Filter
     const searchStripped = currentSearch.replace(/^0+/, "");
 
@@ -146,7 +175,13 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // 3. Render Main Grid
     const mainToShow = filteredMain.slice(0, currentPageMain * itemsPerPage);
-    grid.innerHTML = mainToShow.map(generateCardHTML).join("");
+    if (currentPageMain === 1) {
+        grid.innerHTML = mainToShow.map(generateCardHTML).join("");
+    } else {
+        const previousCount = (currentPageMain - 1) * itemsPerPage;
+        const newItems = mainToShow.slice(previousCount);
+        grid.insertAdjacentHTML('beforeend', newItems.map(generateCardHTML).join(""));
+    }
 
     if (filteredMain.length === 0) {
       emptyState.style.display = "block";
@@ -168,7 +203,13 @@ document.addEventListener("DOMContentLoaded", async () => {
         0,
         currentPageSpecials * itemsPerPage,
       );
-      specialsGrid.innerHTML = specialsToShow.map(generateCardHTML).join("");
+      if (currentPageSpecials === 1) {
+          specialsGrid.innerHTML = specialsToShow.map(generateCardHTML).join("");
+      } else {
+          const previousCount = (currentPageSpecials - 1) * itemsPerPage;
+          const newItems = specialsToShow.slice(previousCount);
+          specialsGrid.insertAdjacentHTML('beforeend', newItems.map(generateCardHTML).join(""));
+      }
 
       if (filteredSpecials.length === 0) {
         specialsEmptyState.style.display = "block";
@@ -245,6 +286,60 @@ document.addEventListener("DOMContentLoaded", async () => {
     searchInput.addEventListener("input", handleSearch);
   }
 
+
+  // Handle copy link clicks
+  document.addEventListener("click", (e) => {
+    const copyBtn = e.target.closest('.copy-link-btn');
+    if (copyBtn) {
+      const targetId = copyBtn.getAttribute('data-link');
+      const url = new URL(window.location.href);
+      url.hash = targetId;
+      navigator.clipboard.writeText(url.toString()).then(() => {
+        // Optional feedback: temporarily change the icon or show a tooltip
+        const originalHtml = copyBtn.innerHTML;
+        copyBtn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="green" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
+        setTimeout(() => { copyBtn.innerHTML = originalHtml; }, 2000);
+      });
+    }
+  });
+
+  // Highlight target if page loaded with hash
+  if (window.location.hash) {
+    setTimeout(() => {
+      const el = document.querySelector(window.location.hash);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+        el.classList.add('highlight');
+        setTimeout(() => el.classList.remove('highlight'), 3000);
+      }
+    }, 500); // small delay to ensure cards render first
+  }
+
+  // Infinite Scroll using IntersectionObserver
+  const observerOptions = {
+    root: null,
+    rootMargin: "200px",
+    threshold: 0.1
+  };
+  
+  const observerCallback = (entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        if (entry.target === loadMoreContainer && loadMoreContainer.style.display !== "none") {
+          currentPageMain++;
+          applyFiltersAndRender();
+        } else if (entry.target === specialsLoadMoreContainer && specialsLoadMoreContainer.style.display !== "none") {
+          currentPageSpecials++;
+          applyFiltersAndRender();
+        }
+      }
+    });
+  };
+  
+  const infiniteObserver = new IntersectionObserver(observerCallback, observerOptions);
+  if (loadMoreContainer) infiniteObserver.observe(loadMoreContainer);
+  if (specialsLoadMoreContainer) infiniteObserver.observe(specialsLoadMoreContainer);
+
   window.addEventListener("scroll", () => {
     if (window.scrollY > 600) {
       backToTopBtn.classList.add("visible");
@@ -315,6 +410,25 @@ document.addEventListener("DOMContentLoaded", async () => {
       });
       yearFilterSelect.innerHTML = optionsHtml;
     }
+
+    
+    // Read URL parameters on load
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('search')) {
+      currentSearch = urlParams.get('search').toLowerCase();
+      if (searchInput) searchInput.value = currentSearch;
+    }
+    if (urlParams.has('year')) {
+      currentYearFilter = urlParams.get('year');
+      if (yearFilterSelect) yearFilterSelect.value = currentYearFilter;
+    }
+    if (urlParams.has('sort')) {
+      currentSort = urlParams.get('sort');
+      if (sortFilterSelect) sortFilterSelect.value = currentSort;
+    }
+
+    // Call update to sync clear button visibility if needed
+    updateClearFiltersVisibility();
 
     // Initial render
     applyFiltersAndRender();
