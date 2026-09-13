@@ -27,9 +27,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const totalIssuesInRun = 223;
   const totalPagesInRun = 7512;
-  const manualScannedPages = 6528;
-  const manualScannedIssues = 192;
-  const lastUpdatedDate = "September 11, 2026";
+  const manualScannedPages = 6560;
+  const manualScannedIssues = 193;
+  const lastUpdatedDate = "September 14, 2026";
 
   const highBase =
     "https://archive.org/download/sonic-the-comic-high-resolution-scans";
@@ -46,26 +46,26 @@ document.addEventListener("DOMContentLoaded", async () => {
   let currentPageSpecials = 1;
   const itemsPerPage = 48;
 
-
   // Update URL params
   const updateURLParams = () => {
     const params = new URLSearchParams();
-    if (currentSearch) params.set('search', currentSearch);
-    if (currentYearFilter !== 'all') params.set('year', currentYearFilter);
-    if (currentSort !== 'asc') params.set('sort', currentSort);
-    
-    const newUrl = `${window.location.pathname}${params.toString() ? '?' + params.toString() : ''}${window.location.hash}`;
-    window.history.replaceState({}, '', newUrl);
+    if (currentSearch) params.set("search", currentSearch);
+    if (currentYearFilter !== "all") params.set("year", currentYearFilter);
+    if (currentSort !== "asc") params.set("sort", currentSort);
+
+    const newUrl = `${window.location.pathname}${params.toString() ? "?" + params.toString() : ""}${window.location.hash}`;
+    window.history.replaceState({}, "", newUrl);
   };
 
-
   const updateClearFiltersVisibility = () => {
-    const isActive = currentSearch !== "" || currentYearFilter !== "all" || currentSort !== "asc";
-    clearFiltersBtns.forEach(btn => {
+    const isActive =
+      currentSearch !== "" ||
+      currentYearFilter !== "all" ||
+      currentSort !== "asc";
+    clearFiltersBtns.forEach((btn) => {
       btn.style.display = isActive ? "inline-block" : "none";
     });
   };
-
 
   const debounce = (func, delay) => {
     let timeoutId;
@@ -176,11 +176,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     // 3. Render Main Grid
     const mainToShow = filteredMain.slice(0, currentPageMain * itemsPerPage);
     if (currentPageMain === 1) {
-        grid.innerHTML = mainToShow.map(generateCardHTML).join("");
+      grid.innerHTML = mainToShow.map(generateCardHTML).join("");
     } else {
-        const previousCount = (currentPageMain - 1) * itemsPerPage;
-        const newItems = mainToShow.slice(previousCount);
-        grid.insertAdjacentHTML('beforeend', newItems.map(generateCardHTML).join(""));
+      const previousCount = (currentPageMain - 1) * itemsPerPage;
+      const newItems = mainToShow.slice(previousCount);
+      grid.insertAdjacentHTML(
+        "beforeend",
+        newItems.map(generateCardHTML).join(""),
+      );
     }
 
     if (filteredMain.length === 0) {
@@ -204,11 +207,14 @@ document.addEventListener("DOMContentLoaded", async () => {
         currentPageSpecials * itemsPerPage,
       );
       if (currentPageSpecials === 1) {
-          specialsGrid.innerHTML = specialsToShow.map(generateCardHTML).join("");
+        specialsGrid.innerHTML = specialsToShow.map(generateCardHTML).join("");
       } else {
-          const previousCount = (currentPageSpecials - 1) * itemsPerPage;
-          const newItems = specialsToShow.slice(previousCount);
-          specialsGrid.insertAdjacentHTML('beforeend', newItems.map(generateCardHTML).join(""));
+        const previousCount = (currentPageSpecials - 1) * itemsPerPage;
+        const newItems = specialsToShow.slice(previousCount);
+        specialsGrid.insertAdjacentHTML(
+          "beforeend",
+          newItems.map(generateCardHTML).join(""),
+        );
       }
 
       if (filteredSpecials.length === 0) {
@@ -286,19 +292,20 @@ document.addEventListener("DOMContentLoaded", async () => {
     searchInput.addEventListener("input", handleSearch);
   }
 
-
   // Handle copy link clicks
   document.addEventListener("click", (e) => {
-    const copyBtn = e.target.closest('.copy-link-btn');
+    const copyBtn = e.target.closest(".copy-link-btn");
     if (copyBtn) {
-      const targetId = copyBtn.getAttribute('data-link');
+      const targetId = copyBtn.getAttribute("data-link");
       const url = new URL(window.location.href);
       url.hash = targetId;
       navigator.clipboard.writeText(url.toString()).then(() => {
         // Optional feedback: temporarily change the icon or show a tooltip
         const originalHtml = copyBtn.innerHTML;
         copyBtn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="green" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
-        setTimeout(() => { copyBtn.innerHTML = originalHtml; }, 2000);
+        setTimeout(() => {
+          copyBtn.innerHTML = originalHtml;
+        }, 2000);
       });
     }
   });
@@ -308,9 +315,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     setTimeout(() => {
       const el = document.querySelector(window.location.hash);
       if (el) {
-        el.scrollIntoView({ behavior: 'smooth' });
-        el.classList.add('highlight');
-        setTimeout(() => el.classList.remove('highlight'), 3000);
+        el.scrollIntoView({ behavior: "smooth" });
+        el.classList.add("highlight");
+        setTimeout(() => el.classList.remove("highlight"), 3000);
       }
     }, 500); // small delay to ensure cards render first
   }
@@ -319,26 +326,36 @@ document.addEventListener("DOMContentLoaded", async () => {
   const observerOptions = {
     root: null,
     rootMargin: "200px",
-    threshold: 0.1
+    threshold: 0.1,
   };
-  
+
   const observerCallback = (entries, observer) => {
-    entries.forEach(entry => {
+    entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        if (entry.target === loadMoreContainer && loadMoreContainer.style.display !== "none") {
+        if (
+          entry.target === loadMoreContainer &&
+          loadMoreContainer.style.display !== "none"
+        ) {
           currentPageMain++;
           applyFiltersAndRender();
-        } else if (entry.target === specialsLoadMoreContainer && specialsLoadMoreContainer.style.display !== "none") {
+        } else if (
+          entry.target === specialsLoadMoreContainer &&
+          specialsLoadMoreContainer.style.display !== "none"
+        ) {
           currentPageSpecials++;
           applyFiltersAndRender();
         }
       }
     });
   };
-  
-  const infiniteObserver = new IntersectionObserver(observerCallback, observerOptions);
+
+  const infiniteObserver = new IntersectionObserver(
+    observerCallback,
+    observerOptions,
+  );
   if (loadMoreContainer) infiniteObserver.observe(loadMoreContainer);
-  if (specialsLoadMoreContainer) infiniteObserver.observe(specialsLoadMoreContainer);
+  if (specialsLoadMoreContainer)
+    infiniteObserver.observe(specialsLoadMoreContainer);
 
   window.addEventListener("scroll", () => {
     if (window.scrollY > 600) {
@@ -411,19 +428,18 @@ document.addEventListener("DOMContentLoaded", async () => {
       yearFilterSelect.innerHTML = optionsHtml;
     }
 
-    
     // Read URL parameters on load
     const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.has('search')) {
-      currentSearch = urlParams.get('search').toLowerCase();
+    if (urlParams.has("search")) {
+      currentSearch = urlParams.get("search").toLowerCase();
       if (searchInput) searchInput.value = currentSearch;
     }
-    if (urlParams.has('year')) {
-      currentYearFilter = urlParams.get('year');
+    if (urlParams.has("year")) {
+      currentYearFilter = urlParams.get("year");
       if (yearFilterSelect) yearFilterSelect.value = currentYearFilter;
     }
-    if (urlParams.has('sort')) {
-      currentSort = urlParams.get('sort');
+    if (urlParams.has("sort")) {
+      currentSort = urlParams.get("sort");
       if (sortFilterSelect) sortFilterSelect.value = currentSort;
     }
 
