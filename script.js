@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const pagesText = document.getElementById("pages-progress-text");
 
   const totalIssuesInRun = 223;
-  const totalPagesInRun = 7512;
+  const totalPagesInRun = 7520;
   const manualScannedPages = 6720;
   const manualScannedIssues = 198;
   const lastUpdatedDate = "September 17, 2026";
