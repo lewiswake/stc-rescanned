@@ -1,0 +1,677 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title id="meta-page-title">Sonic the Comic Rescan Project</title>
+    <meta name="title" id="meta-title" content="Sonic the Comic Rescan Project" />
+    <meta
+      name="description"
+      id="meta-desc"
+      content="Download high-resolution, complete 600 DPI scans of Fleetway's Sonic the Comic."
+    />
+    <meta name="author" content="Sonic the Comic Rescan Project" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:url" id="og-url" content="https://stcscans.zone/" />
+    <meta property="og:title" id="og-title" content="Sonic the Comic Rescan Project" />
+    <meta
+      property="og:description"
+      id="og-desc"
+      content="Download high-resolution, complete 600 DPI scans of Fleetway's Sonic the Comic."
+    />
+    <meta property="og:image" id="og-image" content="https://stcscans.zone/images/stc-example.png" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" id="tw-url" content="https://stcscans.zone/" />
+    <meta name="twitter:title" id="tw-title" content="Sonic the Comic Rescan Project" />
+    <meta
+      name="twitter:description"
+      id="tw-desc"
+      content="Download high-resolution, complete 600 DPI scans of Fleetway's Sonic the Comic."
+    />
+    <meta name="twitter:image" id="tw-image" content="https://stcscans.zone/images/stc-example.png" />
+
+    <meta name="theme-color" content="#060b14" />
+
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png" />
+    <link rel="manifest" href="images/site.webmanifest" />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="issue-page-header">
+      <div class="container issue-page-nav">
+        <a href="index.html" aria-label="Sonic the Comic Rescan Project Home">
+          <img
+            src="images/stc-rp-logo.svg"
+            alt="Sonic the Comic Rescan Project Logo"
+            class="issue-nav-logo"
+            width="170"
+            height="38"
+          />
+        </a>
+        <a href="index.html#downloads" id="back-btn" class="btn-back">
+          <span class="icon icon-arrow-left"></span>
+          Back to all issues
+        </a>
+      </div>
+    </header>
+
+    <main class="issue-detail-wrapper">
+      <div class="container">
+        <!-- Loading State -->
+        <div id="loading-state" class="issue-loading-state">
+          <div class="issue-loading-spinner"></div>
+          <p class="issue-loading-text">Loading issue data...</p>
+        </div>
+
+        <!-- Error State -->
+        <div id="error-state" class="empty-state issue-error-state">
+          <h2 class="issue-error-title">Issue Not Found</h2>
+          <p class="issue-error-desc">The requested issue could not be found in the archive database.</p>
+          <a href="index.html" class="btn btn-primary btn-inline">Return to Homepage</a>
+        </div>
+
+        <!-- Issue Detail Content -->
+        <div id="issue-content">
+          <article class="issue-detail-card">
+            <!-- Top Half: Cover, Issue Badge/Title, Date, Description, Read Online Action -->
+            <div class="issue-card-top">
+              <div class="issue-cover-container">
+                <img
+                  id="issue-cover"
+                  src=""
+                  alt="Cover"
+                  class="issue-detail-cover skeleton"
+                  width="320"
+                  height="413"
+                  onload="this.classList.remove('skeleton')"
+                />
+                <span id="issue-cover-caption" class="issue-cover-caption"></span>
+              </div>
+
+              <div class="issue-info-content">
+                <span id="issue-badge" class="issue-badge"></span>
+                <h1 id="issue-title" class="issue-detail-title"></h1>
+
+                <div class="issue-meta-row">
+                  <div id="issue-date-container" class="issue-meta-date">
+                    <span class="icon icon-calendar"></span>
+                    <span id="issue-date"></span>
+                  </div>
+                  <div id="issue-price-container" class="issue-meta-price">
+                    <span class="icon icon-coins"></span>
+                    <span id="issue-price"></span>
+                  </div>
+                </div>
+
+                <div id="issue-contents-container" class="issue-contents-container">
+                  <h2 class="issue-contents-heading">
+                    <span class="icon icon-book"></span>
+                    <span>Contents</span>
+                  </h2>
+                  <ul id="issue-contents-list" class="issue-contents-list"></ul>
+                </div>
+
+                <div class="issue-read-action">
+                  <a id="btn-read-online" href="#comic-reader-section" class="btn-issue-action">
+                    <span class="icon icon-book-open"></span>
+                    <span>Read Online in Browser</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Bottom Half: Left Column Downloads, Right Column Contextual Links & Share -->
+            <div class="issue-card-bottom">
+              <!-- Available Downloads Section (Left Half) -->
+              <section class="issue-downloads-section">
+                <h2 class="issue-downloads-title">
+                  <span class="icon icon-download"></span>
+                  Available Downloads
+                </h2>
+                <p class="issue-downloads-note">Choose a download option below to read on your desktop, tablet, or e-reader:</p>
+                <div class="issue-downloads-grid">
+                  <a id="dl-sd" href="#" target="_blank" rel="noopener noreferrer" class="btn-issue-action">
+                    <span class="icon icon-download"></span>
+                    <span>Download Standard Resolution</span>
+                  </a>
+                  <a id="dl-hd" href="#" target="_blank" rel="noopener noreferrer" class="btn-issue-action">
+                    <span class="icon icon-download"></span>
+                    <span>Download High Resolution</span>
+                  </a>
+                  <a id="dl-raw" href="#" target="_blank" rel="noopener noreferrer" class="btn-issue-action">
+                    <span class="icon icon-link"></span>
+                    <span>Raw 600 DPI Master Archive</span>
+                  </a>
+                </div>
+              </section>
+
+              <!-- Contextual Links Section (Right Half) -->
+              <div class="issue-bottom-right-col">
+                <section id="issue-context-section" class="issue-downloads-section">
+                  <h2 class="issue-downloads-title">
+                    <span class="icon icon-info"></span>
+                    Contextual Links
+                  </h2>
+                  <p class="issue-downloads-note">Listen to the podcast review or explore community lore for this issue:</p>
+                  <div class="issue-downloads-grid">
+                    <a id="podcast-link" href="#" target="_blank" rel="noopener noreferrer" class="btn-issue-action">
+                      <span class="icon icon-play"></span>
+                      <span id="podcast-label">Listen to Episode on STCTP</span>
+                    </a>
+                    <a id="wiki-btn" href="#" target="_blank" rel="noopener noreferrer" class="btn-issue-action">
+                      <span class="icon icon-info"></span>
+                      <span id="wiki-label">STC Fandom Wiki Page</span>
+                    </a>
+                  </div>
+                </section>
+
+                <div class="issue-share-box">
+                  <button id="share-btn" class="btn-share-link">
+                    <span class="icon icon-share"></span>
+                    Share Issue Link
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Online Comic Reader -->
+          <section id="comic-reader-section" class="comic-reader-section">
+            <div class="comic-reader-header">
+              <h2 class="comic-reader-title">
+                <span class="icon icon-book-open"></span>
+                Read Online
+              </h2>
+              <div class="comic-reader-actions">
+                <button id="reader-fullscreen-btn" class="comic-reader-action-btn" type="button" aria-label="Toggle Fullscreen">
+                  <span class="icon icon-external"></span>
+                  <span id="fullscreen-btn-text">Fullscreen</span>
+                </button>
+                <a id="reader-archive-link" href="#" target="_blank" rel="noopener noreferrer" class="comic-reader-external-link">
+                  Open on Internet Archive <span class="icon icon-external"></span>
+                </a>
+              </div>
+            </div>
+            <div id="comic-reader-frame-container" class="comic-reader-frame-container">
+              <button id="fullscreen-exit-float" class="comic-reader-exit-float" type="button" aria-label="Exit Fullscreen">
+                Exit Fullscreen ✕
+              </button>
+              <iframe
+                id="comic-reader-iframe"
+                src=""
+                class="comic-reader-iframe"
+                width="100%"
+                height="100%"
+                frameborder="0"
+                webkitallowfullscreen="true"
+                mozallowfullscreen="true"
+                allowfullscreen
+                loading="lazy"
+                title="Online Comic Reader"
+              ></iframe>
+            </div>
+          </section>
+
+          <nav class="issue-pager" id="issue-pager" aria-label="Issue Navigation">
+            <a id="pager-prev" href="#" class="pager-card prev">
+              <span class="pager-direction">
+                <span class="icon icon-arrow-left"></span> Previous Issue
+              </span>
+              <span id="pager-prev-title" class="pager-title"></span>
+            </a>
+            <div id="pager-prev-spacer"></div>
+
+            <a id="pager-next" href="#" class="pager-card next">
+              <span class="pager-direction">
+                Next Issue <span class="icon icon-arrow-right"></span>
+              </span>
+              <span id="pager-next-title" class="pager-title"></span>
+            </a>
+          </nav>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="container footer-container">
+        <div class="contact-box" id="contribute">
+          <h3>Want to help or follow updates?</h3>
+          <p>
+            Have the original issues, access to an A3 scanner, and want to help?
+            Find us on the Sonic the Comic the Podcast Discord. All contributions are welcome! You can also follow our Bluesky for project announcements and new rescan updates.
+          </p>
+          <div class="contact-actions">
+            <a
+              href="https://bsky.app/profile/stcscans.bsky.social"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-primary btn-inline btn-large btn-bluesky"
+            >
+              <span class="icon icon-bluesky"></span> Follow on Bluesky
+            </a>
+            <a
+              href="https://discord.gg/Kw7cerWusg"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-secondary btn-inline btn-large"
+            >
+              Join the Discord
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>
+            Sonic the Comic and all associated characters are &copy; Sega and
+            Fleetway Editions. This is a non-profit fan archival project. We do
+            not own the rights to this material.
+          </p>
+          <a
+            href="https://archive.org/details/@shoopkid/lists/1/sonic-the-comic---600-dpi?sort=date"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            View 600 DPI raw master scans
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <style>
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+    </style>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", async () => {
+        const loadingState = document.getElementById("loading-state");
+        const errorState = document.getElementById("error-state");
+        const issueContent = document.getElementById("issue-content");
+
+        const issueCover = document.getElementById("issue-cover");
+        const issueCoverCaption = document.getElementById("issue-cover-caption");
+        const issueBadge = document.getElementById("issue-badge");
+        const issueTitle = document.getElementById("issue-title");
+        const issueDate = document.getElementById("issue-date");
+        const issueDateContainer = document.getElementById("issue-date-container");
+        const issuePrice = document.getElementById("issue-price");
+        const issuePriceContainer = document.getElementById("issue-price-container");
+        const contentsContainer = document.getElementById("issue-contents-container");
+        const contentsList = document.getElementById("issue-contents-list");
+        const backBtn = document.getElementById("back-btn");
+
+        const dlSd = document.getElementById("dl-sd");
+        const dlHd = document.getElementById("dl-hd");
+        const dlRaw = document.getElementById("dl-raw");
+        const shareBtn = document.getElementById("share-btn");
+
+        const btnReadOnline = document.getElementById("btn-read-online");
+        const contextSection = document.getElementById("issue-context-section");
+        const podcastLink = document.getElementById("podcast-link");
+        const podcastLabel = document.getElementById("podcast-label");
+        const wikiBtn = document.getElementById("wiki-btn");
+        const wikiLabel = document.getElementById("wiki-label");
+
+        const readerSection = document.getElementById("comic-reader-section");
+        const readerIframe = document.getElementById("comic-reader-iframe");
+        const readerArchiveLink = document.getElementById("reader-archive-link");
+        const readerFullscreenBtn = document.getElementById("reader-fullscreen-btn");
+        const fullscreenBtnText = document.getElementById("fullscreen-btn-text");
+        const readerFrameContainer = document.getElementById("comic-reader-frame-container");
+        const fullscreenExitFloat = document.getElementById("fullscreen-exit-float");
+
+        const pagerPrev = document.getElementById("pager-prev");
+        const pagerPrevTitle = document.getElementById("pager-prev-title");
+        const pagerPrevSpacer = document.getElementById("pager-prev-spacer");
+
+        const pagerNext = document.getElementById("pager-next");
+        const pagerNextTitle = document.getElementById("pager-next-title");
+
+        const highBase = "https://archive.org/download/sonic-the-comic-high-resolution-scans";
+        const stdBase = "https://archive.org/download/sonic-the-comic-standard-resolution-scans";
+
+        const getQueryId = () => {
+          const params = new URLSearchParams(window.location.search);
+          const qId = params.get("id");
+          if (qId) return qId.trim();
+          if (window.location.hash) {
+            return window.location.hash.replace("#", "").replace(/^issue-/, "").trim();
+          }
+          return null;
+        };
+
+        const currentId = getQueryId();
+        if (!currentId) {
+          loadingState.style.display = "none";
+          errorState.style.display = "block";
+          return;
+        }
+
+        try {
+          const [issuesRes, contentsRes] = await Promise.all([
+            fetch("issues.json"),
+            fetch("issues_contents.json").catch(() => null),
+          ]);
+          if (!issuesRes.ok) throw new Error("Failed to load issues data.");
+          const allIssues = await issuesRes.json();
+          let allContents = {};
+          if (contentsRes && contentsRes.ok) {
+            try {
+              allContents = await contentsRes.json();
+            } catch (err) {
+              console.warn("Failed to parse issues_contents.json:", err);
+            }
+          }
+
+          // Match by id (number or string)
+          const targetIdClean = currentId.toLowerCase().replace(/^0+/, "");
+          const issue = allIssues.find((item) => {
+            const itemStr = String(item.id).toLowerCase();
+            return itemStr === currentId.toLowerCase() || itemStr.replace(/^0+/, "") === targetIdClean;
+          });
+
+          if (!issue) {
+            loadingState.style.display = "none";
+            errorState.style.display = "block";
+            return;
+          }
+
+          // Normalize URL query parameter to 3-figure id (e.g. ?id=2 -> ?id=002)
+          if (window.location.search !== `?id=${issue.id}`) {
+            const newUrl = `${window.location.pathname}?id=${issue.id}${window.location.hash}`;
+            window.history.replaceState({}, "", newUrl);
+          }
+
+          const isSpecial = issue.type === "special";
+          const issueNum = !isSpecial && /^\d+$/.test(String(issue.id)) ? parseInt(issue.id, 10) : issue.id;
+          const displayTitle = isSpecial ? issue.title : `Issue ${issueNum}`;
+          const fullTitle = isSpecial ? issue.title : `Sonic the Comic - Issue ${issueNum}`;
+
+          document.title = `${fullTitle} | Sonic the Comic Rescan Project`;
+          const metaTitle = document.getElementById("meta-title");
+          if (metaTitle) metaTitle.setAttribute("content", `${fullTitle} | Sonic the Comic Rescan Project`);
+
+          const ogTitle = document.getElementById("og-title");
+          const ogDesc = document.getElementById("og-desc");
+          const ogImage = document.getElementById("og-image");
+          const ogUrl = document.getElementById("og-url");
+          const twTitle = document.getElementById("tw-title");
+          const twDesc = document.getElementById("tw-desc");
+          const twImage = document.getElementById("tw-image");
+          const twUrl = document.getElementById("tw-url");
+
+          const absoluteImageUrl = new URL(issue.image, window.location.origin).href;
+          const absolutePageUrl = window.location.href;
+          const shareDesc = `Read and download complete 600 DPI scans of ${displayTitle} from Sonic the Comic.`;
+
+          if (ogTitle) ogTitle.setAttribute("content", `${fullTitle} | Sonic the Comic Rescan Project`);
+          if (ogDesc) ogDesc.setAttribute("content", shareDesc);
+          if (ogImage) ogImage.setAttribute("content", absoluteImageUrl);
+          if (ogUrl) ogUrl.setAttribute("content", absolutePageUrl);
+          if (twTitle) twTitle.setAttribute("content", `${fullTitle} | Sonic the Comic Rescan Project`);
+          if (twDesc) twDesc.setAttribute("content", shareDesc);
+          if (twImage) twImage.setAttribute("content", absoluteImageUrl);
+          if (twUrl) twUrl.setAttribute("content", absolutePageUrl);
+
+          // Cover Image & Caption
+          issueCover.src = issue.image;
+          issueCover.alt = `Cover of ${displayTitle}`;
+          if (issueCoverCaption) {
+            issueCoverCaption.textContent = isSpecial
+              ? (issue.title.toLowerCase().includes("sonic the comic")
+                  ? `Cover of ${issue.title}`
+                  : `Cover of ${issue.title} of Sonic The Comic`)
+              : `Cover of Issue ${issueNum} of Sonic The Comic`;
+          }
+
+          // Badge & Title
+          if (isSpecial) {
+            issueBadge.textContent = "Special Release";
+            issueBadge.classList.add("special");
+          } else {
+            issueBadge.textContent = `Mainline Issue #${issueNum}`;
+            issueBadge.classList.remove("special");
+          }
+          issueTitle.textContent = displayTitle;
+
+          // Date formatting
+          if (issue.date) {
+            const [year, month, day] = issue.date.split("-").map(Number);
+            const d = new Date(Date.UTC(year, month - 1, day));
+            const formatted = d
+              .toLocaleDateString("en-GB", {
+                weekday: "long",
+                day: "numeric",
+                month: "long",
+                year: "numeric",
+                timeZone: "UTC",
+              })
+              .replace(",", "");
+            issueDate.textContent = `Published: ${formatted}`;
+            issueDateContainer.style.display = "inline-flex";
+          } else {
+            issueDateContainer.style.display = "none";
+          }
+
+          // Price formatting
+          if (issue.price) {
+            issuePrice.textContent = `Cover Price: ${issue.price}`;
+            issuePriceContainer.style.display = "inline-flex";
+          } else {
+            issuePriceContainer.style.display = "none";
+          }
+
+          // Populate Contents
+          if (contentsContainer && contentsList) {
+            const paddedId = !isSpecial && /^\d+$/.test(String(issue.id))
+              ? String(issueNum).padStart(3, "0")
+              : String(issue.id);
+            const contents = allContents[paddedId] || allContents[String(issueNum)] || allContents[issue.id] || [];
+
+            if (contents.length > 0) {
+              contentsList.textContent = "";
+              contents.forEach((item) => {
+                const li = document.createElement("li");
+                li.textContent = item;
+                contentsList.appendChild(li);
+              });
+              contentsContainer.style.display = "block";
+            } else {
+              contentsContainer.style.display = "none";
+            }
+          }
+
+          // Back button
+          backBtn.href = `index.html#issue-${issue.id}`;
+
+          // Download buttons
+          dlSd.href = `${stdBase}/${encodeURIComponent(issue.standard)}`;
+          dlHd.href = `${highBase}/${encodeURIComponent(issue.high)}`;
+
+          if (issue.master) {
+            dlRaw.href = issue.master;
+            dlRaw.style.display = "flex";
+          } else {
+            dlRaw.style.display = "none";
+          }
+
+          // Contextual Links (Podcast & STC Wiki)
+          let hasContext = false;
+          if (issue.podcast && issue.podcast.trim() !== "") {
+            podcastLink.href = issue.podcast;
+            podcastLabel.textContent = isSpecial
+              ? "Listen to Special Episode on STCTP"
+              : `Listen to Episode #${issueNum} on STCTP`;
+            podcastLink.style.display = "flex";
+            hasContext = true;
+          } else {
+            podcastLink.style.display = "none";
+          }
+
+          if (!isSpecial && issue.id) {
+            const num = parseInt(issue.id, 10);
+            wikiBtn.href = `https://stc.fandom.com/wiki/Issue_${num}`;
+            wikiBtn.title = `View Sonic the Comic Issue ${num} on the STC Fandom Wiki`;
+            if (wikiLabel) wikiLabel.textContent = "STC Fandom Wiki Page";
+            wikiBtn.style.display = "flex";
+            hasContext = true;
+          } else {
+            wikiBtn.style.display = "none";
+          }
+
+          if (contextSection) {
+            contextSection.style.display = hasContext ? "block" : "none";
+          }
+
+          // Online Comic Reader (Internet Archive BookReader Embed)
+          if (issue.standard) {
+            const embedId = issue.standard.replace(/\.cbz$/i, "");
+            const embedUrl = `https://archive.org/embed/sonic-the-comic-standard-resolution-scans/${encodeURIComponent(embedId)}`;
+            const archiveDetailsUrl = `https://archive.org/details/sonic-the-comic-standard-resolution-scans/${encodeURIComponent(embedId)}/`;
+
+            readerIframe.src = embedUrl;
+            readerIframe.title = `Online Comic Reader for ${displayTitle}`;
+            readerArchiveLink.href = archiveDetailsUrl;
+            readerSection.style.display = "block";
+            if (btnReadOnline) btnReadOnline.style.display = "flex";
+          } else {
+            readerSection.style.display = "none";
+            if (btnReadOnline) btnReadOnline.style.display = "none";
+          }
+
+          // Quick-Jump to Reader Action
+          if (btnReadOnline) {
+            btnReadOnline.addEventListener("click", (e) => {
+              e.preventDefault();
+              if (readerSection) {
+                readerSection.scrollIntoView({ behavior: "smooth", block: "start" });
+                readerSection.classList.add("reader-highlight");
+                setTimeout(() => {
+                  readerSection.classList.remove("reader-highlight");
+                }, 1500);
+              }
+            });
+          }
+
+          // Fullscreen Reader Mode
+          const toggleFullscreen = () => {
+            if (!readerFrameContainer) return;
+            if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+              if (readerFrameContainer.requestFullscreen) {
+                readerFrameContainer.requestFullscreen().catch((err) => console.warn(err));
+              } else if (readerFrameContainer.webkitRequestFullscreen) {
+                readerFrameContainer.webkitRequestFullscreen();
+              }
+            } else {
+              if (document.exitFullscreen) {
+                document.exitFullscreen().catch((err) => console.warn(err));
+              } else if (document.webkitExitFullscreen) {
+                document.webkitExitFullscreen();
+              }
+            }
+          };
+
+          if (readerFullscreenBtn) {
+            readerFullscreenBtn.addEventListener("click", toggleFullscreen);
+          }
+
+          if (fullscreenExitFloat) {
+            fullscreenExitFloat.addEventListener("click", () => {
+              if (document.fullscreenElement || document.webkitFullscreenElement) {
+                if (document.exitFullscreen) document.exitFullscreen().catch(() => {});
+                else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+              }
+            });
+          }
+
+          const updateFsBtn = () => {
+            const isFs = !!(document.fullscreenElement || document.webkitFullscreenElement);
+            if (fullscreenBtnText) {
+              fullscreenBtnText.textContent = isFs ? "Exit Fullscreen" : "Fullscreen";
+            }
+          };
+
+          document.addEventListener("fullscreenchange", updateFsBtn);
+          document.addEventListener("webkitfullscreenchange", updateFsBtn);
+
+          // Previous / Next Pager
+          const group = isSpecial
+            ? allIssues.filter((i) => i.type === "special")
+            : allIssues.filter((i) => i.type !== "special");
+
+          const currentIndex = group.findIndex((i) => String(i.id) === String(issue.id));
+          const prevIssue = currentIndex > 0 ? group[currentIndex - 1] : null;
+          const nextIssue = currentIndex < group.length - 1 ? group[currentIndex + 1] : null;
+
+          if (prevIssue) {
+            const prevNum = prevIssue.type !== "special" && /^\d+$/.test(String(prevIssue.id)) ? parseInt(prevIssue.id, 10) : prevIssue.id;
+            const prevDisplay = prevIssue.type === "special" ? prevIssue.title : `Issue ${prevNum}`;
+            pagerPrev.href = `issue.html?id=${prevIssue.id}`;
+            pagerPrevTitle.textContent = prevDisplay;
+            pagerPrev.style.display = "flex";
+            pagerPrevSpacer.style.display = "none";
+          } else {
+            pagerPrev.style.display = "none";
+            pagerPrevSpacer.style.display = "block";
+          }
+
+          if (nextIssue) {
+            const nextNum = nextIssue.type !== "special" && /^\d+$/.test(String(nextIssue.id)) ? parseInt(nextIssue.id, 10) : nextIssue.id;
+            const nextDisplay = nextIssue.type === "special" ? nextIssue.title : `Issue ${nextNum}`;
+            pagerNext.href = `issue.html?id=${nextIssue.id}`;
+            pagerNextTitle.textContent = nextDisplay;
+            pagerNext.style.display = "flex";
+          } else {
+            pagerNext.style.display = "none";
+          }
+
+          // Share Button (Native Web Share API with Clipboard Fallback)
+          if (shareBtn) {
+            shareBtn.addEventListener("click", async () => {
+              const shareData = {
+                title: document.title,
+                text: `Read ${displayTitle} of Sonic the Comic on the STC Rescan Project!`,
+                url: window.location.href,
+              };
+
+              if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
+                try {
+                  await navigator.share(shareData);
+                  return;
+                } catch (err) {
+                  if (err.name === "AbortError") return; // User closed share modal
+                }
+              }
+
+              // Fallback to Clipboard copy
+              try {
+                await navigator.clipboard.writeText(window.location.href);
+                const originalHtml = shareBtn.innerHTML;
+                shareBtn.innerHTML = `<span class="icon icon-check icon-success"></span> Copied Link!`;
+                setTimeout(() => {
+                  shareBtn.innerHTML = originalHtml;
+                }, 2000);
+              } catch (err) {
+                console.error("Clipboard copy failed", err);
+              }
+            });
+          }
+
+          loadingState.style.display = "none";
+          issueContent.style.display = "block";
+        } catch (err) {
+          console.error(err);
+          loadingState.style.display = "none";
+          errorState.style.display = "block";
+        }
+      });
+    </script>
+  </body>
+</html>
