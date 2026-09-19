@@ -82,21 +82,27 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const generateCardHTML = (issue) => {
     const isSpecial = issue.type === "special";
+    const issueNum = !isSpecial && /^\d+$/.test(String(issue.id)) ? parseInt(issue.id, 10) : issue.id;
     const displayTitle = isSpecial
       ? issue.title
-      : `Issue ${String(issue.id).padStart(3, "0")}`;
+      : `Issue ${issueNum}`;
     const highUrl = `${highBase}/${encodeURIComponent(issue.high)}`;
     const stdUrl = `${stdBase}/${encodeURIComponent(issue.standard)}`;
     const issueId = `issue-${issue.id}`;
     let formattedDate = "";
 
     if (issue.date) {
-      const dateObj = new Date(issue.date);
-      formattedDate = dateObj.toLocaleDateString("en-GB", {
-        day: "numeric",
-        month: "long",
-        year: "numeric",
-      });
+      const [year, month, day] = issue.date.split("-").map(Number);
+      const dateObj = new Date(Date.UTC(year, month - 1, day));
+      formattedDate = dateObj
+        .toLocaleDateString("en-GB", {
+          weekday: "long",
+          day: "numeric",
+          month: "long",
+          year: "numeric",
+          timeZone: "UTC",
+        })
+        .replace(",", "");
     }
 
     const masterHtml = issue.master
@@ -104,16 +110,16 @@ document.addEventListener("DOMContentLoaded", async () => {
       : "";
 
     return `
-      <article class="card issue-card" id="${issueId}">
+      <article class="card issue-card" id="${issueId}" data-url="issue.html?id=${issue.id}">
         <div class="card-left">
           <img src="${issue.image}" alt="Cover of ${displayTitle}" class="card-thumbnail skeleton" width="240" height="310" loading="lazy" onload="this.classList.remove('skeleton')">
         </div>
         <div class="card-right">
           <div class="card-header">
-            <h3 style="display: flex; align-items: center; justify-content: space-between;">
-              ${displayTitle}
-              <button class="copy-link-btn" data-link="${issueId}" aria-label="Copy link to ${displayTitle}" title="Copy Link" style="background: none; border: none; cursor: pointer; color: var(--text-muted);">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+            <h3>
+              <a href="issue.html?id=${issue.id}" class="issue-title-link">${displayTitle}</a>
+              <button class="copy-link-btn" data-link="${issueId}" aria-label="Copy link to ${displayTitle}" title="Copy Link">
+                <span class="icon icon-share"></span>
               </button>
             </h3>
             ${formattedDate ? `<p class="issue-date">${formattedDate}</p>` : ""}
@@ -133,6 +139,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     updateClearFiltersVisibility();
     // 1. Filter
     const searchStripped = currentSearch.replace(/^0+/, "");
+    const cleanSearch = currentSearch.replace(/^issue\s*/i, "").trim();
+    const cleanSearchStripped = cleanSearch.replace(/^0+/, "");
 
     let filteredMain = allIssues.filter((issue) => {
       if (issue.type === "special") return false;
@@ -142,7 +150,10 @@ document.addEventListener("DOMContentLoaded", async () => {
       const searchKey = String(issue.id).padStart(3, "0");
       const keyStripped = searchKey.replace(/^0+/, "");
       const matchesSearch =
-        searchKey.includes(currentSearch) || keyStripped === searchStripped;
+        !currentSearch ||
+        searchKey.includes(currentSearch) ||
+        keyStripped === searchStripped ||
+        (cleanSearch && (searchKey.includes(cleanSearch) || keyStripped === cleanSearchStripped));
       return matchesYear && matchesSearch;
     });
 
@@ -160,7 +171,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const sortMultiplier = currentSort === "asc" ? 1 : -1;
 
     filteredMain.sort((a, b) => {
-      return (a.id - b.id) * sortMultiplier;
+      return (Number(a.id) - Number(b.id)) * sortMultiplier;
     });
 
     // For specials, we sort by date or title
@@ -292,21 +303,31 @@ document.addEventListener("DOMContentLoaded", async () => {
     searchInput.addEventListener("input", handleSearch);
   }
 
-  // Handle copy link clicks
+  // Handle copy link clicks and card clicks
   document.addEventListener("click", (e) => {
     const copyBtn = e.target.closest(".copy-link-btn");
     if (copyBtn) {
+      e.stopPropagation();
       const targetId = copyBtn.getAttribute("data-link");
       const url = new URL(window.location.href);
       url.hash = targetId;
       navigator.clipboard.writeText(url.toString()).then(() => {
-        // Optional feedback: temporarily change the icon or show a tooltip
         const originalHtml = copyBtn.innerHTML;
-        copyBtn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="green" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
+        copyBtn.innerHTML = `<span class="icon icon-check icon-success"></span>`;
         setTimeout(() => {
           copyBtn.innerHTML = originalHtml;
         }, 2000);
       });
+      return;
+    }
+
+    // If click is directly on an anchor or button inside the card, allow natural action
+    if (e.target.closest("a, button")) return;
+
+    // If click is on the card (thumbnail, text, background), navigate to issue page
+    const card = e.target.closest(".card.issue-card");
+    if (card && card.dataset.url) {
+      window.location.href = card.dataset.url;
     }
   });
 
@@ -454,6 +475,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (scannedText) scannedText.textContent = "Error loading progress.";
     if (optimisedText) optimisedText.textContent = "Error loading progress.";
     if (grid)
-      grid.innerHTML = `<p style="color: var(--text-muted); grid-column: 1 / -1; text-align: center;">Error loading archive files. Please ensure you are running a local server.</p>`;
+      grid.innerHTML = `<p class="grid-error-message">Error loading archive files. Please ensure you are running a local server.</p>`;
   }
 });
