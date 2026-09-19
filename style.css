@@ -656,6 +656,20 @@ main.main-wrapper {
   gap: 20px;
 }
 
+.card.issue-card {
+  cursor: pointer;
+}
+
+.issue-title-link {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.issue-title-link:hover {
+  color: var(--text-accent-1);
+}
+
 .card:hover {
   transform: translateY(-4px);
   border-color: var(--color-primary);
@@ -694,6 +708,31 @@ main.main-wrapper {
   font-weight: 700;
   color: var(--text-main);
   margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.copy-link-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-muted);
+  display: inline-flex;
+  align-items: center;
+  padding: 4px;
+  border-radius: 4px;
+  transition: color 0.2s ease;
+}
+
+.copy-link-btn:hover {
+  color: var(--text-main);
+}
+
+.grid-error-message {
+  color: var(--text-muted);
+  grid-column: 1 / -1;
+  text-align: center;
 }
 
 .card-header p {
@@ -724,13 +763,6 @@ main.main-wrapper {
    9. BUTTONS
    ========================================== */
 
-.button-group {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: auto;
-}
-
 .btn-icon-group {
   display: flex;
   flex-wrap: wrap;
@@ -754,23 +786,147 @@ main.main-wrapper {
   border: 1px solid transparent;
 }
 
+/* ==========================================
+   ICON SYSTEM (FONTAWESOME SVG ASSETS)
+   ========================================== */
+
+.icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  background-color: currentColor;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  vertical-align: -0.15em;
+  flex-shrink: 0;
+}
+
+/* Legacy direct icon classes */
 .icon-download,
 .icon-link {
   display: inline-block;
-  width: 12px;
-  height: 12px;
+  width: 13px;
+  height: 13px;
   margin-right: 6px;
   background-color: currentColor;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  vertical-align: -0.15em;
+  flex-shrink: 0;
+}
+
+.icon-arrow-left {
+  -webkit-mask-image: url("images/icons/arrow-left-solid-full.svg");
+  mask-image: url("images/icons/arrow-left-solid-full.svg");
+}
+
+.icon-arrow-right {
+  -webkit-mask-image: url("images/icons/arrow-right-solid-full.svg");
+  mask-image: url("images/icons/arrow-right-solid-full.svg");
+}
+
+.icon-arrow-up {
+  -webkit-mask-image: url("images/icons/arrow-up-solid-full.svg");
+  mask-image: url("images/icons/arrow-up-solid-full.svg");
+}
+
+.icon-bluesky {
+  -webkit-mask-image: url("images/icons/bluesky-brands-solid-full.svg");
+  mask-image: url("images/icons/bluesky-brands-solid-full.svg");
+}
+
+.icon-book-open {
+  -webkit-mask-image: url("images/icons/book-open-solid-full.svg");
+  mask-image: url("images/icons/book-open-solid-full.svg");
+}
+
+.icon-book {
+  -webkit-mask-image: url("images/icons/book-solid-full.svg");
+  mask-image: url("images/icons/book-solid-full.svg");
+}
+
+.icon-calendar {
+  -webkit-mask-image: url("images/icons/calendar-solid-full.svg");
+  mask-image: url("images/icons/calendar-solid-full.svg");
+}
+
+.icon-check {
+  -webkit-mask-image: url("images/icons/check-solid-full.svg");
+  mask-image: url("images/icons/check-solid-full.svg");
+}
+
+.icon-coins {
+  -webkit-mask-image: url("images/icons/coins-solid-full.svg");
+  mask-image: url("images/icons/coins-solid-full.svg");
 }
 
 .icon-download {
-  -webkit-mask: url("images/download.svg") center/contain no-repeat;
-  mask: url("images/download.svg") center/contain no-repeat;
+  -webkit-mask-image: url("images/icons/download.svg");
+  mask-image: url("images/icons/download.svg");
+}
+
+.icon-headphones {
+  -webkit-mask-image: url("images/icons/headphones-solid-full.svg");
+  mask-image: url("images/icons/headphones-solid-full.svg");
+}
+
+.icon-info {
+  -webkit-mask-image: url("images/icons/info-solid-full.svg");
+  mask-image: url("images/icons/info-solid-full.svg");
 }
 
 .icon-link {
-  -webkit-mask: url("images/link.svg") center/contain no-repeat;
-  mask: url("images/link.svg") center/contain no-repeat;
+  -webkit-mask-image: url("images/icons/link.svg");
+  mask-image: url("images/icons/link.svg");
+}
+
+.icon-play {
+  -webkit-mask-image: url("images/icons/play-solid-full.svg");
+  mask-image: url("images/icons/play-solid-full.svg");
+}
+
+.icon-share {
+  -webkit-mask-image: url("images/icons/share-solid-full.svg");
+  mask-image: url("images/icons/share-solid-full.svg");
+}
+
+.icon-external {
+  -webkit-mask-image: url("images/icons/up-right-from-square-solid-full.svg");
+  mask-image: url("images/icons/up-right-from-square-solid-full.svg");
+}
+
+/* Icon Sizing Modifiers */
+.icon-sm {
+  width: 0.85em;
+  height: 0.85em;
+}
+
+.icon-md {
+  width: 1.15em;
+  height: 1.15em;
+}
+
+.icon-lg {
+  width: 1.4em;
+  height: 1.4em;
+}
+
+.icon-xl {
+  width: 1.75em;
+  height: 1.75em;
+}
+
+/* Icon Color Modifiers */
+.icon-success {
+  color: #22c55e !important;
 }
 
 /* Ensures all buttons ignore global link styles */
@@ -984,7 +1140,37 @@ footer {
 }
 
 .contact-box .btn-secondary {
-  margin: 0 auto;
+  margin: 0;
+}
+
+.contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.btn-bluesky {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(18, 133, 254, 0.15);
+  color: #38bdf8;
+  border: 1px solid rgba(18, 133, 254, 0.45);
+}
+
+.btn-bluesky:hover {
+  background: #1185fe;
+  color: #ffffff;
+  border-color: #1185fe;
+  box-shadow: 0 4px 18px rgba(18, 133, 254, 0.45);
+  transform: translateY(-2px);
+}
+
+.btn-bluesky .icon {
+  width: 1.15em;
+  height: 1.15em;
 }
 
 .footer-bottom {
@@ -1137,4 +1323,724 @@ img.card-thumbnail.skeleton {
   font-size: 0.85em;
   color: var(--text-muted);
   font-weight: 500;
+}
+
+/* ==========================================
+   16. DEDICATED ISSUE DETAIL PAGE
+   ========================================== */
+
+.issue-page-header {
+  background: var(--footer-bg);
+  border-bottom: 1px solid var(--border-color);
+  padding: 16px 0;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.issue-page-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.issue-nav-logo {
+  height: 38px;
+  width: auto;
+  display: block;
+}
+
+.btn-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.btn-back:hover {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #ffffff !important;
+  transform: translateX(-3px);
+}
+
+.issue-detail-wrapper {
+  padding: 48px 0 64px 0;
+  min-height: calc(100vh - 350px);
+}
+
+/* Loading & Error States */
+.issue-loading-state {
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.issue-loading-spinner {
+  display: inline-block;
+  width: 44px;
+  height: 44px;
+  border: 4px solid var(--border-color);
+  border-top-color: var(--color-primary);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+.issue-loading-text {
+  margin-top: 16px;
+  color: var(--text-muted);
+  font-size: 1.1rem;
+}
+
+.issue-error-state {
+  display: none;
+  padding: 60px 20px;
+}
+
+.issue-error-title {
+  font-size: 1.75rem;
+  color: var(--text-main);
+  margin-bottom: 12px;
+}
+
+.issue-error-desc {
+  color: var(--text-muted);
+  margin-bottom: 24px;
+}
+
+/* Initial hidden states for dynamically toggled issue page elements */
+#issue-content,
+#issue-date-container,
+#issue-price-container,
+#issue-contents-container,
+#btn-read-online,
+#dl-raw,
+#issue-context-section,
+#podcast-link,
+#wiki-btn,
+#comic-reader-section,
+#pager-prev,
+#pager-prev-spacer,
+#pager-next {
+  display: none;
+}
+
+.issue-detail-card {
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  border-radius: 20px;
+  padding: 40px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 10px 40px var(--shadow-color);
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+@media (max-width: 900px) {
+  .issue-detail-card {
+    padding: 24px;
+    gap: 28px;
+  }
+}
+
+/* Top Half: Cover and Info (Title, Date, Description, Read Online Action) */
+.issue-card-top {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .issue-card-top {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+
+.issue-cover-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.issue-detail-cover {
+  width: 100%;
+  max-width: 320px;
+  aspect-ratio: 240 / 310;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 12px 32px var(--shadow-heavy);
+  background-color: #000;
+}
+
+.issue-cover-caption {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  text-align: center;
+  line-height: 1.4;
+  max-width: 320px;
+}
+
+.issue-info-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.issue-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  align-self: flex-start;
+  padding: 5px 14px;
+  border-radius: 20px;
+  background: rgba(13, 133, 175, 0.15);
+  border: 1px solid var(--panel-border);
+  color: var(--text-accent-1);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.issue-badge.special {
+  background: rgba(222, 190, 62, 0.15);
+  border-color: rgba(222, 190, 62, 0.3);
+  color: var(--text-accent-2);
+}
+
+.issue-detail-title {
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: var(--text-main);
+  line-height: 1.15;
+  margin: 0 0 12px 0;
+  letter-spacing: -0.02em;
+}
+
+@media (max-width: 600px) {
+  .issue-detail-title {
+    font-size: 1.85rem;
+  }
+}
+
+.issue-meta-row {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.issue-meta-date,
+.issue-meta-price {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-muted);
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.issue-meta-date svg,
+.issue-meta-date .icon,
+.issue-meta-price svg,
+.issue-meta-price .icon {
+  color: var(--text-accent-1);
+}
+
+.issue-description {
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+}
+
+/* Issue Contents Section */
+.issue-contents-container {
+  margin-top: 4px;
+  margin-bottom: 24px;
+}
+
+.issue-contents-heading {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin: 0 0 12px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.issue-contents-heading .icon {
+  color: var(--text-accent-1);
+  width: 1.1em;
+  height: 1.1em;
+}
+
+.issue-contents-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.issue-contents-list li {
+  position: relative;
+  padding-left: 20px;
+  font-size: 0.98rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.issue-contents-list li::before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 0.55em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+}
+
+/* Read Online Action Button (Immediately Under Description) */
+.issue-read-action {
+  margin-top: 4px;
+}
+
+.issue-read-action .btn-issue-action {
+  display: inline-flex;
+  width: auto;
+  padding: 13px 24px;
+}
+
+@media (max-width: 600px) {
+  .issue-read-action .btn-issue-action {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Bottom Half: Left Column Downloads, Right Column Contextual Links */
+.issue-card-bottom {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  align-items: stretch;
+  border-top: 1px solid var(--border-light);
+  padding-top: 32px;
+}
+
+@media (max-width: 850px) {
+  .issue-card-bottom {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+.issue-card-bottom .issue-downloads-section {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  padding: 24px;
+  margin-bottom: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.issue-bottom-right-col {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  height: 100%;
+}
+
+.issue-bottom-right-col .issue-downloads-section {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  padding: 24px;
+  margin-bottom: 0;
+  flex: 1;
+}
+
+.issue-downloads-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.issue-downloads-title .icon {
+  color: var(--text-accent-1);
+  width: 1.1em;
+  height: 1.1em;
+}
+
+.issue-downloads-note {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 18px;
+}
+
+.issue-downloads-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Unified Solid Blue Action Buttons (Downloads, Podcast, Wiki) */
+.btn-issue-action {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 15px 22px;
+  border-radius: 10px;
+  background-color: var(--color-primary);
+  color: #ffffff !important;
+  font-size: 1.05rem;
+  font-weight: 700;
+  text-decoration: none !important;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 4px 14px rgba(13, 133, 175, 0.3);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.btn-issue-action .icon {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  background-color: #ffffff;
+}
+
+.btn-issue-action:hover {
+  background-color: #1198c6;
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 6px 20px rgba(13, 133, 175, 0.45);
+  transform: translateY(-2px);
+  color: #ffffff !important;
+}
+
+.btn-issue-action:active {
+  transform: scale(0.99);
+}
+
+@media (max-width: 480px) {
+  .btn-issue-action {
+    padding: 13px 16px;
+    font-size: 0.95rem;
+    gap: 12px;
+  }
+  .btn-issue-action .icon {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/* Share Issue Box */
+.issue-share-box {
+  display: flex;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 4px;
+}
+
+.btn-share-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-share-link .icon {
+  width: 16px;
+  height: 16px;
+  background-color: currentColor;
+}
+
+.btn-share-link:hover {
+  border-color: var(--color-primary);
+  color: var(--text-main);
+  background: rgba(13, 133, 175, 0.12);
+}
+
+/* Issue Pager (Previous / Next Navigation) */
+.issue-pager {
+  margin-top: 36px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 600px) {
+  .issue-pager {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pager-card {
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  border-radius: 12px;
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.pager-card:hover {
+  border-color: var(--color-primary);
+  background: var(--card-bg);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px var(--shadow-color);
+}
+
+.pager-card.next {
+  text-align: right;
+  align-items: flex-end;
+}
+
+.pager-direction {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-accent-1);
+  font-weight: 700;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.pager-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+/* ==========================================
+   17. ONLINE COMIC READER (INTERNET ARCHIVE)
+   ========================================== */
+
+.comic-reader-section {
+  margin-top: 40px;
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  border-radius: 20px;
+  padding: 32px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 10px 40px var(--shadow-color);
+  transition:
+    box-shadow 0.4s ease,
+    border-color 0.4s ease;
+}
+
+.comic-reader-section.reader-highlight {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 35px var(--glow-primary);
+}
+
+@media (max-width: 600px) {
+  .comic-reader-section {
+    padding: 20px 16px;
+    border-radius: 16px;
+  }
+}
+
+.comic-reader-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.comic-reader-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+}
+
+.comic-reader-title svg,
+.comic-reader-title .icon {
+  color: var(--text-accent-1);
+}
+
+.comic-reader-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.comic-reader-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(13, 133, 175, 0.12);
+  border: 1px solid rgba(13, 133, 175, 0.3);
+  color: var(--text-accent-1);
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.comic-reader-action-btn:hover {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #ffffff !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(13, 133, 175, 0.35);
+}
+
+.comic-reader-action-btn .icon {
+  width: 14px;
+  height: 14px;
+  background-color: currentColor;
+}
+
+.comic-reader-external-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.comic-reader-external-link:hover {
+  color: var(--text-accent-1);
+}
+
+.comic-reader-frame-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  min-height: 520px;
+  max-height: 800px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #000000;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 8px 30px var(--shadow-heavy);
+}
+
+@media (max-width: 900px) {
+  .comic-reader-frame-container {
+    aspect-ratio: 4 / 3;
+    min-height: 480px;
+  }
+}
+
+@media (max-width: 600px) {
+  .comic-reader-frame-container {
+    aspect-ratio: unset;
+    height: 70vh;
+    min-height: 400px;
+  }
+}
+
+.comic-reader-iframe {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  width: 100%;
+  height: calc(100% + 40px);
+  border: 0;
+}
+
+/* Fullscreen Reader Mode */
+.comic-reader-frame-container:fullscreen,
+.comic-reader-frame-container:-webkit-full-screen {
+  width: 100vw !important;
+  height: 100vh !important;
+  max-height: none !important;
+  min-height: none !important;
+  border-radius: 0 !important;
+  border: none !important;
+  background: #000000 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.comic-reader-frame-container:fullscreen .comic-reader-iframe,
+.comic-reader-frame-container:-webkit-full-screen .comic-reader-iframe {
+  top: -40px;
+  height: calc(100% + 40px);
+}
+
+.comic-reader-exit-float {
+  display: none;
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
+  padding: 8px 16px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+  transition: all 0.2s ease;
+}
+
+.comic-reader-exit-float:hover {
+  background: var(--color-primary);
+  border-color: #ffffff;
+  transform: scale(1.04);
+}
+
+.comic-reader-frame-container:fullscreen .comic-reader-exit-float,
+.comic-reader-frame-container:-webkit-full-screen .comic-reader-exit-float {
+  display: inline-flex;
+  align-items: center;
 }
