@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       currentYearFilter !== "all" ||
       currentSort !== "asc";
     clearFiltersBtns.forEach((btn) => {
-      btn.style.display = isActive ? "inline-block" : "none";
+      if (isActive) { btn.classList.remove("hidden"); } else { btn.classList.add("hidden"); }
     });
   };
 
@@ -198,16 +198,16 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     if (filteredMain.length === 0) {
-      emptyState.style.display = "block";
-      grid.style.display = "none";
-      loadMoreContainer.style.display = "none";
+      emptyState.classList.remove("hidden");
+      grid.classList.add("hidden");
+      loadMoreContainer.classList.add("hidden");
     } else {
-      emptyState.style.display = "none";
-      grid.style.display = "grid";
+      emptyState.classList.add("hidden");
+      grid.classList.remove("hidden");
       if (mainToShow.length < filteredMain.length) {
-        loadMoreContainer.style.display = "block";
+        loadMoreContainer.classList.remove("hidden");
       } else {
-        loadMoreContainer.style.display = "none";
+        loadMoreContainer.classList.add("hidden");
       }
     }
 
@@ -229,16 +229,16 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
 
       if (filteredSpecials.length === 0) {
-        specialsEmptyState.style.display = "block";
-        specialsGrid.style.display = "none";
-        specialsLoadMoreContainer.style.display = "none";
+        specialsEmptyState.classList.remove("hidden");
+        specialsGrid.classList.add("hidden");
+        specialsLoadMoreContainer.classList.add("hidden");
       } else {
-        specialsEmptyState.style.display = "none";
-        specialsGrid.style.display = "grid";
+        specialsEmptyState.classList.add("hidden");
+        specialsGrid.classList.remove("hidden");
         if (specialsToShow.length < filteredSpecials.length) {
-          specialsLoadMoreContainer.style.display = "block";
+          specialsLoadMoreContainer.classList.remove("hidden");
         } else {
-          specialsLoadMoreContainer.style.display = "none";
+          specialsLoadMoreContainer.classList.add("hidden");
         }
       }
     }
@@ -355,13 +355,13 @@ document.addEventListener("DOMContentLoaded", async () => {
       if (entry.isIntersecting) {
         if (
           entry.target === loadMoreContainer &&
-          loadMoreContainer.style.display !== "none"
+          !loadMoreContainer.classList.contains("hidden")
         ) {
           currentPageMain++;
           applyFiltersAndRender();
         } else if (
           entry.target === specialsLoadMoreContainer &&
-          specialsLoadMoreContainer.style.display !== "none"
+          !specialsLoadMoreContainer.classList.contains("hidden")
         ) {
           currentPageSpecials++;
           applyFiltersAndRender();

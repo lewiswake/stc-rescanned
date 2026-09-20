@@ -70,14 +70,14 @@
         </div>
 
         <!-- Error State -->
-        <div id="error-state" class="empty-state issue-error-state">
+        <div id="error-state" class="empty-state issue-error-state hidden">
           <h2 class="issue-error-title">Issue Not Found</h2>
           <p class="issue-error-desc">The requested issue could not be found in the archive database.</p>
           <a href="index.html" class="btn btn-primary btn-inline">Return to Homepage</a>
         </div>
 
         <!-- Issue Detail Content -->
-        <div id="issue-content">
+        <div id="issue-content" class="hidden">
           <article class="issue-detail-card">
             <!-- Top Half: Cover, Issue Badge/Title, Date, Description, Read Online Action -->
             <div class="issue-card-top">
@@ -99,17 +99,17 @@
                 <h1 id="issue-title" class="issue-detail-title"></h1>
 
                 <div class="issue-meta-row">
-                  <div id="issue-date-container" class="issue-meta-date">
+                  <div id="issue-date-container" class="issue-meta-date hidden">
                     <span class="icon icon-calendar"></span>
                     <span id="issue-date"></span>
                   </div>
-                  <div id="issue-price-container" class="issue-meta-price">
+                  <div id="issue-price-container" class="issue-meta-price hidden">
                     <span class="icon icon-coins"></span>
                     <span id="issue-price"></span>
                   </div>
                 </div>
 
-                <div id="issue-contents-container" class="issue-contents-container">
+                <div id="issue-contents-container" class="issue-contents-container hidden">
                   <h2 class="issue-contents-heading">
                     <span class="icon icon-book"></span>
                     <span>Contents</span>
@@ -118,7 +118,7 @@
                 </div>
 
                 <div class="issue-read-action">
-                  <a id="btn-read-online" href="#comic-reader-section" class="btn-issue-action">
+                  <a id="btn-read-online" href="#comic-reader-section" class="btn-issue-action hidden">
                     <span class="icon icon-book-open"></span>
                     <span>Read Online in Browser</span>
                   </a>
@@ -144,7 +144,7 @@
                     <span class="icon icon-download"></span>
                     <span>Download High Resolution</span>
                   </a>
-                  <a id="dl-raw" href="#" target="_blank" rel="noopener noreferrer" class="btn-issue-action">
+                  <a id="dl-raw" href="#" target="_blank" rel="noopener noreferrer" class="btn-issue-action hidden">
                     <span class="icon icon-link"></span>
                     <span>Raw 600 DPI Master Archive</span>
                   </a>
@@ -153,18 +153,18 @@
 
               <!-- Contextual Links Section (Right Half) -->
               <div class="issue-bottom-right-col">
-                <section id="issue-context-section" class="issue-downloads-section">
+                <section id="issue-context-section" class="issue-downloads-section hidden">
                   <h2 class="issue-downloads-title">
                     <span class="icon icon-info"></span>
                     Contextual Links
                   </h2>
                   <p class="issue-downloads-note">Listen to the podcast review or explore community lore for this issue:</p>
                   <div class="issue-downloads-grid">
-                    <a id="podcast-link" href="#" target="_blank" rel="noopener noreferrer" class="btn-issue-action">
+                    <a id="podcast-link" href="#" target="_blank" rel="noopener noreferrer" class="btn-issue-action hidden">
                       <span class="icon icon-play"></span>
                       <span id="podcast-label">Listen to Episode on STCTP</span>
                     </a>
-                    <a id="wiki-btn" href="#" target="_blank" rel="noopener noreferrer" class="btn-issue-action">
+                    <a id="wiki-btn" href="#" target="_blank" rel="noopener noreferrer" class="btn-issue-action hidden">
                       <span class="icon icon-info"></span>
                       <span id="wiki-label">STC Fandom Wiki Page</span>
                     </a>
@@ -182,7 +182,7 @@
           </article>
 
           <!-- Online Comic Reader -->
-          <section id="comic-reader-section" class="comic-reader-section">
+          <section id="comic-reader-section" class="comic-reader-section hidden">
             <div class="comic-reader-header">
               <h2 class="comic-reader-title">
                 <span class="icon icon-book-open"></span>
@@ -219,15 +219,15 @@
           </section>
 
           <nav class="issue-pager" id="issue-pager" aria-label="Issue Navigation">
-            <a id="pager-prev" href="#" class="pager-card prev">
+            <a id="pager-prev" href="#" class="pager-card prev hidden">
               <span class="pager-direction">
                 <span class="icon icon-arrow-left"></span> Previous Issue
               </span>
               <span id="pager-prev-title" class="pager-title"></span>
             </a>
-            <div id="pager-prev-spacer"></div>
+            <div id="pager-prev-spacer" class="hidden"></div>
 
-            <a id="pager-next" href="#" class="pager-card next">
+            <a id="pager-next" href="#" class="pager-card next hidden">
               <span class="pager-direction">
                 Next Issue <span class="icon icon-arrow-right"></span>
               </span>
@@ -283,11 +283,7 @@
       </div>
     </footer>
 
-    <style>
-      @keyframes spin {
-        to { transform: rotate(360deg); }
-      }
-    </style>
+
 
     <script>
       document.addEventListener("DOMContentLoaded", async () => {
@@ -349,8 +345,8 @@
 
         const currentId = getQueryId();
         if (!currentId) {
-          loadingState.style.display = "none";
-          errorState.style.display = "block";
+          loadingState.classList.add("hidden");
+          errorState.classList.remove("hidden");
           return;
         }
 
@@ -378,8 +374,8 @@
           });
 
           if (!issue) {
-            loadingState.style.display = "none";
-            errorState.style.display = "block";
+            loadingState.classList.add("hidden");
+            errorState.classList.remove("hidden");
             return;
           }
 
@@ -455,17 +451,17 @@
               })
               .replace(",", "");
             issueDate.textContent = `Published: ${formatted}`;
-            issueDateContainer.style.display = "inline-flex";
+            issueDateContainer.classList.remove("hidden");
           } else {
-            issueDateContainer.style.display = "none";
+            issueDateContainer.classList.add("hidden");
           }
 
           // Price formatting
           if (issue.price) {
             issuePrice.textContent = `Cover Price: ${issue.price}`;
-            issuePriceContainer.style.display = "inline-flex";
+            issuePriceContainer.classList.remove("hidden");
           } else {
-            issuePriceContainer.style.display = "none";
+            issuePriceContainer.classList.add("hidden");
           }
 
           // Populate Contents
@@ -482,9 +478,9 @@
                 li.textContent = item;
                 contentsList.appendChild(li);
               });
-              contentsContainer.style.display = "block";
+              contentsContainer.classList.remove("hidden");
             } else {
-              contentsContainer.style.display = "none";
+              contentsContainer.classList.add("hidden");
             }
           }
 
@@ -497,9 +493,9 @@
 
           if (issue.master) {
             dlRaw.href = issue.master;
-            dlRaw.style.display = "flex";
+            dlRaw.classList.remove("hidden");
           } else {
-            dlRaw.style.display = "none";
+            dlRaw.classList.add("hidden");
           }
 
           // Contextual Links (Podcast & STC Wiki)
@@ -509,10 +505,10 @@
             podcastLabel.textContent = isSpecial
               ? "Listen to Special Episode on STCTP"
               : `Listen to Episode #${issueNum} on STCTP`;
-            podcastLink.style.display = "flex";
+            podcastLink.classList.remove("hidden");
             hasContext = true;
           } else {
-            podcastLink.style.display = "none";
+            podcastLink.classList.add("hidden");
           }
 
           if (!isSpecial && issue.id) {
@@ -520,14 +516,14 @@
             wikiBtn.href = `https://stc.fandom.com/wiki/Issue_${num}`;
             wikiBtn.title = `View Sonic the Comic Issue ${num} on the STC Fandom Wiki`;
             if (wikiLabel) wikiLabel.textContent = "STC Fandom Wiki Page";
-            wikiBtn.style.display = "flex";
+            wikiBtn.classList.remove("hidden");
             hasContext = true;
           } else {
-            wikiBtn.style.display = "none";
+            wikiBtn.classList.add("hidden");
           }
 
           if (contextSection) {
-            contextSection.style.display = hasContext ? "block" : "none";
+            if (hasContext) { contextSection.classList.remove("hidden"); } else { contextSection.classList.add("hidden"); }
           }
 
           // Online Comic Reader (Internet Archive BookReader Embed)
@@ -539,11 +535,11 @@
             readerIframe.src = embedUrl;
             readerIframe.title = `Online Comic Reader for ${displayTitle}`;
             readerArchiveLink.href = archiveDetailsUrl;
-            readerSection.style.display = "block";
-            if (btnReadOnline) btnReadOnline.style.display = "flex";
+            readerSection.classList.remove("hidden");
+            if (btnReadOnline) btnReadOnline.classList.remove("hidden");
           } else {
-            readerSection.style.display = "none";
-            if (btnReadOnline) btnReadOnline.style.display = "none";
+            readerSection.classList.add("hidden");
+            if (btnReadOnline) btnReadOnline.classList.add("hidden");
           }
 
           // Quick-Jump to Reader Action
@@ -615,11 +611,11 @@
             const prevDisplay = prevIssue.type === "special" ? prevIssue.title : `Issue ${prevNum}`;
             pagerPrev.href = `issue.html?id=${prevIssue.id}`;
             pagerPrevTitle.textContent = prevDisplay;
-            pagerPrev.style.display = "flex";
-            pagerPrevSpacer.style.display = "none";
+            pagerPrev.classList.remove("hidden");
+            pagerPrevSpacer.classList.add("hidden");
           } else {
-            pagerPrev.style.display = "none";
-            pagerPrevSpacer.style.display = "block";
+            pagerPrev.classList.add("hidden");
+            pagerPrevSpacer.classList.remove("hidden");
           }
 
           if (nextIssue) {
@@ -627,9 +623,9 @@
             const nextDisplay = nextIssue.type === "special" ? nextIssue.title : `Issue ${nextNum}`;
             pagerNext.href = `issue.html?id=${nextIssue.id}`;
             pagerNextTitle.textContent = nextDisplay;
-            pagerNext.style.display = "flex";
+            pagerNext.classList.remove("hidden");
           } else {
-            pagerNext.style.display = "none";
+            pagerNext.classList.add("hidden");
           }
 
           // Share Button (Native Web Share API with Clipboard Fallback)
@@ -664,12 +660,12 @@
             });
           }
 
-          loadingState.style.display = "none";
-          issueContent.style.display = "block";
+          loadingState.classList.add("hidden");
+          issueContent.classList.remove("hidden");
         } catch (err) {
           console.error(err);
-          loadingState.style.display = "none";
-          errorState.style.display = "block";
+          loadingState.classList.add("hidden");
+          errorState.classList.remove("hidden");
         }
       });
     </script>
