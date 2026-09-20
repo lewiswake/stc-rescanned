@@ -82,15 +82,20 @@
             <!-- Top Half: Cover, Issue Badge/Title, Date, Description, Read Online Action -->
             <div class="issue-card-top">
               <div class="issue-cover-container">
-                <img
-                  id="issue-cover"
-                  src=""
-                  alt="Cover"
-                  class="issue-detail-cover skeleton"
-                  width="320"
-                  height="413"
-                  onload="this.classList.remove('skeleton')"
-                />
+                <div class="issue-cover-image-wrapper">
+                  <img
+                    id="issue-cover"
+                    src=""
+                    alt="Cover"
+                    class="issue-detail-cover skeleton"
+                    width="320"
+                    height="413"
+                    onload="this.classList.remove('skeleton')"
+                  />
+                  <div class="issue-cover-overlay">
+                    <span class="icon icon-magnifying-glass-plus"></span>
+                  </div>
+                </div>
                 <span id="issue-cover-caption" class="issue-cover-caption"></span>
               </div>
 
@@ -236,6 +241,13 @@
           </nav>
         </div>
       </div>
+
+      <dialog id="gallery-modal" closedby="any" class="gallery-modal">
+        <form method="dialog" class="gallery-modal-content">
+          <button class="gallery-close-btn" type="submit" aria-label="Close" title="Close"><span class="icon icon-xmark"></span></button>
+          <img id="gallery-image" src="" alt="Full size cover" />
+        </form>
+      </dialog>
     </main>
 
     <footer>
@@ -417,7 +429,7 @@
           if (twUrl) twUrl.setAttribute("content", absolutePageUrl);
 
           // Cover Image & Caption
-          issueCover.src = issue.image;
+          issueCover.src = issue.cover || issue.image;
           issueCover.alt = `Cover of ${displayTitle}`;
           if (issueCoverCaption) {
             issueCoverCaption.textContent = isSpecial
@@ -660,7 +672,37 @@
             });
           }
 
-          loadingState.classList.add("hidden");
+          
+          // Gallery Modal Logic
+          const galleryModal = document.getElementById("gallery-modal");
+          const galleryImage = document.getElementById("gallery-image");
+          
+          if (issueCover && galleryModal && galleryImage) {
+            issueCover.addEventListener("click", () => {
+              galleryImage.src = issue.cover || issue.image;
+              galleryModal.showModal();
+            });
+            galleryImage.addEventListener("click", () => galleryModal.close());
+
+            // Fallback for light dismiss if closedBy not supported
+            if (!('closedBy' in HTMLDialogElement.prototype)) {
+              galleryModal.addEventListener("click", (event) => {
+                if (event.target !== galleryModal) return;
+                const rect = galleryModal.getBoundingClientRect();
+                const isDialogContent = (
+                  rect.top <= event.clientY &&
+                  event.clientY <= rect.top + rect.height &&
+                  rect.left <= event.clientX &&
+                  event.clientX <= rect.left + rect.width
+                );
+                if (!isDialogContent) {
+                  galleryModal.close();
+                }
+              });
+            }
+          }
+
+loadingState.classList.add("hidden");
           issueContent.classList.remove("hidden");
         } catch (err) {
           console.error(err);
