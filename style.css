@@ -1932,20 +1932,9 @@ img.card-thumbnail.skeleton {
   background-color: currentColor;
 }
 
-.comic-reader-external-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  color: var(--text-muted);
-  font-size: 0.9rem;
-  font-weight: 600;
-  text-decoration: none;
-  transition: color 0.15s ease;
-}
 
-.comic-reader-external-link:hover {
-  color: var(--text-accent-1);
-}
+
+
 
 .comic-reader-frame-container {
   position: relative;
@@ -2099,6 +2088,16 @@ img.card-thumbnail.skeleton {
 }
 
 /* Icons */
+.icon-maximize {
+  -webkit-mask-image: url("images/icons/maximize-solid-full.svg");
+  mask-image: url("images/icons/maximize-solid-full.svg");
+}
+
+.icon-internet-archive {
+  -webkit-mask-image: url("images/icons/internet-archive-brands-solid-full.svg");
+  mask-image: url("images/icons/internet-archive-brands-solid-full.svg");
+}
+
 .icon-magnifying-glass-plus {
   -webkit-mask-image: url("images/icons/magnifying-glass-plus-solid-full.svg");
   mask-image: url("images/icons/magnifying-glass-plus-solid-full.svg");
