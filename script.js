@@ -10,12 +10,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   const backToTopBtn = document.getElementById("back-to-top");
   const clearFiltersBtns = document.querySelectorAll(".clear-filters-btn");
 
-  const loadMoreBtn = document.getElementById("load-more-btn");
-  const loadMoreContainer = document.getElementById("load-more-container");
-  const specialsLoadMoreBtn = document.getElementById("specials-load-more-btn");
-  const specialsLoadMoreContainer = document.getElementById(
-    "specials-load-more-container",
-  );
 
   // Progress Bar Elements & Variables
   const optimisedFill = document.getElementById("optimised-progress-fill");
@@ -42,9 +36,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   let currentSearch = "";
   let currentYearFilter = "all";
   let currentSort = "asc";
-  let currentPageMain = 1;
-  let currentPageSpecials = 1;
-  const itemsPerPage = 48;
 
   // Update URL params
   const updateURLParams = () => {
@@ -185,61 +176,28 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
 
     // 3. Render Main Grid
-    const mainToShow = filteredMain.slice(0, currentPageMain * itemsPerPage);
-    if (currentPageMain === 1) {
-      grid.innerHTML = mainToShow.map(generateCardHTML).join("");
-    } else {
-      const previousCount = (currentPageMain - 1) * itemsPerPage;
-      const newItems = mainToShow.slice(previousCount);
-      grid.insertAdjacentHTML(
-        "beforeend",
-        newItems.map(generateCardHTML).join(""),
-      );
-    }
+    const mainToShow = filteredMain;
+    grid.innerHTML = mainToShow.map(generateCardHTML).join("");
 
     if (filteredMain.length === 0) {
       emptyState.classList.remove("hidden");
       grid.classList.add("hidden");
-      loadMoreContainer.classList.add("hidden");
     } else {
       emptyState.classList.add("hidden");
       grid.classList.remove("hidden");
-      if (mainToShow.length < filteredMain.length) {
-        loadMoreContainer.classList.remove("hidden");
-      } else {
-        loadMoreContainer.classList.add("hidden");
-      }
     }
 
     // 4. Render Specials Grid
     if (specialsGrid) {
-      const specialsToShow = filteredSpecials.slice(
-        0,
-        currentPageSpecials * itemsPerPage,
-      );
-      if (currentPageSpecials === 1) {
-        specialsGrid.innerHTML = specialsToShow.map(generateCardHTML).join("");
-      } else {
-        const previousCount = (currentPageSpecials - 1) * itemsPerPage;
-        const newItems = specialsToShow.slice(previousCount);
-        specialsGrid.insertAdjacentHTML(
-          "beforeend",
-          newItems.map(generateCardHTML).join(""),
-        );
-      }
+      const specialsToShow = filteredSpecials;
+      specialsGrid.innerHTML = specialsToShow.map(generateCardHTML).join("");
 
       if (filteredSpecials.length === 0) {
         specialsEmptyState.classList.remove("hidden");
         specialsGrid.classList.add("hidden");
-        specialsLoadMoreContainer.classList.add("hidden");
       } else {
         specialsEmptyState.classList.add("hidden");
         specialsGrid.classList.remove("hidden");
-        if (specialsToShow.length < filteredSpecials.length) {
-          specialsLoadMoreContainer.classList.remove("hidden");
-        } else {
-          specialsLoadMoreContainer.classList.add("hidden");
-        }
       }
     }
   };
@@ -251,8 +209,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     currentSort = "asc";
     if (yearFilterSelect) yearFilterSelect.value = "all";
     if (sortFilterSelect) sortFilterSelect.value = "asc";
-    currentPageMain = 1;
-    currentPageSpecials = 1;
     applyFiltersAndRender();
   };
 
@@ -260,25 +216,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     btn.addEventListener("click", clearAllFilters),
   );
 
-  if (loadMoreBtn) {
-    loadMoreBtn.addEventListener("click", () => {
-      currentPageMain++;
-      applyFiltersAndRender();
-    });
-  }
 
-  if (specialsLoadMoreBtn) {
-    specialsLoadMoreBtn.addEventListener("click", () => {
-      currentPageSpecials++;
-      applyFiltersAndRender();
-    });
-  }
 
   if (yearFilterSelect) {
     yearFilterSelect.addEventListener("change", (e) => {
       currentYearFilter = e.target.value;
-      currentPageMain = 1;
-      currentPageSpecials = 1;
       applyFiltersAndRender();
     });
   }
@@ -286,16 +228,12 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (sortFilterSelect) {
     sortFilterSelect.addEventListener("change", (e) => {
       currentSort = e.target.value;
-      currentPageMain = 1;
-      currentPageSpecials = 1;
       applyFiltersAndRender();
     });
   }
 
   const handleSearch = debounce((e) => {
     currentSearch = e.target.value.trim().toLowerCase();
-    currentPageMain = 1;
-    currentPageSpecials = 1;
     applyFiltersAndRender();
   }, 250);
 
@@ -343,40 +281,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }, 500); // small delay to ensure cards render first
   }
 
-  // Infinite Scroll using IntersectionObserver
-  const observerOptions = {
-    root: null,
-    rootMargin: "200px",
-    threshold: 0.1,
-  };
 
-  const observerCallback = (entries, observer) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        if (
-          entry.target === loadMoreContainer &&
-          !loadMoreContainer.classList.contains("hidden")
-        ) {
-          currentPageMain++;
-          applyFiltersAndRender();
-        } else if (
-          entry.target === specialsLoadMoreContainer &&
-          !specialsLoadMoreContainer.classList.contains("hidden")
-        ) {
-          currentPageSpecials++;
-          applyFiltersAndRender();
-        }
-      }
-    });
-  };
-
-  const infiniteObserver = new IntersectionObserver(
-    observerCallback,
-    observerOptions,
-  );
-  if (loadMoreContainer) infiniteObserver.observe(loadMoreContainer);
-  if (specialsLoadMoreContainer)
-    infiniteObserver.observe(specialsLoadMoreContainer);
 
   window.addEventListener("scroll", () => {
     if (window.scrollY > 600) {

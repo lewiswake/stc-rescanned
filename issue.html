@@ -217,7 +217,6 @@
                 webkitallowfullscreen="true"
                 mozallowfullscreen="true"
                 allowfullscreen
-                loading="lazy"
                 title="Online Comic Reader"
               ></iframe>
             </div>
@@ -544,10 +543,10 @@
             const embedUrl = `https://archive.org/embed/sonic-the-comic-standard-resolution-scans/${encodeURIComponent(embedId)}`;
             const archiveDetailsUrl = `https://archive.org/details/sonic-the-comic-standard-resolution-scans/${encodeURIComponent(embedId)}/`;
 
+            readerSection.classList.remove("hidden");
             readerIframe.src = embedUrl;
             readerIframe.title = `Online Comic Reader for ${displayTitle}`;
             readerArchiveLink.href = archiveDetailsUrl;
-            readerSection.classList.remove("hidden");
             if (btnReadOnline) btnReadOnline.classList.remove("hidden");
           } else {
             readerSection.classList.add("hidden");
