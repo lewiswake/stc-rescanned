@@ -1912,6 +1912,8 @@ img.card-thumbnail.skeleton {
   color: var(--text-accent-1);
   font-size: 0.9rem;
   font-weight: 600;
+  font-family: inherit;
+  line-height: 1.5;
   padding: 6px 14px;
   border-radius: 8px;
   cursor: pointer;
