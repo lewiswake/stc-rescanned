@@ -10,7 +10,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   const backToTopBtn = document.getElementById("back-to-top");
   const clearFiltersBtns = document.querySelectorAll(".clear-filters-btn");
 
-
   // Progress Bar Elements & Variables
   const optimisedFill = document.getElementById("optimised-progress-fill");
   const optimisedText = document.getElementById("optimised-progress-text");
@@ -54,7 +53,11 @@ document.addEventListener("DOMContentLoaded", async () => {
       currentYearFilter !== "all" ||
       currentSort !== "asc";
     clearFiltersBtns.forEach((btn) => {
-      if (isActive) { btn.classList.remove("hidden"); } else { btn.classList.add("hidden"); }
+      if (isActive) {
+        btn.classList.remove("hidden");
+      } else {
+        btn.classList.add("hidden");
+      }
     });
   };
 
@@ -73,10 +76,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const generateCardHTML = (issue) => {
     const isSpecial = issue.type === "special";
-    const issueNum = !isSpecial && /^\d+$/.test(String(issue.id)) ? parseInt(issue.id, 10) : issue.id;
-    const displayTitle = isSpecial
-      ? issue.title
-      : `Issue ${issueNum}`;
+    const issueNum =
+      !isSpecial && /^\d+$/.test(String(issue.id))
+        ? parseInt(issue.id, 10)
+        : issue.id;
+    const displayTitle = isSpecial ? issue.title : `Issue ${issueNum}`;
     const highUrl = `${highBase}/${encodeURIComponent(issue.high)}`;
     const stdUrl = `${stdBase}/${encodeURIComponent(issue.standard)}`;
     const issueId = `issue-${issue.id}`;
@@ -144,7 +148,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         !currentSearch ||
         searchKey.includes(currentSearch) ||
         keyStripped === searchStripped ||
-        (cleanSearch && (searchKey.includes(cleanSearch) || keyStripped === cleanSearchStripped));
+        (cleanSearch &&
+          (searchKey.includes(cleanSearch) ||
+            keyStripped === cleanSearchStripped));
       return matchesYear && matchesSearch;
     });
 
@@ -216,8 +222,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     btn.addEventListener("click", clearAllFilters),
   );
 
-
-
   if (yearFilterSelect) {
     yearFilterSelect.addEventListener("change", (e) => {
       currentYearFilter = e.target.value;
@@ -280,8 +284,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
     }, 500); // small delay to ensure cards render first
   }
-
-
 
   window.addEventListener("scroll", () => {
     if (window.scrollY > 600) {
