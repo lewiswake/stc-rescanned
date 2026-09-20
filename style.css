@@ -1916,6 +1916,7 @@ img.card-thumbnail.skeleton {
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.2s ease;
+  text-decoration: none;
 }
 
 .comic-reader-action-btn:hover {
