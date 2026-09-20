@@ -2164,3 +2164,33 @@ img.card-thumbnail.skeleton {
   to { transform: rotate(360deg); }
 }
 #issue-content { display: block; }
+/* Faux Fullscreen Fallback for iOS/Mobile */
+.comic-reader-frame-container.faux-fullscreen {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  z-index: 99999 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  max-height: none !important;
+  min-height: none !important;
+  border-radius: 0 !important;
+  border: none !important;
+  background: #000000 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.comic-reader-frame-container.faux-fullscreen .comic-reader-iframe {
+  top: -40px;
+  height: calc(100% + 40px);
+}
+
+.comic-reader-frame-container.faux-fullscreen .comic-reader-exit-float {
+  display: inline-flex;
+  align-items: center;
+}
+
+body.faux-fullscreen-active {
+  overflow: hidden !important;
+}
