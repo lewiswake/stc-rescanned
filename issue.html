@@ -695,7 +695,13 @@
             podcastLink.classList.add("hidden");
           }
 
-          if (!isSpecial && issue.id) {
+          if (issue.wiki) {
+            wikiBtn.href = issue.wiki;
+            wikiBtn.title = `View this issue on the STC Fandom Wiki`;
+            if (wikiLabel) wikiLabel.textContent = "STC Fandom Wiki Page";
+            wikiBtn.classList.remove("hidden");
+            hasContext = true;
+          } else if (!isSpecial && issue.id) {
             const num = parseInt(issue.id, 10);
             wikiBtn.href = `https://stc.fandom.com/wiki/Issue_${num}`;
             wikiBtn.title = `View Sonic the Comic Issue ${num} on the STC Fandom Wiki`;
