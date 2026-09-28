@@ -124,10 +124,21 @@
 <body>
   
   <!-- Add a minimal header similar to the site -->
-  <header style="background: var(--panel-bg); padding: 15px 20px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: center;">
-    <a href="../index.html">
-      <img src="../images/stc-rp-logo.svg" alt="Sonic the Comic Rescan Project Logo" style="height: 40px;" />
-    </a>
+    <header class="site-header">
+    <div class="container site-header-container">
+      <a href="../index.html" class="logo-link">
+        <img src="../images/stc-rp-logo.svg" alt="Sonic the Comic Rescan Project Logo" class="site-logo" />
+      </a>
+      <nav class="site-nav">
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../downloads.html">Original Run</a></li>
+          <li><a href="../about.html">About Scans</a></li>
+          <li><a href="../roadmap.html">Roadmap</a></li>
+          <li><a href="../error-report.html">Report Error</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
 
   <div class="search-hero">

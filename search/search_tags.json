@@ -1,0 +1,681 @@
+{
+  "issues": [
+    {
+      "issue_number": 69,
+      "release_date": "1996-01-06",
+      "price": "£1.20",
+      "cover": {
+        "artists": [
+          "Nigel Dobbyn"
+        ],
+        "characters": [
+          "Knuckles the Echidna"
+        ]
+      },
+      "stories": [
+        {
+          "strip_title": "Sonic the Hedgehog",
+          "story_title": "The Return of Chaotix",
+          "part": "Part 3",
+          "writers": [
+            "Nigel Kitching"
+          ],
+          "artists": [
+            "Richard Elson"
+          ],
+          "letterers": [
+            "Ellie de Ville"
+          ],
+          "colourists": [
+            "Richard Elson"
+          ],
+          "characters": [
+            "Sonic the Hedgehog",
+            "Mighty the Armadillo",
+            "Espio the Chameleon",
+            "Porker Lewis",
+            "Charmy Bee",
+            "Vector the Crocodile",
+            "Emperor Metallix",
+            "Omni-Viewer",
+            "Metallix",
+            "Doctor Kintobor"
+          ]
+        },
+        {
+          "strip_title": "Decap Attack",
+          "story_title": "The Headless Snowmen",
+          "writers": [
+            "Nigel Kitching",
+            "Richard Rayner"
+          ],
+          "artists": [
+            "Nigel Kitching"
+          ],
+          "letterers": [
+            "Tom Frame"
+          ],
+          "colourists": [
+            "Nigel Kitching"
+          ],
+          "characters": [
+            "Head",
+            "Chuck D. Head",
+            "Igor",
+            "Professor Frank N. Stein"
+          ]
+        },
+        {
+          "strip_title": "Knuckles the Echidna",
+          "story_title": "The Graveyard",
+          "part": "Part 1",
+          "writers": [
+            "Nigel Kitching"
+          ],
+          "artists": [
+            "Nigel Dobbyn"
+          ],
+          "letterers": [
+            "Elitta Fell"
+          ],
+          "colourists": [
+            "Nigel Dobbyn"
+          ],
+          "characters": [
+            "Knuckles the Echidna",
+            "Spirit of the Herd",
+            "Kohenyu"
+          ]
+        },
+        {
+          "strip_title": "Sonic's World",
+          "story_title": "Brute Force",
+          "part": "Part 1",
+          "writers": [
+            "Lew Stringer"
+          ],
+          "artists": [
+            "Carl Flint"
+          ],
+          "letterers": [
+            "Steve Potter"
+          ],
+          "colourists": [
+            "Dondie Cox"
+          ],
+          "characters": [
+            "Commander Brutus",
+            "Trooper Badniks",
+            "Doctor Robotnik",
+            "Grimer"
+          ]
+        }
+      ],
+      "features": [
+        {
+          "type": "Feature",
+          "description": "Control Zone"
+        },
+        {
+          "type": "Feature",
+          "description": "Graphic Zone (Bat Hog Special)"
+        },
+        {
+          "type": "Feature",
+          "description": "Q Zone (Batman Forever Mega Drive)"
+        },
+        {
+          "type": "Pin-Up",
+          "description": "Newtron by Ferran Rodriguez"
+        },
+        {
+          "type": "Speedlines",
+          "description": "Letters Page"
+        },
+        {
+          "type": "Feature",
+          "description": "Next Issue Page"
+        },
+        {
+          "type": "Advert",
+          "description": "Sonic Baseball Jacket"
+        },
+        {
+          "type": "Advert",
+          "description": "Lego Technic"
+        },
+        {
+          "type": "Advert",
+          "description": "Robertson's Golden Shred Marmalade"
+        },
+        {
+          "type": "Advert",
+          "description": "Rotastak Hamster Housing"
+        }
+      ],
+      "editorial_staff": [
+        "Deborah Tate",
+        "Audrey Wong",
+        "Gary Knight",
+        "William Potter",
+        "Richard Burton",
+        "Rob McMenemy",
+        "Sarah Colley",
+        "Sarah Connell"
+      ],
+      "search_tags": [
+        "knuckles the echidna",
+        "nigel dobbyn",
+        "sonic the hedgehog",
+        "mighty the armadillo",
+        "espio the chameleon",
+        "porker lewis",
+        "charmy bee",
+        "vector the crocodile",
+        "emperor metallix",
+        "omni-viewer",
+        "metallix",
+        "doctor kintobor",
+        "richard elson",
+        "ellie de ville",
+        "nigel kitching",
+        "head",
+        "chuck d. head",
+        "igor",
+        "professor frank n. stein",
+        "richard rayner",
+        "tom frame",
+        "spirit of the herd",
+        "kohenyu",
+        "elitta fell",
+        "commander brutus",
+        "trooper badniks",
+        "doctor robotnik",
+        "grimer",
+        "lew stringer",
+        "carl flint",
+        "dondie cox",
+        "steve potter",
+        "newtron",
+        "ferran rodriguez",
+        "control zone",
+        "graphic zone",
+        "batman",
+        "bat hog",
+        "q zone",
+        "batman forever",
+        "mega drive",
+        "speedlines",
+        "sonic baseball jacket",
+        "lego technic",
+        "robertson's golden shred marmalade",
+        "rotastak hamster housing",
+        "deborah tate",
+        "audrey wong",
+        "gary knight",
+        "william potter",
+        "richard burton",
+        "rob mcmenemy",
+        "sarah colley",
+        "sarah connell"
+      ]
+    },
+    {
+      "issue_number": 70,
+      "release_date": "1996-01-20",
+      "price": "£1.20",
+      "notes": "This is the only issue of the main series to be printed on a rougher, non-glossy paper stock.",
+      "cover": {
+        "artists": [
+          "Carl Flint"
+        ],
+        "characters": [
+          "Sonic the Hedgehog",
+          "Omni-Viewer"
+        ]
+      },
+      "stories": [
+        {
+          "strip_title": "Sonic the Hedgehog",
+          "story_title": "The Return of Chaotix",
+          "part": "Part 4",
+          "writers": [
+            "Nigel Kitching"
+          ],
+          "artists": [
+            "Richard Elson"
+          ],
+          "letterers": [
+            "Ellie de Ville"
+          ],
+          "colourists": [
+            "Richard Elson"
+          ],
+          "characters": [
+            "Sonic the Hedgehog",
+            "Espio the Chameleon",
+            "Mighty the Armadillo",
+            "Doctor Kintobor",
+            "Charmy Bee",
+            "Vector the Crocodile",
+            "Porker Lewis",
+            "Omni-Viewer",
+            "Metallix",
+            "Brotherhood of Metallix"
+          ]
+        },
+        {
+          "strip_title": "Decap Attack",
+          "story_title": "Nanny Knows Best",
+          "writers": [
+            "Nigel Kitching",
+            "Richard Rayner"
+          ],
+          "artists": [
+            "Nigel Kitching"
+          ],
+          "letterers": [
+            "Tom Frame"
+          ],
+          "colourists": [
+            "Nigel Kitching"
+          ],
+          "characters": [
+            "Nanny",
+            "Professor Frank N. Stein",
+            "Head",
+            "Igor",
+            "Chuck D. Head",
+            "Mr Cuddlebunny"
+          ]
+        },
+        {
+          "strip_title": "Knuckles the Echidna",
+          "story_title": "The Graveyard",
+          "part": "Part 2",
+          "writers": [
+            "Nigel Kitching"
+          ],
+          "artists": [
+            "Nigel Dobbyn"
+          ],
+          "letterers": [
+            "Elitta Fell"
+          ],
+          "colourists": [
+            "Nigel Dobbyn"
+          ],
+          "characters": [
+            "Knuckles the Echidna",
+            "Spirit of the Herd",
+            "Kohenyu",
+            "Ancient Echidnas"
+          ]
+        },
+        {
+          "strip_title": "Sonic's World",
+          "story_title": "Brute Force",
+          "part": "Part 2",
+          "writers": [
+            "Lew Stringer"
+          ],
+          "artists": [
+            "Carl Flint"
+          ],
+          "letterers": [
+            "Steve Potter"
+          ],
+          "colourists": [
+            "Dondie Cox"
+          ],
+          "characters": [
+            "Commander Brutus",
+            "Grimer",
+            "Trooper Badniks",
+            "Doctor Robotnik",
+            "Brutus' Badniks",
+            "Johnny Lightfoot"
+          ]
+        }
+      ],
+      "features": [
+        {
+          "type": "Feature",
+          "description": "Control Zone"
+        },
+        {
+          "type": "Review Zone",
+          "description": "FIFA Soccer '96 (Mega Drive) by Chris Jones"
+        },
+        {
+          "type": "Advert",
+          "description": "Sonic Baseball Jacket"
+        },
+        {
+          "type": "Pin-Up",
+          "description": "Ball Hog by Ferran Rodriguez"
+        },
+        {
+          "type": "Advert",
+          "description": "Lego Technic"
+        },
+        {
+          "type": "Feature",
+          "description": "Q Zone (Batman Forever Mega Drive Special Part 2 by David Gibbon)"
+        },
+        {
+          "type": "Advert",
+          "description": "Robertson's Golden Shred Marmalade"
+        },
+        {
+          "type": "Speedlines",
+          "description": "Letters Page"
+        },
+        {
+          "type": "Feature",
+          "description": "Next Issue Page"
+        },
+        {
+          "type": "Advert",
+          "description": "Breadbusters"
+        }
+      ],
+      "editorial_staff": [
+        "Deborah Tate",
+        "Audrey Wong",
+        "Gary Knight",
+        "William Potter",
+        "Richard Burton",
+        "Rob McMenemy",
+        "Sarah Colley",
+        "Sarah Connell"
+      ],
+      "search_tags": [
+        "ancient echidnas",
+        "audrey wong",
+        "ball hog",
+        "batman forever",
+        "breadbusters",
+        "brotherhood of metallix",
+        "brutus' badniks",
+        "carl flint",
+        "charmy bee",
+        "chris jones",
+        "chuck d. head",
+        "commander brutus",
+        "control zone",
+        "david gibbon",
+        "deborah tate",
+        "doctor kintobor",
+        "doctor robotnik",
+        "dondie cox",
+        "elitta fell",
+        "ellie de ville",
+        "espio the chameleon",
+        "ferran rodriguez",
+        "fifa soccer '96",
+        "gary knight",
+        "grimer",
+        "head",
+        "igor",
+        "johnny lightfoot",
+        "knuckles the echidna",
+        "kohenyu",
+        "lego technic",
+        "lew stringer",
+        "mega drive",
+        "metallix",
+        "mighty the armadillo",
+        "mr cuddlebunny",
+        "nanny",
+        "nigel dobbyn",
+        "nigel kitching",
+        "omni-viewer",
+        "porker lewis",
+        "professor frank n. stein",
+        "q zone",
+        "review zone",
+        "richard burton",
+        "richard elson",
+        "richard rayner",
+        "rob mcmenemy",
+        "robertson's golden shred marmalade",
+        "sarah colley",
+        "sarah connell",
+        "sonic baseball jacket",
+        "sonic the hedgehog",
+        "speedlines",
+        "spirit of the herd",
+        "steve potter",
+        "tom frame",
+        "trooper badniks",
+        "vector the crocodile",
+        "william potter"
+      ]
+    },
+    {
+      "issue_number": 92,
+      "release_date": "1996-11-27",
+      "price": "£1.20",
+      "notes": "The Sonic's World strip 'Head in the Clouds' is credited to Roberto Corona, but the STC Wiki notes the art style heavily resembles Carl Flint's work.",
+      "cover": {
+        "artists": [
+          "Carl Flint"
+        ],
+        "characters": [
+          "Sonic the Hedgehog"
+        ]
+      },
+      "stories": [
+        {
+          "strip_title": "Sonic the Hedgehog",
+          "story_title": "The Hive",
+          "part": "Part 2",
+          "writers": [
+            "Nigel Kitching"
+          ],
+          "artists": [
+            "Roberto Corona"
+          ],
+          "letterers": [
+            "Tom Frame"
+          ],
+          "colourists": [
+            "Steve White"
+          ],
+          "characters": [
+            "Sonic the Hedgehog",
+            "Charmy Bee",
+            "The Queen",
+            "Vesper the Wasp",
+            "Bee Guards"
+          ]
+        },
+        {
+          "strip_title": "Captain Plunder",
+          "story_title": "Shanghaied",
+          "part": "Part 2",
+          "writers": [
+            "Nigel Kitching",
+            "Richard Elson"
+          ],
+          "artists": [
+            "Richard Elson"
+          ],
+          "letterers": [
+            "Elitta Fell"
+          ],
+          "colourists": [
+            "Richard Elson"
+          ],
+          "characters": [
+            "Captain Plunder",
+            "Mr Fry",
+            "Proctor Speckle",
+            "Filch",
+            "Simpson",
+            "Sky Pirates"
+          ]
+        },
+        {
+          "strip_title": "Decap Attack",
+          "story_title": "The Legend of Mr Cuddle Bunny",
+          "part": "Part 2",
+          "writers": [
+            "Nigel Kitching",
+            "Richard Rayner"
+          ],
+          "artists": [
+            "Nigel Kitching"
+          ],
+          "letterers": [
+            "Ellie de Ville"
+          ],
+          "colourists": [
+            "Nigel Kitching"
+          ],
+          "characters": [
+            "Mr Cuddle Bunny",
+            "Mick C. McTosis",
+            "Chuck D. Head",
+            "Head",
+            "Igor",
+            "Professor Frank N. Stein",
+            "Mr Timothy Twitch"
+          ]
+        },
+        {
+          "strip_title": "Sonic's World",
+          "story_title": "Head in the Clouds",
+          "part": "Complete",
+          "writers": [
+            "Lew Stringer"
+          ],
+          "artists": [
+            "Roberto Corona"
+          ],
+          "letterers": [
+            "Tom Frame"
+          ],
+          "colourists": [
+            "Steve White"
+          ],
+          "characters": [
+            "Doctor Robotnik",
+            "Grimer",
+            "Trooper Badniks"
+          ]
+        }
+      ],
+      "features": [
+        {
+          "type": "Feature",
+          "description": "Control Zone"
+        },
+        {
+          "type": "Review Zone",
+          "description": "Terry Pratchett's Discworld (Sega Saturn) by Chris Jones"
+        },
+        {
+          "type": "Review Zone",
+          "description": "Virtua Fighter Kids (Sega Saturn) by Chris Jones"
+        },
+        {
+          "type": "Advert",
+          "description": "Kellogg's Strike"
+        },
+        {
+          "type": "Pin-Up",
+          "description": "Grabber by Ferran Rodriguez"
+        },
+        {
+          "type": "Advert",
+          "description": "Sonic the Comic Subscription"
+        },
+        {
+          "type": "Feature",
+          "description": "Q Zone (Sonic the Hedgehog 3 - Angel Island Zone)"
+        },
+        {
+          "type": "Advert",
+          "description": "Disney Channel (The Mighty Ducks, Brand Spanking New! Doug)"
+        },
+        {
+          "type": "Speedlines",
+          "description": "Letters Page"
+        },
+        {
+          "type": "Feature",
+          "description": "Next Issue Page"
+        },
+        {
+          "type": "Advert",
+          "description": "Skittles"
+        }
+      ],
+      "editorial_staff": [
+        "Deborah Tate",
+        "Audrey Wong",
+        "Gary Knight",
+        "Sarah Colley",
+        "Richard Burton"
+      ],
+      "search_tags": [
+        "angel island zone",
+        "audrey wong",
+        "bee guards",
+        "brand spanking new! doug",
+        "captain plunder",
+        "carl flint",
+        "charmy bee",
+        "chris jones",
+        "chuck d. head",
+        "control zone",
+        "deborah tate",
+        "disney channel",
+        "doctor robotnik",
+        "elitta fell",
+        "ellie de ville",
+        "ferran rodriguez",
+        "filch",
+        "gary knight",
+        "grabber",
+        "grimer",
+        "head",
+        "igor",
+        "kellogg's strike",
+        "lew stringer",
+        "mick c. mctosis",
+        "mr cuddle bunny",
+        "mr fry",
+        "mr timothy twitch",
+        "nigel kitching",
+        "proctor speckle",
+        "professor frank n. stein",
+        "q zone",
+        "review zone",
+        "richard burton",
+        "richard elson",
+        "richard rayner",
+        "roberto corona",
+        "sarah colley",
+        "sega saturn",
+        "simpson",
+        "skittles",
+        "sky pirates",
+        "sonic the comic subscription",
+        "sonic the hedgehog",
+        "sonic the hedgehog 3",
+        "speedlines",
+        "steve white",
+        "terry pratchett's discworld",
+        "the mighty ducks",
+        "the queen",
+        "tom frame",
+        "trooper badniks",
+        "vesper the wasp",
+        "virtua fighter kids"
+      ]
+    }
+  ]
+}

@@ -181,16 +181,18 @@ document.addEventListener("DOMContentLoaded", async () => {
       return a.title.localeCompare(b.title) * sortMultiplier;
     });
 
-    // 3. Render Main Grid
-    const mainToShow = filteredMain;
-    grid.innerHTML = mainToShow.map(generateCardHTML).join("");
+    if (grid) {
+      // 3. Render Main Grid
+      const mainToShow = filteredMain;
+      grid.innerHTML = mainToShow.map(generateCardHTML).join("");
 
-    if (filteredMain.length === 0) {
-      emptyState.classList.remove("hidden");
-      grid.classList.add("hidden");
-    } else {
-      emptyState.classList.add("hidden");
-      grid.classList.remove("hidden");
+      if (filteredMain.length === 0) {
+        if (emptyState) emptyState.classList.remove("hidden");
+        grid.classList.add("hidden");
+      } else {
+        if (emptyState) emptyState.classList.add("hidden");
+        grid.classList.remove("hidden");
+      }
     }
 
     // 4. Render Specials Grid
@@ -382,6 +384,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (scannedText) scannedText.textContent = "Error loading progress.";
     if (optimisedText) optimisedText.textContent = "Error loading progress.";
     if (grid)
-      grid.innerHTML = `<p class="grid-error-message">Error loading archive files. Please ensure you are running a local server.</p>`;
+      if (grid) grid.innerHTML = `<p class="grid-error-message">Error loading archive files. Please ensure you are running a local server.</p>`;
   }
 });
