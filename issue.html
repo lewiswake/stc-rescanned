@@ -673,7 +673,7 @@
           }
 
           // Back button
-          backBtn.href = `index.html#issue-${issue.id}`;
+          if (backBtn) backBtn.href = `index.html#issue-${issue.id}`;
 
           // Download buttons
           dlSd.href = `${stdBase}/${encodeURIComponent(issue.standard)}`;
