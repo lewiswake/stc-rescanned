@@ -2274,3 +2274,9 @@ body.faux-fullscreen-active {
     gap: 12px;
   }
 }
+
+/* Add top spacing for pages without hero banners */
+body > .site-header + section,
+body > .site-header + main {
+  margin-top: 40px;
+}
