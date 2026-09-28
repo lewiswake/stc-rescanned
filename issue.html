@@ -77,21 +77,25 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <header class="issue-page-header">
-      <div class="container issue-page-nav">
-        <a href="index.html" aria-label="Sonic the Comic Rescan Project Home">
-          <img
-            src="images/stc-rp-logo.svg"
-            alt="Sonic the Comic Rescan Project Logo"
-            class="issue-nav-logo"
-            width="170"
-            height="38"
-          />
+    <header class="site-header">
+      <div class="container site-header-container">
+        <a href="index.html" class="logo-link">
+          <img src="images/stc-rp-logo.svg" alt="Sonic the Comic Rescan Project Logo" class="site-logo" />
         </a>
-        <a href="index.html#downloads" id="back-btn" class="btn-back">
-          <span class="icon icon-arrow-left"></span>
-          Back to all issues
-        </a>
+        <button class="hamburger-menu" id="hamburger-menu" aria-label="Toggle navigation">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+        <nav class="site-nav">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="downloads.html">Download</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="roadmap.html">Roadmap</a></li>
+            <li><a href="error-report.html">Report Error</a></li>
+          </ul>
+        </nav>
       </div>
     </header>
 
@@ -960,6 +964,26 @@
           errorState.classList.remove("hidden");
         }
       });
+    
+      // Mobile Navigation Toggle
+      const hamburgerBtn = document.getElementById("hamburger-menu");
+      const siteNav = document.querySelector(".site-nav");
+
+      if (hamburgerBtn) {
+        hamburgerBtn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          document.body.classList.toggle("nav-open");
+        });
+      }
+
+      document.addEventListener("click", (e) => {
+        if (document.body.classList.contains("nav-open")) {
+          if (siteNav && !siteNav.contains(e.target)) {
+            document.body.classList.remove("nav-open");
+          }
+        }
+      });
+
     </script>
   </body>
 </html>

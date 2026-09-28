@@ -2387,7 +2387,6 @@ body.nav-open::after {
 
 body.nav-open .site-header {
   z-index: 9999;
-  background: rgba(15, 23, 42, 0.95); /* darker panel bg */
 }
 body.nav-open .site-logo {
   filter: blur(4px) brightness(0.5);
