@@ -299,9 +299,9 @@ function renderIssues(issues) {
           </h3>
           ${formattedDate ? `<p class="issue-date">${formattedDate}</p>` : ""}
         </div>
-        <div class="btn-icon-group" style="margin-top: 15px;">
-          ${issue.price ? `<p style="color: var(--text-2); font-size: 14px;">Price: ${issue.price}</p>` : ""}
-          <p style="color: var(--text-2); font-size: 14px;"><em>${issue.search_tags ? issue.search_tags.length : 0} tags</em></p>
+        <div class="btn-icon-group search-meta-group">
+          ${issue.price ? `<p class="search-meta-text">Price: ${issue.price}</p>` : ""}
+          <p class="search-meta-text"><em>${issue.search_tags ? issue.search_tags.length : 0} tags</em></p>
         </div>
       </div>
     `;

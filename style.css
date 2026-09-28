@@ -2401,3 +2401,16 @@ body.nav-open .site-logo {
 html:has(body.nav-open) {
   overflow: hidden;
 }
+
+/* Search Page Styles */
+.search-page-title {
+  margin-bottom: 20px;
+  color: var(--text-main);
+}
+.search-meta-group {
+  margin-top: 15px;
+}
+.search-meta-text {
+  color: var(--text-2);
+  font-size: 14px;
+}
