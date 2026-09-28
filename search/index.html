@@ -11,7 +11,7 @@
     .search-hero {
       padding: 40px 20px;
       text-align: center;
-      background: var(--surface-2);
+      background: var(--panel-bg);
       border-bottom: 1px solid var(--border-color);
       margin-bottom: 40px;
     }
@@ -29,13 +29,13 @@
       font-size: 18px;
       border: 2px solid var(--border-color);
       border-radius: 8px;
-      background: var(--surface-1);
-      color: var(--text-1);
+      background: var(--input-bg);
+      color: var(--text-main);
     }
     
     #search-input:focus {
       outline: none;
-      border-color: var(--brand-primary);
+      border-color: var(--color-primary);
     }
     
     .autocomplete-items {
@@ -46,11 +46,11 @@
       top: 100%;
       left: 0;
       right: 0;
-      background: var(--surface-1);
+      background: var(--bg-color); /* opaque */
       max-height: 300px;
       overflow-y: auto;
       border-radius: 0 0 8px 8px;
-      box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+      box-shadow: 0 8px 16px var(--shadow-heavy);
       text-align: left;
     }
     
@@ -61,17 +61,18 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      color: var(--text-1);
+      color: var(--text-main);
     }
     
-    .autocomplete-items div:hover {
-      background-color: var(--surface-2);
+    .autocomplete-items div:hover, .autocomplete-active {
+      background-color: var(--color-primary) !important;
+      color: var(--btn-text) !important;
     }
     
     .context-label {
       font-size: 12px;
-      color: var(--text-2);
-      background: var(--surface-3);
+      color: var(--text-main);
+      background: rgba(255,255,255,0.1);
       padding: 4px 8px;
       border-radius: 4px;
       margin-left: 10px;
@@ -88,8 +89,8 @@
     }
     
     .tag {
-      background-color: var(--brand-primary);
-      color: var(--text-1);
+      background-color: var(--color-primary);
+      color: var(--text-main);
       padding: 8px 16px;
       border-radius: 24px;
       display: flex;
@@ -114,7 +115,7 @@
     .no-results {
       text-align: center;
       grid-column: 1 / -1;
-      color: var(--text-2);
+      color: var(--text-muted);
       font-size: 18px;
       padding: 40px;
     }
@@ -123,7 +124,7 @@
 <body>
   
   <!-- Add a minimal header similar to the site -->
-  <header style="background: var(--surface-1); padding: 15px 20px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: center;">
+  <header style="background: var(--panel-bg); padding: 15px 20px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: center;">
     <a href="../index.html">
       <img src="../images/stc-rp-logo.svg" alt="Sonic the Comic Rescan Project Logo" style="height: 40px;" />
     </a>
@@ -131,7 +132,7 @@
 
   <div class="search-hero">
     <div class="container">
-      <h1 style="margin-bottom: 20px; color: var(--text-1);">Search Archive</h1>
+      <h1 style="margin-bottom: 20px; color: var(--text-main);">Search Archive</h1>
       
       <div class="search-container">
         <input type="text" id="search-input" placeholder="Search by character, artist, writer..." autocomplete="off">

@@ -86,9 +86,12 @@ const autocompleteList = document.getElementById('autocomplete-list');
 const selectedTagsContainer = document.getElementById('selected-tags');
 const resultsContainer = document.getElementById('results-container');
 
+let currentFocus = -1;
+
 searchInput.addEventListener('input', function() {
   const val = this.value.toLowerCase().trim();
   autocompleteList.innerHTML = '';
+  currentFocus = -1;
   
   if (!val) return;
   
@@ -112,6 +115,7 @@ searchInput.addEventListener('input', function() {
       addTag(match);
       searchInput.value = '';
       autocompleteList.innerHTML = '';
+      currentFocus = -1;
       searchInput.focus();
     });
     
@@ -119,9 +123,45 @@ searchInput.addEventListener('input', function() {
   });
 });
 
+searchInput.addEventListener('keydown', function(e) {
+  let x = document.getElementById("autocomplete-list");
+  if (x) x = x.getElementsByTagName("div");
+  if (e.keyCode == 40) {
+    // DOWN
+    currentFocus++;
+    addActive(x);
+  } else if (e.keyCode == 38) { // UP
+    currentFocus--;
+    addActive(x);
+  } else if (e.keyCode == 13) {
+    // ENTER
+    e.preventDefault();
+    if (currentFocus > -1) {
+      if (x) x[currentFocus].click();
+    }
+  }
+});
+
+function addActive(x) {
+  if (!x) return false;
+  removeActive(x);
+  if (currentFocus >= x.length) currentFocus = 0;
+  if (currentFocus < 0) currentFocus = (x.length - 1);
+  x[currentFocus].classList.add("autocomplete-active");
+  // scroll into view
+  x[currentFocus].scrollIntoView({ block: "nearest", behavior: "smooth" });
+}
+
+function removeActive(x) {
+  for (let i = 0; i < x.length; i++) {
+    x[i].classList.remove("autocomplete-active");
+  }
+}
+
 document.addEventListener('click', function(e) {
   if (e.target !== searchInput && e.target !== autocompleteList) {
     autocompleteList.innerHTML = '';
+    currentFocus = -1;
   }
 });
 
