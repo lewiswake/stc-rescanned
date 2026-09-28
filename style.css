@@ -2357,6 +2357,11 @@ body > .site-header + main {
 
 body.nav-open {
   overflow: hidden;
+  height: 100vh;
+  touch-action: none;
+}
+body.nav-open .site-nav {
+  touch-action: auto;
 }
 /* Mobile Drawer Overlay via Pseudo-Element */
 body::after {
@@ -2391,4 +2396,8 @@ body.nav-open .site-header {
 body.nav-open .site-logo {
   filter: blur(4px) brightness(0.5);
   pointer-events: none;
+}
+
+html:has(body.nav-open) {
+  overflow: hidden;
 }
