@@ -86,8 +86,8 @@
         <nav class="site-nav">
           <ul>
             <li><a class="active" href="index.html">Home</a></li>
-            <li><a href="downloads.html">Original Run</a></li>
-            <li><a href="about.html">About Scans</a></li>
+            <li><a href="downloads.html">Download</a></li>
+            <li><a href="about.html">About</a></li>
             <li><a href="roadmap.html">Roadmap</a></li>
             <li><a href="error-report.html">Report Error</a></li>
           </ul>
@@ -191,9 +191,79 @@
     
 
     <main class="main-wrapper">
-      
+      <section class="content-panel container" id="downloads">
+        <div class="section-header filter-header">
+          <div class="section-title">
+            <h2>Download cbz files</h2>
+            <p id="issue-count-display">Loading issues...</p>
+          </div>
+          <div class="controls-container">
+            <div class="search-container">
+              <input
+                type="text"
+                id="search-input"
+                class="search-input"
+                placeholder="Search by issue number or title..."
+                aria-label="Search issues"
+              />
+            </div>
+            <div class="filters-container">
+              <select
+                id="year-filter"
+                class="filter-select"
+                aria-label="Filter by year"
+              >
+                <option value="all">All Years</option>
+              </select>
+              <select
+                id="sort-filter"
+                class="filter-select"
+                aria-label="Sort issues"
+              >
+                <option value="asc">Oldest First</option>
+                <option value="desc">Newest First</option>
+              </select>
+            </div>
+          </div>
+        </div>
 
-      
+        <div class="grid" id="issue-grid" aria-label="Comic Issues Grid"></div>
+
+        <div class="empty-state hidden" id="empty-state">
+          <p>No issues found for your search criteria.</p>
+          <button
+            class="btn btn-secondary clear-filters-btn hidden"
+            class="mt-16"
+          >
+            Clear Search & Filters
+          </button>
+        </div>
+      </section>
+
+      <section class="content-panel container" id="specials">
+        <div class="section-header">
+          <div class="section-title">
+            <h2>Special editions & spin-offs</h2>
+            <p>Holiday specials, poster magazines, and extra publications.</p>
+          </div>
+        </div>
+
+        <div
+          class="grid"
+          id="specials-grid"
+          aria-label="Special Issues Grid"
+        ></div>
+
+        <div class="empty-state hidden" id="specials-empty-state">
+          <p>No special issues matching your search criteria.</p>
+          <button
+            class="btn btn-secondary clear-filters-btn hidden"
+            class="mt-16"
+          >
+            Clear Search & Filters
+          </button>
+        </div>
+      </section>
 
       
     </main>

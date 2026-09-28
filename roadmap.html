@@ -84,8 +84,8 @@
         <nav class="site-nav">
           <ul>
             <li><a href="index.html">Home</a></li>
-            <li><a href="downloads.html">Original Run</a></li>
-            <li><a href="about.html">About Scans</a></li>
+            <li><a href="downloads.html">Download</a></li>
+            <li><a href="about.html">About</a></li>
             <li><a class="active" href="roadmap.html">Roadmap</a></li>
             <li><a href="error-report.html">Report Error</a></li>
           </ul>
@@ -103,6 +103,49 @@
     
 
     
+
+    <section class="progress-section container">
+      <div class="progress-header">
+        <h2>Project progress</h2>
+        <p id="last-updated-text" class="last-updated">Last updated: ...</p>
+      </div>
+
+      <div class="progress-item">
+        <div class="progress-labels">
+          <span>Scanned at 600 DPI</span>
+          <span id="scanned-progress-text">Calculating...</span>
+        </div>
+        <div class="progress-track" aria-hidden="true">
+          <div
+            class="progress-fill scanned-fill"
+            id="scanned-progress-fill"
+          ></div>
+        </div>
+      </div>
+
+      <div class="progress-item">
+        <div class="progress-labels">
+          <span>Pages scanned (mainline issues)</span>
+          <span id="pages-progress-text">Calculating...</span>
+        </div>
+        <div class="progress-track" aria-hidden="true">
+          <div class="progress-fill pages-fill" id="pages-progress-fill"></div>
+        </div>
+      </div>
+
+      <div class="progress-item">
+        <div class="progress-labels">
+          <span>Optimised and available in high and standard resolution</span>
+          <span id="optimised-progress-text">Calculating...</span>
+        </div>
+        <div class="progress-track" aria-hidden="true">
+          <div
+            class="progress-fill optimised-fill"
+            id="optimised-progress-fill"
+          ></div>
+        </div>
+      </div>
+    </section>
 
     <main class="main-wrapper">
       
