@@ -387,21 +387,25 @@ document.addEventListener("DOMContentLoaded", async () => {
       if (grid) grid.innerHTML = `<p class="grid-error-message">Error loading archive files. Please ensure you are running a local server.</p>`;
   }
 });
-
 // Mobile Navigation Toggle
 document.addEventListener("DOMContentLoaded", () => {
   const hamburgerBtn = document.getElementById("hamburger-menu");
-  const drawerOverlay = document.getElementById("drawer-overlay");
+  const siteNav = document.querySelector(".site-nav");
 
   if (hamburgerBtn) {
-    hamburgerBtn.addEventListener("click", () => {
+    hamburgerBtn.addEventListener("click", (e) => {
+      e.stopPropagation(); // prevent document click from firing
       document.body.classList.toggle("nav-open");
     });
   }
 
-  if (drawerOverlay) {
-    drawerOverlay.addEventListener("click", () => {
-      document.body.classList.remove("nav-open");
-    });
-  }
+  // Close when clicking outside of the drawer
+  document.addEventListener("click", (e) => {
+    if (document.body.classList.contains("nav-open")) {
+      // If the click is not inside the nav drawer, close it
+      if (siteNav && !siteNav.contains(e.target)) {
+        document.body.classList.remove("nav-open");
+      }
+    }
+  });
 });

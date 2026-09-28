@@ -2286,25 +2286,7 @@ body.faux-fullscreen-active {
   transition: all 0.3s ease-in-out;
 }
 
-/* Mobile Drawer Overlay */
-.drawer-overlay {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(2px);
-  z-index: 900;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
 
-body.nav-open .drawer-overlay {
-  display: block;
-  opacity: 1;
-}
 
 @media (max-width: 768px) {
   .site-header-container {
@@ -2323,7 +2305,7 @@ body.nav-open .drawer-overlay {
     right: -280px;
     width: 260px;
     height: 100vh;
-    background: var(--panel-bg);
+    background: #060b14;
     border-left: 1px solid var(--border-color);
     box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
     z-index: 999;
@@ -2368,4 +2350,36 @@ body > .site-header + main {
 
 body.nav-open {
   overflow: hidden;
+}
+/* Mobile Drawer Overlay via Pseudo-Element */
+body::after {
+  content: "";
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  z-index: 9000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  pointer-events: none;
+}
+
+body.nav-open::after {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+body.nav-open .site-header {
+  z-index: 9999;
+  background: transparent;
+  border-bottom-color: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
 }
