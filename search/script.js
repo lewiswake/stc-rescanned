@@ -308,3 +308,21 @@ function renderIssues(issues) {
     resultsContainer.appendChild(card);
   });
 }
+
+// Mobile Navigation Toggle
+document.addEventListener("DOMContentLoaded", () => {
+  const hamburgerBtn = document.getElementById("hamburger-menu");
+  const drawerOverlay = document.getElementById("drawer-overlay");
+
+  if (hamburgerBtn) {
+    hamburgerBtn.addEventListener("click", () => {
+      document.body.classList.toggle("nav-open");
+    });
+  }
+
+  if (drawerOverlay) {
+    drawerOverlay.addEventListener("click", () => {
+      document.body.classList.remove("nav-open");
+    });
+  }
+});

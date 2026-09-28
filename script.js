@@ -387,3 +387,21 @@ document.addEventListener("DOMContentLoaded", async () => {
       if (grid) grid.innerHTML = `<p class="grid-error-message">Error loading archive files. Please ensure you are running a local server.</p>`;
   }
 });
+
+// Mobile Navigation Toggle
+document.addEventListener("DOMContentLoaded", () => {
+  const hamburgerBtn = document.getElementById("hamburger-menu");
+  const drawerOverlay = document.getElementById("drawer-overlay");
+
+  if (hamburgerBtn) {
+    hamburgerBtn.addEventListener("click", () => {
+      document.body.classList.toggle("nav-open");
+    });
+  }
+
+  if (drawerOverlay) {
+    drawerOverlay.addEventListener("click", () => {
+      document.body.classList.remove("nav-open");
+    });
+  }
+});
